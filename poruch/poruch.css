@@ -62,7 +62,8 @@ h3{font-size:var(--h3)}
 .mem-nav a:hover,.nav a:hover,.mem-link:hover,.text-link:hover{background:var(--ink);color:var(--paper)}
 .mem-header-actions,.header-actions{display:flex;align-items:stretch;gap:0}
 .mem-mobile-menu{display:none}
-.mem-mobile-menu summary{width:46px;height:46px;border:1px solid var(--line);list-style:none}
+.mem-mobile-menu summary{position:relative;width:46px;height:46px;border:1px solid var(--line);list-style:none}
+.mem-mobile-menu summary::-webkit-details-marker{display:none}
 .mem-mobile-menu summary::before,.mem-mobile-menu summary::after{position:absolute;width:18px;height:1px;background:var(--ink);content:'';transform:translate(13px,18px)}
 .mem-mobile-menu summary::after{transform:translate(13px,27px)}
 
@@ -266,8 +267,15 @@ h3{font-size:var(--h3)}
 .mem-faq-grid,.executor-faq{display:grid;grid-template-columns:.7fr 1.3fr;gap:80px}
 .mem-faq-list details,.faq-list details{border-top:1px solid var(--line)}
 .mem-faq-list details:last-child,.faq-list details:last-child{border-bottom:1px solid var(--line)}
-.mem-faq-list summary,.faq-list summary{padding:24px 0;font-family:var(--serif);font-size:1.25rem;cursor:pointer}
+.mem-faq-list summary,.faq-list summary{padding:24px 0;font-family:var(--serif);font-size:1.25rem;cursor:pointer;list-style:none}
+.mem-faq-list summary::-webkit-details-marker,.faq-list summary::-webkit-details-marker{display:none}
+.mem-faq-list summary{display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:24px;align-items:center}
+.mem-faq-list summary span{display:grid;width:34px;height:34px;place-items:center;border:1px solid var(--line);font-family:var(--ui);font-size:1rem;transition:transform .18s ease}
+.mem-faq-list details[open] summary span{transform:rotate(45deg)}
+.faq-list summary{display:grid;grid-template-columns:48px minmax(0,1fr);gap:20px;align-items:center}
+.faq-list summary span{font-family:var(--label);font-size:.62rem;letter-spacing:.08em}
 .mem-faq-list details p,.faq-list details p{padding:0 0 24px;color:var(--muted)}
+.faq-list details p{padding-left:68px}
 .mem-order{background:var(--paper);color:var(--ink)}
 .mem-order-grid.mem-start-grid{grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);border:0}
 .mem-order-copy>a{display:inline-flex;margin-top:32px;padding-bottom:5px;border-bottom:1px solid var(--ink);font-family:var(--label);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
@@ -532,6 +540,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
   .mem-mobile-actions a{display:flex;min-height:54px;align-items:center;justify-content:center;padding:12px;font-family:var(--label);font-size:.58rem;letter-spacing:.08em;text-align:center;text-transform:uppercase}
   .mem-mobile-actions a:first-child{background:var(--ink);color:var(--paper)}
   .memorial-home{padding-bottom:76px}
+  .mem-faq-list summary{grid-template-columns:minmax(0,1fr) 32px;gap:14px;font-size:1.12rem}
+  .mem-faq-list summary span{width:32px;height:32px}
+  .faq-list summary{grid-template-columns:36px minmax(0,1fr);gap:12px;font-size:1.12rem}
+  .faq-list details p{padding-left:48px}
 }
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
