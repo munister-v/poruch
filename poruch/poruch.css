@@ -269,8 +269,17 @@ h3{font-size:var(--h3)}
 .mem-faq-list summary,.faq-list summary{padding:24px 0;font-family:var(--serif);font-size:1.25rem;cursor:pointer}
 .mem-faq-list details p,.faq-list details p{padding:0 0 24px;color:var(--muted)}
 .mem-order{background:var(--paper);color:var(--ink)}
+.mem-order-grid.mem-start-grid{grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);border:0}
+.mem-order-copy>a{display:inline-flex;margin-top:32px;padding-bottom:5px;border-bottom:1px solid var(--ink);font-family:var(--label);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
+.mem-start-options{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .mem-start-card{background:transparent}
+.mem-start-card h3{margin:72px 0 16px;font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.7rem);font-weight:500;line-height:1}
 .mem-start-card p{color:var(--muted)}
+.mem-start-card strong{display:flex;justify-content:space-between;gap:18px;margin-top:auto;padding-top:32px;font-family:var(--label);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
+.mem-login-card{display:flex;min-height:72px;grid-column:1/-1;align-items:center;justify-content:space-between;gap:24px;padding:20px 26px;background:var(--ink);color:var(--paper)}
+.mem-login-card span{color:rgba(245,240,235,.65);font-size:.78rem}
+.mem-login-card strong{font-family:var(--label);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
+.mem-mobile-actions{display:none}
 
 .executor-hero{width:min(100% - 48px,1360px);margin-inline:auto}
 .executor-hero-copy{grid-column:2;grid-row:1;padding:36px 24px 0 0}
@@ -411,7 +420,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
   .executor-hero-copy{grid-column:1;grid-row:2;padding:36px 16px 0}
   .executor-hero-figure{grid-column:1;grid-row:1}
   .fw-hero-art,.executor-hero-figure,.cab-visual{max-width:640px}
-  .fw-trust-inner,.mem-decision-grid,.mem-report-grid,.mem-order-grid,.mem-executor-grid,.platform-value,.payment-section,.application-section,.agency-invite{grid-template-columns:1fr}
+  .fw-trust-inner,.mem-decision-grid,.mem-report-grid,.mem-order-grid,.mem-order-grid.mem-start-grid,.mem-executor-grid,.platform-value,.payment-section,.application-section,.agency-invite{grid-template-columns:1fr}
   .fw-stats-grid,.steps-grid,.mem-protection-grid{grid-template-columns:repeat(2,1fr)}
   .fw-services{grid-template-columns:1fr}
   .fw-service-card{grid-template-columns:76px minmax(0,1fr) minmax(190px,.45fr)}
@@ -517,6 +526,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
   .executor-mobile-actions a{display:flex;min-height:54px;align-items:center;justify-content:center;padding:12px;font-family:var(--label);font-size:.58rem;letter-spacing:.08em;text-align:center;text-transform:uppercase}
   .executor-mobile-actions a:first-child{background:var(--ink);color:var(--paper)}
   .executor-memorial{padding-bottom:76px}
+  .mem-start-options{grid-template-columns:1fr}
+  .mem-login-card{align-items:flex-start;flex-direction:column;gap:4px}
+  .mem-mobile-actions{position:fixed;z-index:120;right:8px;bottom:max(8px,env(safe-area-inset-bottom));left:8px;display:grid;grid-template-columns:1.15fr .85fr;border:1px solid var(--ink);background:var(--paper);box-shadow:0 10px 32px rgba(17,17,17,.2)}
+  .mem-mobile-actions a{display:flex;min-height:54px;align-items:center;justify-content:center;padding:12px;font-family:var(--label);font-size:.58rem;letter-spacing:.08em;text-align:center;text-transform:uppercase}
+  .mem-mobile-actions a:first-child{background:var(--ink);color:var(--paper)}
+  .memorial-home{padding-bottom:76px}
 }
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
