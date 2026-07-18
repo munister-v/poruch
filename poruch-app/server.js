@@ -382,8 +382,8 @@ function layout({ title, user, body, description = "", current = "" }) {
   <link rel="apple-touch-icon" href="/assets/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&amp;family=Literata:ital,wght@0,400;0,500;0,600;1,400&amp;family=Orbit&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/app.css?v=20260718-epris1">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@400;500;600&amp;family=Orbit&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/app.css?v=20260718-epris2">
 </head>
 <body>
   <a class="skip-link" href="#main-content">До основного вмісту</a>
