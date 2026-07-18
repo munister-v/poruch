@@ -12,8 +12,8 @@
   --label:'Orbit','Arial Narrow',sans-serif;
   --ui:'Inter',Arial,sans-serif;
   --hero:clamp(2rem,3vw,3rem);
-  --h2-major:clamp(2.5rem,4vw,4.5rem);
-  --h2:clamp(2.1rem,3.5vw,3.75rem);
+  --h2-major:clamp(2.5rem,4vw,4rem);
+  --h2:clamp(2rem,3vw,3.2rem);
   --h3:clamp(1.35rem,2vw,2rem);
   --lead:clamp(1rem,1.25vw,1.2rem);
   --section:128px;
@@ -22,7 +22,8 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:88px}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+[id]{scroll-margin-top:104px}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
 body,button,input,select,textarea{letter-spacing:0}
 img,svg{display:block;max-width:100%}
@@ -120,46 +121,58 @@ h3{font-size:var(--h3)}
 .fw-stat span{margin-top:12px;color:var(--muted);font-size:.86rem;line-height:1.6}
 
 .mem-decision{background:var(--paper)}
+.mem-decision-grid{grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr)}
 .mem-decision-prices{border-top:1px solid var(--line)}
 .mem-decision-prices a{display:grid;grid-template-columns:1fr auto;gap:6px 20px;padding:24px 0;border-bottom:1px solid var(--line)}
 .mem-decision-prices a>span,.mem-decision-prices a>small{color:var(--muted)}
 .mem-decision-prices strong{font-family:var(--serif);font-size:1.5rem;font-weight:500}
 .mem-decision-prices b{font-family:var(--label);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}
-.fw-decision-illus{max-width:430px;margin-top:36px;padding:22px;border:1px solid var(--line);background:var(--accent-soft)}
 .mem-intro-grid{grid-template-columns:220px minmax(0,820px)}
 .mem-intro blockquote{max-width:700px;margin:38px 0 0;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--serif);font-size:1.5rem;font-style:italic}
 
-.mem-situations-head,.mem-section-head,.mem-year-head,.mem-process-title,.mem-protection-head,.mem-agency-head,.section-heading,.income-lab-heading,.faq-heading{display:grid;max-width:1120px;grid-template-columns:.7fr 1.3fr;gap:40px;margin-bottom:56px}
+.mem-situations-head,.mem-section-head,.mem-year-head,.mem-process-title,.mem-protection-head,.mem-agency-head,.section-heading,.income-lab-heading,.faq-heading{display:grid;max-width:1120px;grid-template-columns:220px minmax(0,720px);gap:40px;margin-bottom:56px}
 .mem-situations-head .mem-index,.mem-section-head .mem-overline,.mem-year-head .mem-index,.mem-process-title .mem-overline-light,.mem-protection-head .mem-index,.mem-agency-head .mem-index{grid-row:1/3}
-.mem-planner-shell,.mem-year-shell,.workspace-screen{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);background:transparent}
-.mem-planner-controls,.mem-planner-result{padding:clamp(24px,4vw,52px)}
+.mem-situations{padding-block:96px}
+.mem-situations-head h2{max-width:680px}
+.mem-planner-shell,.mem-year-shell,.workspace-screen{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent}
+.mem-planner-controls,.mem-planner-result{padding:36px 40px}
 .mem-planner-controls{border-right:1px solid var(--line)}
-.mem-planner-controls fieldset,.category-fieldset{padding:0;margin:0 0 30px;border:0}
+.mem-planner-controls fieldset,.category-fieldset{padding:0;margin:0 0 22px;border:0}
+.mem-planner-controls fieldset:last-child{margin-bottom:0}
 .mem-planner-controls legend{margin-bottom:14px;font-family:var(--label);font-size:.67rem;letter-spacing:.08em;text-transform:uppercase}
 .mem-planner-controls legend span{margin-right:12px;color:#75513d}
 .mem-planner-options,.category-options{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .mem-planner-options-three{grid-template-columns:repeat(3,1fr)}
-.mem-planner-options label,.category-options label,.consent-list label{display:flex;min-height:48px;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);font-family:var(--ui);font-size:.78rem}
+.mem-planner-options label,.category-options label,.consent-list label{display:flex;min-height:44px;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);font-family:var(--ui);font-size:.76rem;cursor:pointer}
+.mem-planner-options input[type=radio]{appearance:none;width:13px;height:13px;min-height:13px;flex:0 0 13px;padding:0;border:1px solid var(--muted);border-radius:50%;background:transparent}
+.mem-planner-options input[type=radio]:checked{border:4px solid var(--ink)}
 .mem-planner-options label:has(input:checked){border-color:var(--ink);background:var(--accent-soft)}
 .mem-planner-result-top{display:flex;justify-content:space-between;font-family:var(--label);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}
-.mem-planner-result h3{margin-top:48px}
-.mem-planner-price-lg{margin:16px 0 22px;font-family:var(--serif);font-size:2rem}
+.mem-planner-result h3{margin-top:30px;font-size:clamp(1.7rem,2.5vw,2.35rem)}
+.mem-planner-price-lg{margin:10px 0 18px;font-family:var(--serif);font-size:1.6rem}
 .mem-planner-result>p{color:var(--muted)}
-.mem-planner-result dl{margin:30px 0}
+.mem-planner-result dl{margin:24px 0 18px}
 .mem-planner-result dl div{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-top:1px solid var(--line)}
-.mem-planner-result-note{padding:18px;border:1px solid var(--line);background:var(--accent-soft)}
+.mem-planner-result-note{padding:16px 0;border-top:1px solid var(--line);background:transparent}
 .mem-planner-result-note span{font-family:var(--label);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase}
 .mem-planner-result-note p{margin-top:8px;font-size:.85rem}
 .mem-planner-result .mem-button{margin-top:24px}
 
-.fw-services,.mem-case-grid,.mem-agency-models,.mem-start-grid,.work-modes{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.fw-service-card,.mem-case-grid article,.mem-agency-models article,.mem-start-card,.work-modes article{display:flex;min-width:0;flex-direction:column;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent}
-.fw-service-illus,.fw-agency-illus,.fw-callout-illus,.fw-order-illus,.mem-process-illus{padding:18px;border:1px solid var(--line);background:transparent}
-.fw-service-card h3{margin:24px 0 14px}
-.fw-service-card>p:not(.fw-service-label){color:var(--muted)}
-.fw-service-foot{display:grid;gap:18px;margin-top:auto;padding-top:28px}
-.fw-service-price{font-family:var(--serif);font-size:1.35rem}
-.fw-service-price small{display:block;margin-top:6px;color:var(--muted);font-family:var(--body);font-size:.72rem}
+.fw-services{display:grid;grid-template-columns:1fr;border-top:1px solid var(--line)}
+.fw-service-card{position:relative;display:grid;min-height:230px;grid-template-columns:110px minmax(0,1fr) minmax(210px,.45fr);grid-template-rows:auto auto 1fr;column-gap:34px;padding:34px 0;border-bottom:1px solid var(--line);background:transparent}
+.fw-service-card::before{grid-column:1;grid-row:1/4;color:var(--muted);font-family:var(--label);font-size:.66rem;letter-spacing:.15em;content:'01'}
+.fw-service-card:nth-child(2)::before{content:'02'}
+.fw-service-card:nth-child(3)::before{content:'03'}
+.fw-service-card .fw-service-label{grid-column:2;grid-row:1}
+.fw-service-card h3{grid-column:2;grid-row:2;margin:12px 0 16px;font-size:clamp(1.7rem,2.6vw,2.4rem)}
+.fw-service-card>p:not(.fw-service-label){grid-column:2;grid-row:3;max-width:620px;color:var(--muted)}
+.fw-service-foot{grid-column:3;grid-row:1/4;display:flex;align-items:flex-start;justify-content:space-between;flex-direction:column;gap:26px;padding-left:24px;border-left:1px solid var(--line)}
+.fw-service-foot .fw-btn{width:auto;min-height:42px;padding:10px 18px;background:transparent;color:var(--ink)}
+.fw-service-foot .fw-btn:hover{background:var(--ink);color:var(--paper)}
+.fw-service-price{font-family:var(--serif);font-size:1.45rem}
+.fw-service-price small{display:block;max-width:210px;margin-top:8px;color:var(--muted);font-family:var(--body);font-size:.75rem;line-height:1.5}
+.mem-case-grid,.mem-agency-models,.mem-start-grid,.work-modes{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.mem-case-grid article,.mem-agency-models article,.mem-start-card,.work-modes article{display:flex;min-width:0;flex-direction:column;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent}
 
 .mem-year-controls{padding:36px;border-right:1px solid var(--line)}
 .mem-year-calendar{padding:36px}
@@ -253,11 +266,23 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
 .legal-content p+p,.legal-content li+li{margin-top:12px}
 .privacy-content{max-width:760px;margin:var(--section-tight) auto 0;padding-inline:24px}
 
-.mem-footer,.footer,.cab-footer{border-top:1px dotted var(--line);background:var(--paper)}
-.mem-footer-grid,.footer-main{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;padding-block:72px}
+.mem-footer{border-top:0;background:#101010;color:var(--paper)}
+.mem-footer-grid{display:grid;min-height:390px;grid-template-columns:1.25fr .75fr;gap:80px;padding-block:84px 28px}
+.mem-footer .brand{display:block;padding:0;border:0}
+.mem-footer .brand-copy{display:block}
+.mem-footer .brand-parent{color:rgba(245,240,235,.55)}
+.mem-footer .brand-name{display:block;margin-top:18px;color:#a7523f;font-family:var(--serif);font-size:clamp(3.7rem,7vw,6.5rem);font-weight:400;letter-spacing:0;text-transform:uppercase}
+.mem-footer-grid>div:first-child>p{max-width:440px;margin-top:18px;color:rgba(245,240,235,.6);font-size:1rem}
+.mem-footer-links{align-content:start;padding-top:12px}
+.mem-footer-links a{padding:10px 0;border-bottom:1px solid rgba(245,240,235,.16);color:rgba(245,240,235,.7)}
+.mem-footer-links a:hover{color:var(--paper)}
+.mem-footer-meta{grid-column:1/-1}
+.footer,.cab-footer{border-top:1px dotted var(--line);background:var(--paper)}
+.footer-main{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;padding-block:72px}
 .mem-footer-links,.footer-links{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .mem-footer-links a,.footer-links a,.cab-footer a{font-family:var(--label);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}
-.mem-footer-meta,.footer-bottom{display:flex;justify-content:space-between;gap:20px;padding-block:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.78rem}
+.mem-footer-meta{display:flex;justify-content:space-between;gap:20px;padding-block:20px;border-top:1px solid rgba(245,240,235,.16);color:rgba(245,240,235,.52);font-size:.78rem}
+.footer-bottom{display:flex;justify-content:space-between;gap:20px;padding-block:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.78rem}
 .cab-footer{display:flex;justify-content:space-between;padding:22px max(24px,calc((100vw - 1360px)/2));color:var(--muted);font-size:.78rem}
 .cab-footer nav{display:flex;gap:24px}
 
@@ -294,7 +319,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
   .fw-hero-art,.executor-hero-figure,.cab-visual{max-width:640px}
   .fw-trust-inner,.mem-decision-grid,.mem-report-grid,.mem-order-grid,.mem-executor-grid,.platform-value,.payment-section,.application-section,.agency-invite{grid-template-columns:1fr}
   .fw-stats-grid,.steps-grid,.mem-protection-grid{grid-template-columns:repeat(2,1fr)}
-  .fw-services,.mem-case-grid,.mem-agency-models,.mem-start-grid,.work-modes{grid-template-columns:1fr 1fr}
+  .fw-services{grid-template-columns:1fr}
+  .fw-service-card{grid-template-columns:76px minmax(0,1fr) minmax(190px,.45fr)}
+  .mem-case-grid,.mem-agency-models,.mem-start-grid,.work-modes{grid-template-columns:1fr 1fr}
   .mem-process-grid,.mem-faq-grid,.executor-faq{grid-template-columns:1fr;gap:48px}
   .mem-situations-head,.mem-section-head,.mem-year-head,.mem-process-title,.mem-protection-head,.mem-agency-head,.section-heading,.income-lab-heading,.faq-heading{grid-template-columns:1fr}
   .mem-situations-head .mem-index,.mem-section-head .mem-overline,.mem-year-head .mem-index,.mem-process-title .mem-overline-light,.mem-protection-head .mem-index,.mem-agency-head .mem-index{grid-row:auto}
@@ -320,13 +347,24 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
   .fw-hero-facts,.trust-list{display:grid;gap:8px}
   .fw-bubble{position:relative;right:auto;bottom:auto;max-width:none;margin-top:16px}
   .fw-badges,.fw-stats-grid,.steps-grid,.mem-protection-grid,.fw-services,.mem-case-grid,.mem-agency-models,.mem-start-grid,.work-modes,.mem-report-facts,.mem-boundaries-grid,.requirements-grid,.cab-roles{grid-template-columns:1fr}
+  .fw-service-card{min-height:0;grid-template-columns:42px minmax(0,1fr);grid-template-rows:auto auto auto auto;column-gap:14px;padding:28px 0}
+  .fw-service-card::before{grid-column:1;grid-row:1/5}
+  .fw-service-card .fw-service-label,.fw-service-card h3,.fw-service-card>p:not(.fw-service-label),.fw-service-foot{grid-column:2}
+  .fw-service-card .fw-service-label{grid-row:1}
+  .fw-service-card h3{grid-row:2;margin-top:10px}
+  .fw-service-card>p:not(.fw-service-label){grid-row:3}
+  .fw-service-foot{grid-row:4;display:grid;margin-top:24px;padding:22px 0 0;border-top:1px solid var(--line);border-left:0}
+  .fw-service-foot .fw-btn{width:max-content}
   .mem-intro-grid{grid-template-columns:1fr}
   .mem-planner-shell,.mem-year-shell,.workspace-screen,.workspace-grid,.income-calculator{grid-template-columns:1fr}
-  .mem-planner-controls,.mem-year-controls,.workspace-proof,.income-controls{border-right:0;border-bottom:1px solid var(--line)}
+  .mem-planner-controls,.mem-year-controls,.workspace-proof,.income-controls{padding:26px 0;border-right:0;border-bottom:1px solid var(--line)}
+  .mem-planner-result{padding:30px 0}
   .mem-planner-options,.mem-planner-options-three,.category-options,.field-row{grid-template-columns:1fr}
   .promise-strip{grid-template-columns:1fr 1fr}
   .workspace-heading{display:grid}
-  .mem-footer-grid,.footer-main{grid-template-columns:1fr;gap:40px;padding-block:56px}
+  .mem-footer-grid,.footer-main{grid-template-columns:1fr;gap:40px;padding-block:56px 24px}
+  .mem-footer .brand-name{font-size:3.7rem}
+  .mem-footer-meta{grid-column:auto}
   .mem-footer-links,.footer-links{grid-template-columns:1fr}
   .mem-footer-meta,.footer-bottom,.cab-footer{align-items:flex-start;flex-direction:column}
   .cab-footer nav{flex-wrap:wrap}
