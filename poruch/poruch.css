@@ -174,12 +174,33 @@ h3{font-size:var(--h3)}
 .mem-case-grid,.mem-agency-models,.mem-start-grid,.work-modes{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .mem-case-grid article,.mem-agency-models article,.mem-start-card,.work-modes article{display:flex;min-width:0;flex-direction:column;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent}
 
-.mem-year-controls{padding:36px;border-right:1px solid var(--line)}
-.mem-year-calendar{padding:36px}
-.mem-year-months{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.mem-year-months button{min-height:70px;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent;font-family:var(--label);font-size:.6rem;text-transform:uppercase}
-.mem-year-months button.is-active{background:var(--accent)}
-.mem-year-summary,.income-result{margin-top:24px;padding:24px;border:1px solid var(--line);background:var(--accent-soft)}
+.mem-year-shell{grid-template-columns:250px minmax(0,1fr);align-items:stretch}
+.mem-year-controls{display:grid;align-content:start;gap:8px;padding:34px 28px;border-right:1px solid var(--line)}
+.mem-year-controls::before{margin-bottom:8px;font-family:var(--label);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;content:'Оберіть ритм'}
+.mem-year-controls button{display:flex;min-height:48px;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);font-family:var(--label);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.mem-year-controls button::after{width:12px;height:12px;border:1px solid var(--ink);border-radius:50%;content:''}
+.mem-year-controls button.is-active{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.mem-year-controls button.is-active::after{border:3px solid var(--paper);background:var(--paper);box-shadow:inset 0 0 0 2px var(--ink)}
+.mem-year-calendar{min-width:0;padding:34px 36px 38px}
+.mem-year-months{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.mem-year-months span{display:grid;min-width:0;min-height:42px;place-items:center;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--label);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase}
+.mem-year-months span.is-active{background:var(--ink);color:var(--paper)}
+.mem-year-line{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));height:22px;align-items:center;border-bottom:1px solid var(--line)}
+.mem-year-line i{position:relative;height:100%}
+.mem-year-line i.is-active::after{position:absolute;bottom:-4px;left:50%;width:7px;height:7px;border-radius:50%;background:var(--ink);content:'';transform:translateX(-50%)}
+.mem-year-visits{display:grid;grid-template-columns:repeat(var(--visit-count),minmax(0,1fr));margin-top:28px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.mem-year-visits article{min-width:0;min-height:170px;padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mem-year-visits article span{font-family:var(--label);font-size:.57rem;letter-spacing:.08em;text-transform:uppercase}
+.mem-year-visits article h3{margin:30px 0 8px;font-size:1.35rem}
+.mem-year-visits article p{color:var(--muted);font-size:.78rem}
+.mem-year-summary{grid-column:1/-1;display:grid;grid-template-columns:210px minmax(0,1fr) minmax(260px,.8fr) auto;gap:24px;align-items:start;margin:0;padding:28px 30px;border-top:1px solid var(--line);background:var(--accent-soft)}
+.mem-year-summary>div span,.mem-year-summary dt{display:block;font-family:var(--label);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase}
+.mem-year-summary>div strong{display:block;margin-top:8px;font-family:var(--serif);font-size:1.5rem;font-weight:500}
+.mem-year-summary>p{max-width:430px;color:var(--muted);font-size:.88rem}
+.mem-year-summary dl{display:grid;margin:0}
+.mem-year-summary dl div{display:grid;grid-template-columns:90px 1fr;gap:12px;padding:6px 0;border-top:1px solid var(--line)}
+.mem-year-summary dd{color:var(--muted);font-size:.78rem}
+.mem-year-summary>a{align-self:center;font-family:var(--label);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}
 .mem-process{background:var(--paper);color:var(--ink)}
 .mem-process-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:80px}
 .mem-process-title>p:last-child,.mem-process-steps p{color:var(--muted)}
@@ -188,9 +209,22 @@ h3{font-size:var(--h3)}
 .mem-process-steps>li>span{font-family:var(--label);font-size:.7rem;letter-spacing:.1em;color:var(--ink)}
 .mem-process-steps h3{font-size:1.55rem}
 
-.mem-report-frame,.proof-photo{padding:24px;border:1px solid var(--line);background:var(--accent-soft)}
-.mem-report-facts{display:grid;grid-template-columns:repeat(2,1fr);margin-top:28px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.mem-report-facts div{padding:18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mem-report-grid{grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr);gap:clamp(48px,7vw,100px)}
+.mem-report-frame,.proof-photo{padding:20px;border:1px solid var(--line);background:var(--accent-soft)}
+.mem-report-frame img{max-height:500px;object-fit:contain}
+.mem-report-facts{display:grid;grid-template-columns:120px minmax(0,1fr);margin-top:34px;border-top:1px solid var(--line)}
+.mem-report-facts dt,.mem-report-facts dd{padding:12px 0;border-bottom:1px solid var(--line)}
+.mem-report-facts dt{font-family:var(--label);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase}
+.mem-report-facts dd{color:var(--muted);font-size:.86rem}
+.mem-compare-card{min-width:0}
+.mem-paper-head{display:flex;justify-content:space-between;gap:20px;padding-bottom:12px;font-family:var(--label);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase}
+.mem-paper-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:18px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.mem-paper-checks span{padding:12px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.78rem}
+.mem-compare-card>p{max-width:720px;margin-top:18px;color:var(--muted);font-size:.88rem}
+.mem-protection-head{max-width:none;grid-template-columns:minmax(0,1.05fr) minmax(320px,.65fr);align-items:end}
+.mem-protection-head>div:first-child h2{max-width:760px;margin-top:16px}
+.mem-protection-head .fw-head-side{padding:0 0 8px 30px;border-left:1px solid var(--line)}
+.mem-protection-head .fw-head-side p{color:var(--muted);font-size:var(--lead)}
 .mem-protection-grid article h3,.step-card h3{margin-top:70px}
 .mem-protection-number,.step-card>span{font-family:var(--label);font-size:.66rem;letter-spacing:.1em;color:#75513d}
 .mem-boundaries-grid,.requirements-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:44px;border:1px solid var(--line)}
@@ -198,7 +232,32 @@ h3{font-size:var(--h3)}
 .mem-boundary-card+*,.requirements-card+*{border-left:1px solid var(--line)}
 .mem-boundary-card ul,.requirements-card ul,.check-list{padding:0;list-style:none}
 .mem-boundary-card li,.requirements-card li,.check-list li{padding:14px 0;border-top:1px solid var(--line)}
+.mem-protection-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;margin-top:32px;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mem-protection-cta strong,.mem-protection-cta span{display:block}
+.mem-protection-cta strong{font-family:var(--serif);font-size:1.55rem;font-weight:500}
+.mem-protection-cta span{margin-top:6px;color:var(--muted);font-size:.86rem}
 .mem-executor-callout,.agency-invite{background:var(--accent-soft)}
+.mem-executor-grid{grid-template-columns:220px minmax(0,1fr);gap:28px 64px;align-items:start}
+.mem-executor-grid>.mem-index{grid-column:1;grid-row:1/3;padding-top:10px}
+.mem-executor-grid>h2{grid-column:2;max-width:900px;font-size:clamp(2.8rem,5.3vw,5.2rem);line-height:1}
+.mem-executor-grid>div{grid-column:2;display:grid;grid-template-columns:minmax(0,620px) auto;gap:42px;align-items:end;padding-top:28px;border-top:1px solid var(--line)}
+.mem-executor-grid>div>p{color:var(--muted);font-size:var(--lead)}
+.mem-executor-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.mem-executor-actions a{white-space:nowrap}
+.mem-agency-models article span{font-family:var(--label);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase}
+.mem-agency-models article h3{margin:14px 0 12px;font-size:1.75rem}
+.mem-agency-models article p{color:var(--muted);font-size:.88rem}
+.mem-agency-contract{display:grid;grid-template-columns:1fr 1fr;margin-top:42px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.mem-agency-contract>div{padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mem-agency-contract ul{padding:0;list-style:none;counter-reset:agency-item}
+.mem-agency-contract ul li{counter-increment:agency-item;display:grid;grid-template-columns:34px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:.86rem}
+.mem-agency-contract ul li::before{color:var(--muted);font-family:var(--label);font-size:.55rem;letter-spacing:.08em;content:counter(agency-item,decimal-leading-zero)}
+.mem-agency-contract aside{grid-column:1/-1;display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:30px;align-items:center;padding:28px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mem-agency-contract aside>span{font-family:var(--label);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
+.mem-agency-contract ol{display:grid;grid-template-columns:repeat(4,1fr);padding:0;list-style:none;counter-reset:agency-step}
+.mem-agency-contract ol li{counter-increment:agency-step;min-height:72px;padding:10px 14px;border-left:1px solid var(--line);font-size:.76rem}
+.mem-agency-contract ol li::before{display:block;margin-bottom:8px;color:var(--muted);font-family:var(--label);font-size:.55rem;content:counter(agency-step,decimal-leading-zero)}
+.mem-agency-contract aside .mem-button{white-space:nowrap}
 .mem-faq-grid,.executor-faq{display:grid;grid-template-columns:.7fr 1.3fr;gap:80px}
 .mem-faq-list details,.faq-list details{border-top:1px solid var(--line)}
 .mem-faq-list details:last-child,.faq-list details:last-child{border-bottom:1px solid var(--line)}
@@ -322,8 +381,20 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
   .fw-services{grid-template-columns:1fr}
   .fw-service-card{grid-template-columns:76px minmax(0,1fr) minmax(190px,.45fr)}
   .mem-case-grid,.mem-agency-models,.mem-start-grid,.work-modes{grid-template-columns:1fr 1fr}
+  .mem-year-shell{grid-template-columns:190px minmax(0,1fr)}
+  .mem-year-controls{padding-inline:20px}
+  .mem-year-calendar{padding-inline:24px}
+  .mem-year-visits{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mem-year-summary{grid-template-columns:180px minmax(0,1fr);gap:20px}
+  .mem-year-summary dl,.mem-year-summary>a{grid-column:2}
+  .mem-executor-grid{grid-template-columns:160px minmax(0,1fr);gap:28px 42px}
+  .mem-executor-grid>div{grid-template-columns:1fr}
+  .mem-executor-actions{justify-content:flex-start}
+  .mem-agency-contract aside{grid-template-columns:150px minmax(0,1fr)}
+  .mem-agency-contract aside .mem-button{grid-column:2;width:max-content}
   .mem-process-grid,.mem-faq-grid,.executor-faq{grid-template-columns:1fr;gap:48px}
   .mem-situations-head,.mem-section-head,.mem-year-head,.mem-process-title,.mem-protection-head,.mem-agency-head,.section-heading,.income-lab-heading,.faq-heading{grid-template-columns:1fr}
+  .mem-protection-head .fw-head-side{padding:22px 0 0;border-top:1px solid var(--line);border-left:0}
   .mem-situations-head .mem-index,.mem-section-head .mem-overline,.mem-year-head .mem-index,.mem-process-title .mem-overline-light,.mem-protection-head .mem-index,.mem-agency-head .mem-index{grid-row:auto}
   .legal-layout{grid-template-columns:1fr}
   .legal-toc{position:static}
@@ -358,6 +429,35 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
   .mem-intro-grid{grid-template-columns:1fr}
   .mem-planner-shell,.mem-year-shell,.workspace-screen,.workspace-grid,.income-calculator{grid-template-columns:1fr}
   .mem-planner-controls,.mem-year-controls,.workspace-proof,.income-controls{padding:26px 0;border-right:0;border-bottom:1px solid var(--line)}
+  .mem-year-controls{grid-template-columns:repeat(3,1fr)}
+  .mem-year-controls::before{grid-column:1/-1}
+  .mem-year-controls button{min-height:46px;padding-inline:10px;font-size:.57rem}
+  .mem-year-calendar{padding:28px 0 34px}
+  .mem-year-months{grid-template-columns:repeat(6,1fr)}
+  .mem-year-line{display:none}
+  .mem-year-visits{grid-template-columns:1fr;margin-top:22px}
+  .mem-year-visits article{min-height:0;padding:20px}
+  .mem-year-visits article h3{margin-top:18px}
+  .mem-year-summary{grid-column:auto;grid-template-columns:1fr;gap:18px;padding:24px 0;background:transparent}
+  .mem-year-summary dl,.mem-year-summary>a{grid-column:auto}
+  .mem-year-summary>a{width:max-content}
+  .mem-report-grid{gap:44px}
+  .mem-report-facts{grid-template-columns:92px minmax(0,1fr)}
+  .mem-report-frame{padding:12px}
+  .mem-paper-head{display:grid;gap:3px}
+  .mem-paper-checks{grid-template-columns:1fr}
+  .mem-protection-cta{grid-template-columns:1fr;padding:24px 0}
+  .mem-protection-cta .mem-button{width:max-content}
+  .mem-executor-grid{grid-template-columns:1fr;gap:24px}
+  .mem-executor-grid>.mem-index,.mem-executor-grid>h2,.mem-executor-grid>div{grid-column:1;grid-row:auto}
+  .mem-executor-grid>h2{font-size:clamp(2.5rem,13vw,4rem)}
+  .mem-executor-actions{display:grid;justify-content:stretch}
+  .mem-executor-actions a{width:100%}
+  .mem-agency-contract{grid-template-columns:1fr}
+  .mem-agency-contract>div,.mem-agency-contract aside{grid-column:1}
+  .mem-agency-contract aside{grid-template-columns:1fr;padding:26px 22px}
+  .mem-agency-contract ol{grid-template-columns:1fr 1fr}
+  .mem-agency-contract aside .mem-button{grid-column:1;width:100%}
   .mem-planner-result{padding:30px 0}
   .mem-planner-options,.mem-planner-options-three,.category-options,.field-row{grid-template-columns:1fr}
   .promise-strip{grid-template-columns:1fr 1fr}
