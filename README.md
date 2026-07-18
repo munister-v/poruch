@@ -21,16 +21,16 @@ Both deploy straight to the VPS (rsync + Docker), independent of each other and 
 
 ## `poruch/` — marketing site
 
-Plain HTML/CSS/JS, no build tooling, no framework. Each page loads a small stack of stylesheets in a fixed cascade order — later files override earlier ones by selector specificity/source order, nothing is ever edited in place once shipped, new rules are appended at the end of the relevant file.
+Plain HTML/CSS/JS, no build tooling and no framework. Every public page uses one shared design system in `poruch.css`; page-specific structure stays in semantic HTML instead of override layers.
 
-| Page | Loads |
+| Page | Purpose |
 |---|---|
-| `index.html` | `poruch.css` → `index-styles.css` → `editorial.css` |
-| `executor.html` | `poruch.css` → `executor-styles.css` → `editorial.css` |
-| `privacy.html`, `executor-terms.html` | `poruch.css` → `executor.css` (older, legacy) → `editorial.css` |
-| `cabinet.html` | self-contained, its own `<style>` block |
+| `index.html` | Main service page, care planner and trust flow |
+| `executor.html` | Executor onboarding and earnings calculator |
+| `privacy.html`, `executor-terms.html` | Legal documents |
+| `cabinet.html` | Safe entry point to the application login and registration |
 
-`editorial.css` is the shared top layer across all four content pages — it currently carries the site's "EPRIS" visual system (Playfair Display headlines, Literata body copy, Orbit tracked-mono labels, flat hairline components, cream/ink/dusty-gold palette). Bump its `?v=` query string on every page that loads it whenever it changes, or browsers will keep serving a stale cached copy.
+`poruch.css` carries the complete EPRIS-inspired visual system: Playfair Display headlines, Literata body copy, Orbit labels, flat hairline components and the cream/ink/dusty-gold palette. The retired CSS files remain only as repository history and are not loaded. Bump the `poruch.css?v=` query string on every public page whenever the shared stylesheet changes.
 
 **Deploy:**
 ```sh

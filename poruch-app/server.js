@@ -375,7 +375,7 @@ function layout({ title, user, body, description = "", current = "" }) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${esc(description || title)}">
-  <meta name="theme-color" content="#f5f2eb">
+  <meta name="theme-color" content="#f5f0eb">
   <title>${esc(title)} — Поруч</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -383,7 +383,7 @@ function layout({ title, user, body, description = "", current = "" }) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&amp;family=Literata:ital,wght@0,400;0,500;0,600;1,400&amp;family=Orbit&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/app.css?v=20260718-fonts1">
+  <link rel="stylesheet" href="/assets/app.css?v=20260718-epris1">
 </head>
 <body>
   <a class="skip-link" href="#main-content">До основного вмісту</a>
