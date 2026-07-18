@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 440" fill="none" stroke="#1c1a17" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Жінка доглядає за могилою рідної людини та тримає телефон для фотозвіту">
+  <!-- ground -->
+  <path d="M40 372 C160 360 300 360 560 372" stroke-dasharray="1 10" stroke-width="2.2"/>
+  <path d="M70 388 h14 M120 396 h10 M470 392 h14 M520 384 h10"/>
+
+  <!-- left sprig -->
+  <path d="M96 372 C92 340 96 320 100 300"/>
+  <path d="M98 344 C86 340 80 332 80 322 C90 324 96 332 98 344"/>
+  <path d="M100 330 C112 326 118 318 118 308 C108 310 102 318 100 330"/>
+
+  <!-- right sprig -->
+  <path d="M528 372 C532 344 528 324 524 306"/>
+  <path d="M526 344 C538 340 544 332 544 322 C534 324 528 332 526 344"/>
+  <path d="M524 330 C512 326 506 318 506 308 C516 310 522 318 524 330"/>
+
+  <!-- gravestone with arched top -->
+  <path d="M150 360 L150 178 Q150 108 216 108 Q282 108 282 178 L282 360 Z"/>
+  <!-- grave slab base -->
+  <path d="M120 360 L312 360 L336 396 L96 396 Z"/>
+  <!-- portrait oval -->
+  <ellipse cx="216" cy="176" rx="30" ry="36"/>
+  <path d="M204 182 a12 12 0 0 1 24 0"/>
+  <circle cx="216" cy="164" r="9"/>
+  <!-- name / dates lines -->
+  <path d="M176 236 h80 M182 256 h68 M188 274 h56"/>
+
+  <!-- vase with flowers in front of stone -->
+  <path d="M198 360 L206 314 L258 314 L266 360 Z"/>
+  <path d="M206 314 C214 306 250 306 258 314"/>
+  <!-- flower stems -->
+  <path d="M222 314 C218 292 218 276 220 260"/>
+  <path d="M234 314 C234 290 236 272 240 254"/>
+  <path d="M246 314 C250 294 252 280 250 264"/>
+  <!-- flower heads (daisies) -->
+  <g>
+    <circle cx="220" cy="252" r="5"/>
+    <path d="M220 240 v-9 M220 264 v9 M208 252 h-9 M232 252 h9 M211 243 l-6 -6 M229 261 l6 6 M229 243 l6 -6 M211 261 l-6 6"/>
+  </g>
+  <g>
+    <circle cx="240" cy="246" r="5"/>
+    <path d="M240 234 v-9 M240 258 v9 M228 246 h-9 M252 246 h9 M231 237 l-6 -6 M249 255 l6 6 M249 237 l6 -6 M231 255 l-6 6"/>
+  </g>
+  <g>
+    <circle cx="250" cy="256" r="4.5"/>
+    <path d="M250 245 v-8 M250 267 v8 M239 256 h-8 M261 256 h8"/>
+  </g>
+
+  <!-- kneeling woman on the right, facing the grave -->
+  <!-- hair / head -->
+  <path d="M436 150 C436 124 418 108 396 108 C372 108 356 128 356 152 C356 172 368 186 386 190"/>
+  <path d="M436 150 C452 156 466 168 470 186 C474 206 466 226 452 236 C462 244 470 258 470 274"/>
+  <!-- face profile -->
+  <path d="M356 152 C352 160 352 170 358 176 C362 180 368 182 374 182"/>
+  <path d="M360 158 a1.6 1.6 0 0 0 0 0.1"/>
+  <circle cx="361" cy="160" r="1.4" fill="#1c1a17" stroke="none"/>
+  <!-- body / back -->
+  <path d="M386 190 C378 214 372 250 372 288 C372 320 388 344 420 352"/>
+  <!-- lap / kneeling legs -->
+  <path d="M420 352 C452 356 484 352 496 336 C486 330 470 330 456 332"/>
+  <path d="M372 300 C392 316 420 324 452 322"/>
+  <!-- front arm reaching toward phone -->
+  <path d="M382 224 C360 232 342 246 332 262"/>
+  <!-- phone in hand -->
+  <rect x="316" y="250" width="26" height="44" rx="5" transform="rotate(-18 329 272)"/>
+  <path d="M322 258 l16 -5" transform="rotate(-18 329 272)"/>
+
+  <!-- little care detail: petals on the slab -->
+  <path d="M300 384 a3 3 0 1 0 0.1 0 M286 390 a3 3 0 1 0 0.1 0 M314 388 a3 3 0 1 0 0.1 0"/>
+</svg>
