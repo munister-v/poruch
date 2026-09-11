@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>poruch — someone stands there for you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff;
+  --ink:#181816;
+  --grey:#908f8e;
+  --grey-soft:#6a6967;
+  --line:rgba(24,24,22,.12);
+  --chip:#d7f56b;
+  --display:'Onest',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--display);font-weight:400;
+  text-transform:lowercase;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* ---------- header ---------- */
+.hd{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 28px;
+  background:rgba(255,255,255,.72);backdrop-filter:blur(12px);
+}
+.hd-brand{display:flex;align-items:center;gap:9px;font-size:17px;font-weight:500;letter-spacing:-.01em}
+.hd-mark{width:19px;height:19px;border:1.5px solid var(--ink);border-radius:3px}
+.hd-act{display:flex;align-items:center;gap:10px}
+.hd-a{
+  font-size:13px;color:var(--grey-soft);text-decoration:none;
+  padding:7px 13px;border-radius:999px;background:rgba(24,24,22,.05);
+}
+.hd-a.is-cta{background:var(--chip);color:var(--ink);font-weight:500}
+
+/* ---------- shared display type ---------- */
+.d1{
+  font-size:clamp(3rem,7.6vw,97px);line-height:.9;letter-spacing:-.025em;
+  font-weight:400;margin:0;
+}
+.d2{
+  font-size:clamp(2.1rem,5vw,64px);line-height:.9;letter-spacing:-.02em;
+  font-weight:400;margin:0;
+}
+.lead{
+  font-size:clamp(1.05rem,1.5vw,21px);line-height:1.28;letter-spacing:-.01em;
+  color:var(--ink);margin:0;
+}
+.mono{
+  font-family:var(--mono);font-size:11px;letter-spacing:.02em;
+  color:var(--grey);text-transform:lowercase;
+}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;display:grid;grid-template-rows:1fr auto;
+  align-items:center;padding-top:86px;position:relative;overflow:hidden;
+}
+.hero-top{display:grid;align-content:center;justify-items:center;position:relative;text-align:center}
+.hero-obj{
+  width:min(560px,74vw);margin:-6px auto 0;opacity:.92;z-index:0;pointer-events:none;
+}
+.hero-obj img{width:100%;display:block}
+.hero h1{position:relative;z-index:1}
+.hero-chip{
+  position:absolute;right:10%;top:58%;z-index:2;
+  font-family:var(--mono);font-size:10px;color:var(--grey-soft);
+  background:rgba(255,255,255,.86);border:1px solid var(--line);
+  border-radius:4px;padding:4px 8px;
+}
+.hero-sub{padding-block:0 64px;text-align:center}
+.hero-sub p{margin:0 auto;max-width:460px}
+
+/* ---------- statement screen ---------- */
+.say{
+  min-height:92svh;display:grid;place-items:center;text-align:center;
+}
+.say .d2{color:var(--grey);max-width:16ch}
+
+/* ---------- feature ---------- */
+.feat{padding-block:0 132px}
+.feat-head{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:end;padding:112px 0 52px}
+.feat-head p{color:var(--grey-soft);max-width:34ch}
+.try{
+  display:inline-block;margin-top:22px;font-size:15px;color:var(--ink);
+  text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;
+}
+
+/* object grid with parenthetical captions */
+.objs{display:grid;grid-template-columns:repeat(6,1fr);gap:26px 20px}
+.obj{display:grid;gap:10px;justify-items:center;text-align:center}
+.obj-box{
+  width:100%;aspect-ratio:1/1;display:grid;place-items:center;
+  background:rgba(24,24,22,.03);border-radius:6px;overflow:hidden;
+}
+.obj-box img{width:82%;height:82%;object-fit:contain;display:block}
+.obj-box.is-empty::after{content:'img';font-family:var(--mono);font-size:10px;color:var(--grey)}
+
+/* ---------- year strip ---------- */
+.year{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:48px;align-items:start;padding-block:0 132px}
+.year>*{min-width:0}
+.year .d2{font-size:clamp(1.9rem,3.4vw,44px)}
+.year-list{display:grid;gap:0;border-top:1px solid var(--line)}
+.year-row{
+  display:grid;grid-template-columns:96px 1fr auto;gap:20px;align-items:center;
+  padding:18px 2px;border-bottom:1px solid var(--line);
+}
+.year-row span:nth-child(2){font-size:19px;letter-spacing:-.01em}
+
+/* ---------- cases ---------- */
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-block:0 132px}
+.case{border:1px solid var(--line);border-radius:8px;padding:20px;display:grid;gap:14px}
+.case-img{aspect-ratio:4/3;background:rgba(24,24,22,.03);border-radius:5px;display:grid;place-items:center}
+.case-img::after{content:'img';font-family:var(--mono);font-size:10px;color:var(--grey)}
+.case h3{margin:0;font-size:20px;font-weight:400;letter-spacing:-.01em}
+
+/* ---------- manifesto ---------- */
+.mani{padding-block:0 132px;display:grid;gap:26px;justify-items:center;text-align:center}
+.mani p{margin:0;max-width:40ch;font-size:clamp(1.1rem,1.8vw,24px);line-height:1.25;letter-spacing:-.015em}
+.mani p.is-dim{color:var(--grey)}
+
+/* ---------- close ---------- */
+.close{min-height:88svh;display:grid;place-items:center;text-align:center;gap:0}
+.close .d1{max-width:12ch;margin-bottom:40px}
+.close .d2{color:var(--grey-soft)}
+.close .fine{margin-top:22px;color:var(--grey);font-size:15px}
+
+.ft{border-top:1px solid var(--line);padding-block:26px 40px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.ft a{color:var(--grey-soft);text-decoration:none;font-size:13px}
+
+@media(max-width:900px){
+  .feat-head{grid-template-columns:1fr;gap:22px;padding:80px 0 40px}
+  .objs{grid-template-columns:repeat(3,1fr)}
+  .year{grid-template-columns:1fr;gap:20px}
+  .cases{grid-template-columns:1fr}
+  .hero-chip{right:4%}
+}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="hd-brand"><span class="hd-mark"></span>poruch</div>
+  <div class="hd-act">
+    <a class="hd-a" href="https://app.munister.com.ua">login</a>
+    <a class="hd-a is-cta" href="#start">try now</a>
+  </div>
+</header>
+
+<!-- 1. hero -->
+<section class="hero">
+  <div class="hero-top wrap">
+    <h1 class="d1">the place is there.<br>you are not.</h1>
+    <div class="hero-obj"><img src="assets/il/quiet-remembrance-flowers.webp" alt=""></div>
+    <div class="hero-chip">case_1042.pdf</div>
+  </div>
+  <div class="hero-sub wrap">
+    <p class="lead">poruch sends a person<br>to the grave you cannot<br>reach, and files the proof.</p>
+  </div>
+</section>
+
+<!-- 2. statement -->
+<section class="say wrap">
+  <p class="d2">wtf is remote care? it is a human being standing where you cannot stand.</p>
+</section>
+
+<!-- 3. feature: what comes back -->
+<section class="feat wrap">
+  <div class="feat-head">
+    <h2 class="d2">we go.<br>we photograph.<br>we file it.</h2>
+    <div>
+      <p class="lead">every visit closes as a numbered case: date, place, executor, what was done, and the photographs taken on the spot.</p>
+      <a class="try" href="#start">try now</a>
+    </div>
+  </div>
+  <div class="objs">
+    <div class="obj"><div class="obj-box"><img src="assets/il/photo-report-mobile.webp" alt=""></div><span class="mono">(photo)</span></div>
+    <div class="obj"><div class="obj-box"><img src="assets/il/regular-care-calendar.webp" alt=""></div><span class="mono">(date)</span></div>
+    <div class="obj"><div class="obj-box"><img src="assets/il/local-caregiver-network.webp" alt=""></div><span class="mono">(executor)</span></div>
+    <div class="obj"><div class="obj-box"><img src="assets/il/how-it-works-flow.webp" alt=""></div><span class="mono">(route)</span></div>
+    <div class="obj"><div class="obj-box"><img src="assets/il/support-24-7.webp" alt=""></div><span class="mono">(contact)</span></div>
+    <div class="obj"><div class="obj-box"><img src="assets/il/memory-at-home.webp" alt=""></div><span class="mono">(archive)</span></div>
+  </div>
+</section>
+
+<!-- 4. statement -->
+<section class="say wrap">
+  <p class="d2">you do not buy a service. you receive evidence.</p>
+</section>
+
+<!-- 5. year -->
+<section class="year wrap">
+  <div>
+    <h2 class="d2" style="color:var(--grey)">a year,<br>not a plan</h2>
+    <p class="lead" style="color:var(--grey-soft);margin-top:18px">pick the dates that matter. the price assembles itself.</p>
+  </div>
+  <div class="year-list">
+    <div class="year-row"><span class="mono">apr 20</span><span>провідна неділя</span><span class="mono">(visit)</span></div>
+    <div class="year-row"><span class="mono">may 09</span><span>роковини</span><span class="mono">(visit + flowers)</span></div>
+    <div class="year-row"><span class="mono">jun 08</span><span>зелені свята</span><span class="mono">(visit)</span></div>
+    <div class="year-row"><span class="mono">sep 14</span><span>день народження</span><span class="mono">(visit + candle)</span></div>
+    <div class="year-row"><span class="mono">dec 24</span><span>різдво</span><span class="mono">(visit)</span></div>
+  </div>
+</section>
+
+<!-- 6. cases -->
+<section class="cases wrap">
+  <article class="case"><div class="case-img"></div><h3>case №1042</h3><span class="mono">(closed · kyiv · 12.08)</span></article>
+  <article class="case"><div class="case-img"></div><h3>case №1043</h3><span class="mono">(closed · lviv · 19.08)</span></article>
+  <article class="case"><div class="case-img"></div><h3>case №1044</h3><span class="mono">(open · odesa · 02.09)</span></article>
+</section>
+
+<!-- 7. manifesto -->
+<section class="mani wrap">
+  <p>war moved people. it did not move the graves.</p>
+  <p class="is-dim">someone is in warsaw. someone is in berlin.<br>the place stays where it always was.</p>
+  <p class="is-dim">a photograph taken on tuesday at 9:40<br>is not sentiment. it is a fact.</p>
+  <p>poruch is the person who was there.</p>
+</section>
+
+<!-- 8. close -->
+<section class="close wrap" id="start">
+  <h2 class="d1">you start from proof.</h2>
+  <a class="d2" href="https://app.munister.com.ua" style="text-decoration:none">try poruch</a>
+  <p class="fine">first visit from 400 uah. report always included.</p>
+</section>
+
+<footer class="ft wrap">
+  <span class="mono">poruch · 2026 · structural draft v3</span>
+  <span><a href="index.html">back to live site</a></span>
+</footer>
+
+</body>
+</html>
