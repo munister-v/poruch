@@ -7,9 +7,9 @@
   --accent-soft:#e8ded5;
   --line:rgba(17,17,17,.25);
   --line-soft:rgba(17,17,17,.12);
-  --serif:'Crimson Text',Georgia,serif;
-  --body:'Iowan Old Style','Palatino Linotype',Palatino,serif;
-  --label:'Orbit','Arial Narrow',sans-serif;
+  --serif:'Playfair Display',Georgia,serif;
+  --body:'Literata','Iowan Old Style','Palatino Linotype',Palatino,serif;
+  --label:'IBM Plex Mono',ui-monospace,'Courier New',monospace;
   --ui:'Inter',Arial,sans-serif;
   --hero:clamp(2rem,3vw,3rem);
   --h2-major:clamp(2.5rem,4vw,4rem);
