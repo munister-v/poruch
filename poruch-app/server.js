@@ -375,15 +375,16 @@ function layout({ title, user, body, description = "", current = "" }) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${esc(description || title)}">
-  <meta name="theme-color" content="#f5f0eb">
+  <meta name="theme-color" content="#ffffff">
   <title>${esc(title)} — Поруч</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/app.css?v=20260911-museum11">
+  <link rel="stylesheet" href="/assets/v3.css?v=20260911-v3b">
 </head>
 <body>
   <a class="skip-link" href="#main-content">До основного вмісту</a>
