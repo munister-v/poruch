@@ -1,37 +1,45 @@
 :root {
-  /* Палітра, кегельний ряд і шкала відступів зняті з наших музеїв:
-     museum.eprisjournal.com і 062.dn.ua (їхній assets/museum.css). */
+  /* Структура Apple: сцени на всю ширину, чергування білого й чорного,
+     великий центрований заголовок, короткий підзаголовок, дві дії,
+     плитки зі скругленням. Один гротеск, жодних волосяних ліній. */
   --paper:#FFFFFF;
   --surface:#FFFFFF;
-  --ink:#121212;
-  --muted:rgba(18,18,18,.72);
-  --secondary:#736F68;
-  --tint:#F2F1EF;
+  --black:#000000;
+  --ink:#1D1D1F;
+  --muted:#6E6E73;
+  --secondary:#6E6E73;
+  --tint:#F5F5F7;
+  --tint-deep:#EDEDEF;
   --accent:#9E3B2C;
   --accent-soft:#F6EDEA;
-  --line:#E6E4E0;
-  --line-soft:#F0EEEB;
-  --control:#949089;
-  --foot-bg:#180D13;
-  --foot-ink:#F7F2EC;
-  --foot-mute:#D9C7BA;
-  --foot-dim:#BFAFA4;
-  --foot-rule:rgba(209,181,149,.45);
-  --sans:'Onest','Helvetica Neue',Helvetica,Arial,sans-serif;
-  --serif:'EB Garamond','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --line:rgba(0,0,0,.10);
+  --line-soft:rgba(0,0,0,.06);
+  --control:rgba(0,0,0,.28);
+  --on-dark:#F5F5F7;
+  --on-dark-mute:#A1A1A6;
+  --foot-bg:#F5F5F7;
+  --foot-ink:#1D1D1F;
+  --foot-mute:#6E6E73;
+  --foot-dim:#6E6E73;
+  --foot-rule:rgba(0,0,0,.12);
+  --sans:'Onest','SF Pro Display',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --serif:var(--sans);
   --body:var(--sans);
   --label:var(--sans);
   --ui:var(--sans);
-  --t-xs:11px; --t-sm:13px; --t-md:15px; --t-lg:19px; --t-xl:24px; --t-2xl:30px;
-  --hero:clamp(34px,4.6vw,62px);
-  --h2-major:var(--t-2xl);
-  --h2:var(--t-2xl);
-  --h3:var(--t-lg);
-  --lead:var(--t-lg);
+  --t-xs:12px; --t-sm:14px; --t-md:17px; --t-lg:21px; --t-xl:28px; --t-2xl:40px;
+  --hero:clamp(40px,6.4vw,96px);
+  --h2-major:clamp(34px,4.8vw,72px);
+  --h2:clamp(32px,4.4vw,64px);
+  --h3:clamp(21px,2vw,28px);
+  --lead:clamp(17px,1.5vw,21px);
   --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:72px; --s9:96px;
-  --section:var(--s9);
-  --section-tight:var(--s8);
-  --section-loose:128px;
+  --section:clamp(84px,9vw,132px);
+  --section-tight:clamp(64px,7vw,104px);
+  --section-loose:clamp(104px,11vw,168px);
+  --radius:18px;
+  --radius-lg:28px;
+  --pill:980px;
   --edge:16px; --gutter:20px; --L2:19.5%; --L3:51.5%;
   --ease:cubic-bezier(.2,0,0,1);
 }
@@ -39,7 +47,7 @@
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:104px}
 [id]{scroll-margin-top:104px}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:var(--t-md);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:var(--t-md);line-height:1.5;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
 body,button,input,select,textarea{letter-spacing:0}
 img,svg{display:block;max-width:100%}
 figure,p,h1,h2,h3,dl,dd{margin:0}
@@ -53,31 +61,31 @@ button,a,summary,input,select,textarea{touch-action:manipulation}
 .mem-container,.container{width:min(100% - 48px,1360px);margin-inline:auto}
 .section{max-width:none}
 
-h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.2;letter-spacing:-.012em}
+h1,h2,h3{font-family:var(--sans);font-weight:600;line-height:1.08;letter-spacing:-.009em;text-wrap:balance}
 h1{font-size:var(--hero)}
 h2{font-size:var(--h2)}
 h3{font-size:var(--h3)}
-.eyebrow,.mem-index,.mem-overline,.mem-overline-light,.card-kicker,.task-category,.fw-service-label,.legal-toc p,.executor-hero-meta,.income-result-label{font-family:var(--sans);font-size:var(--t-xs);font-weight:400;line-height:1.4;letter-spacing:.14em;text-transform:uppercase}
-.eyebrow,.mem-overline,.card-kicker,.fw-service-label{color:var(--ink)}
+.eyebrow,.mem-index,.mem-overline,.mem-overline-light,.card-kicker,.task-category,.fw-service-label,.legal-toc p,.executor-hero-meta,.income-result-label{font-family:var(--sans);font-size:var(--t-md);font-weight:600;line-height:1.3;letter-spacing:-.01em;text-transform:none}
+.eyebrow,.mem-overline,.card-kicker,.fw-service-label{color:var(--accent)}
 .mem-index,.mem-protection-number,.fw-stat-num,.fw-service-card::before,.mem-process-steps>li>span,.workspace-index,.value-ledger span{color:var(--accent)}
 
-.mem-header,.header,.cab-header{position:sticky;z-index:100;top:0;border-bottom:1px solid var(--line);background:var(--paper)}
+.mem-header,.header,.cab-header{position:sticky;z-index:100;top:0;border-bottom:0;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
 .mem-header .mem-container,.header .container{width:100%;max-width:none}
-.mem-header-inner,.header-inner{display:grid;min-height:63px;grid-template-columns:256px 1fr auto;align-items:stretch;gap:0}
+.mem-header-inner,.header-inner{display:flex;min-height:48px;align-items:center;justify-content:space-between;gap:var(--s5)}
 .cab-header{position:relative;display:flex;min-height:63px;align-items:center;justify-content:space-between;padding:0 24px}
 .brand,.brand-lockup{display:inline-flex;align-items:center;gap:12px}
-.mem-header .brand,.header .brand{padding:0 28px;border-right:1px solid var(--line)}
+.mem-header .brand,.header .brand{padding:0;border-right:0}
 .brand-mark,.brand-monogram{display:none}
 .brand-flower{width:22px;height:22px}
 .header .brand-flower{display:none}
-.brand-name{font-family:var(--serif);font-size:18px;font-weight:400;letter-spacing:.24em;margin-right:-.24em;word-spacing:-.15em;line-height:1;white-space:nowrap;text-transform:uppercase}
+.brand-name{font-family:var(--sans);font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1;white-space:nowrap}
 .brand-copy{display:grid;line-height:1.1}
 .brand-parent{font-family:var(--label);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase}
 .mem-nav,.nav{display:flex;align-self:stretch;align-items:stretch;justify-content:flex-end;gap:0;margin-left:auto}
-.mem-nav a,.nav a,.mem-link,.header-actions>a:not(.btn):not(.fw-btn){display:inline-flex;min-height:63px;align-items:center;justify-content:center;padding-inline:18px;border-left:1px solid var(--line);font-family:var(--sans);font-size:var(--t-sm);letter-spacing:0;text-transform:none}
-.text-link{display:inline-flex;min-height:44px;align-items:center;gap:8px;padding:var(--s3) 18px;border:1px solid var(--control);border-radius:40px;font-family:var(--sans);font-size:var(--t-sm);letter-spacing:0;text-transform:none;transition:border-color .18s var(--ease)}
-.text-link:hover{border-color:var(--ink);background:transparent;color:var(--ink)}
-.mem-nav a:hover,.nav a:hover,.mem-link:hover{background:var(--ink);color:var(--paper)}
+.mem-nav a,.nav a,.mem-link,.header-actions>a:not(.btn):not(.fw-btn){display:inline-flex;min-height:44px;align-items:center;justify-content:center;padding-inline:12px;border-left:0;color:var(--ink);font-family:var(--sans);font-size:var(--t-sm);font-weight:400;letter-spacing:-.01em;text-transform:none;opacity:.85}
+.text-link{display:inline-flex;min-height:auto;align-items:center;gap:4px;padding:0;border:0;color:var(--accent);font-family:var(--sans);font-size:var(--t-md);letter-spacing:-.01em;text-transform:none;transition:opacity .2s var(--ease)}
+.text-link:hover{background:transparent;color:var(--accent);opacity:.72;text-decoration:underline}
+.mem-nav a:hover,.nav a:hover,.mem-link:hover{background:transparent;color:var(--ink);opacity:1}
 .mem-header-actions,.header-actions{display:flex;align-items:stretch;gap:0}
 .mem-mobile-menu{display:none}
 .mem-mobile-menu summary{position:relative;width:46px;height:46px;border:1px solid var(--line);list-style:none}
@@ -85,15 +93,15 @@ h3{font-size:var(--h3)}
 .mem-mobile-menu summary::before,.mem-mobile-menu summary::after{position:absolute;width:18px;height:1px;background:var(--ink);content:'';transform:translate(13px,18px)}
 .mem-mobile-menu summary::after{transform:translate(13px,27px)}
 
-.button,.btn,.mem-button,.fw-btn,.submit-button,.mem-outline-button{display:inline-flex;min-height:44px;align-items:center;justify-content:center;gap:10px;padding:var(--s3) 18px;border:1px solid var(--control);border-radius:40px;background:transparent;color:var(--ink);font-family:var(--sans);font-size:var(--t-sm);letter-spacing:0;text-transform:none;cursor:pointer;transition:opacity .18s var(--ease),border-color .18s var(--ease),background .18s var(--ease),color .18s var(--ease)}
+.button,.btn,.mem-button,.fw-btn,.submit-button,.mem-outline-button{display:inline-flex;white-space:nowrap;min-height:46px;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border:1px solid var(--ink);border-radius:var(--pill);background:transparent;color:var(--ink);font-family:var(--sans);font-size:var(--t-md);font-weight:400;letter-spacing:-.01em;text-transform:none;cursor:pointer;transition:opacity .2s var(--ease),background .2s var(--ease),color .2s var(--ease)}
 .button:hover,.btn:hover,.mem-button:hover,.fw-btn:hover,.submit-button:hover{border-color:var(--ink);background:transparent;color:var(--ink);opacity:1}
 .button-primary,.button-wine,.btn-primary,.fw-btn-dark,.submit-button,.mem-button,.fw-btn-accent{border-color:var(--ink);border-radius:40px;background:var(--ink);color:var(--paper)}
 .button-primary:hover,.button-wine:hover,.btn-primary:hover,.fw-btn-dark:hover,.submit-button:hover,.mem-button:hover,.fw-btn-accent:hover{border-color:var(--ink);background:var(--ink);color:var(--paper);opacity:.82}
 .button-secondary,.fw-btn-white,.mem-outline-button{background:transparent}
 .fw-btn-block{width:100%}
-.fw-btn-sm,.btn-small{min-height:38px;padding:var(--s2) var(--s4);font-size:var(--t-sm)}
+.fw-btn-sm,.btn-small{min-height:32px;padding:6px 14px;font-size:var(--t-sm)}
 
-.mem-submast{border-bottom:1px solid var(--line);background:var(--paper)}
+.mem-submast{display:none}
 .mem-submast-inner{display:grid;min-height:120px;grid-template-columns:1fr auto 1fr;align-items:center;gap:30px;padding-inline:40px}
 .mem-submast-word{display:grid;gap:0}
 .mem-submast-name{font-family:var(--serif);font-size:22px;letter-spacing:.22em;margin-right:-.22em;word-spacing:-.15em;line-height:1}
@@ -103,19 +111,19 @@ h3{font-size:var(--h3)}
 .mem-submast-right{text-align:right}
 
 .fw-hero,.executor-hero{position:relative;border-bottom:1px solid var(--line);background:var(--paper)}
-.fw-hero-inner{background-image:linear-gradient(var(--line),var(--line)),linear-gradient(var(--line),var(--line));background-size:1px 100%,1px 100%;background-position:var(--L2) 0,var(--L3) 0;background-repeat:no-repeat}
+.fw-hero-inner{background-image:none}
 .fw-hero::before{display:none}
-.fw-hero-inner,.executor-hero{position:relative;display:grid;grid-template-columns:var(--L2) calc(var(--L3) - var(--L2)) minmax(0,1fr);column-gap:0;row-gap:var(--s9);align-items:start;min-height:auto;padding-block:var(--s9) 0}
-.fw-hero-copy{grid-column:3;grid-row:1;padding:0 0 0 var(--gutter)}
-.fw-hero-inner::before{grid-column:1;grid-row:1;padding-right:14px;color:var(--secondary);font-family:var(--sans);font-size:var(--t-xs);letter-spacing:.14em;line-height:1.5;text-transform:uppercase;content:'Турбота,\A що долає відстань';white-space:pre-line}
-.fw-hero h1,.executor-hero h1{max-width:14ch;margin:var(--s3) 0 var(--s5);color:var(--ink);font-family:var(--serif);font-size:var(--hero);font-weight:400;line-height:1.06;letter-spacing:-.02em;}
+.fw-hero-inner,.executor-hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr);column-gap:0;row-gap:var(--s7);justify-items:center;align-items:start;min-height:auto;padding-block:var(--s6) 0;text-align:center}
+.fw-hero-copy{grid-column:1;grid-row:1;display:grid;justify-items:center;gap:var(--s3);padding:0;max-width:22ch}
+.fw-hero-inner::before{display:none}
+.fw-hero h1,.executor-hero h1{max-width:16ch;margin:var(--s3) auto var(--s5);color:var(--ink);font-family:var(--sans);font-size:var(--hero);font-weight:600;line-height:1.05;letter-spacing:-.015em}
 .executor-hero h1 em{color:#75513d;font-weight:500}
-.fw-hero-lead,.hero-lead{max-width:46ch;color:var(--muted);font-size:var(--t-lg);line-height:1.38;letter-spacing:-.012em}
-.fw-badge{display:inline-flex;padding:0;border:0;color:var(--secondary);font-family:var(--sans);font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase}
-.fw-hero-actions,.hero-actions{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s5)}
-.fw-hero-facts,.trust-list{display:flex;flex-wrap:wrap;gap:10px 24px;padding:var(--s4) 0 0;margin-top:var(--s5);border-top:1px solid var(--line);list-style:none;color:var(--secondary);font-family:var(--sans);font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase}
-.fw-hero-art{grid-column:1/-1;grid-row:2;width:100vw;margin-inline:calc(50% - 50vw)}
-.fw-hero-art,.executor-hero-frame,.fw-illus,.cab-visual{position:relative;padding:0;border:0;background:var(--tint)}
+.fw-hero-lead,.hero-lead{max-width:38ch;margin-inline:auto;color:var(--ink);font-size:var(--lead);font-weight:400;line-height:1.3;letter-spacing:-.016em}
+.fw-badge{display:inline-flex;max-width:28ch;padding:0;border:0;color:var(--accent);font-family:var(--sans);font-size:var(--t-md);font-weight:600;letter-spacing:-.012em;text-transform:none}
+.fw-hero-actions,.hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s4) var(--s6);margin-top:var(--s6)}
+.fw-hero-facts,.trust-list{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--s2) var(--s6);padding:0;margin-top:var(--s6);border-top:0;list-style:none;color:var(--muted);font-family:var(--sans);font-size:var(--t-sm);letter-spacing:-.01em;text-transform:none}
+.fw-hero-art{grid-column:1;grid-row:2;width:100%;margin-inline:0}
+.fw-hero-art,.executor-hero-frame,.fw-illus,.cab-visual{position:relative;padding:0;overflow:hidden;border:0;border-radius:var(--radius-lg);background:var(--tint)}
 .fw-hero-art::before,.fw-hero-art::after,.executor-hero-frame::before,.executor-hero-frame::after,.cab-visual .corner{display:none}
 .fw-hero-art::before,.executor-hero-frame::before,.corner-tl{top:-1px;left:-1px;border-top:2px solid;border-left:2px solid}
 .fw-hero-art::after,.executor-hero-frame::after,.corner-br{right:-1px;bottom:-1px;border-right:2px solid;border-bottom:2px solid}
@@ -123,7 +131,7 @@ h3{font-size:var(--h3)}
 .fw-bubble{display:none}
 .fw-hero-wave{display:none}
 
-.fw-trust,.fw-stats,.mem-decision,.mem-intro,.mem-situations,.mem-care,.mem-year-plan,.mem-report,.mem-protection,.mem-executor-callout,.mem-agencies,.mem-faq,.mem-order,.executor-workspace,.platform-value,.executor-section,.split-section,.payment-section,.income-lab,.agency-invite,.executor-faq,.application-section{padding-block:var(--section);border-bottom:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.fw-trust,.fw-stats,.mem-decision,.mem-intro,.mem-situations,.mem-care,.mem-year-plan,.mem-report,.mem-protection,.mem-executor-callout,.mem-agencies,.mem-faq,.mem-order,.executor-workspace,.platform-value,.executor-section,.split-section,.payment-section,.income-lab,.agency-invite,.executor-faq,.application-section{padding-block:var(--section);border-bottom:0;background:var(--paper);color:var(--ink)}
 .fw-trust-inner,.mem-decision-grid,.mem-intro-grid,.mem-report-grid,.mem-order-grid,.mem-executor-grid,.platform-value,.payment-section,.application-section,.agency-invite{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(48px,8vw,120px);align-items:start}
 .fw-trust-copy h2,.mem-decision h2,.mem-intro h2,.mem-section-head h2,.mem-situations-head h2,.mem-year-head h2,.mem-process-title h2,.mem-report h2,.mem-protection h2,.mem-executor-callout h2,.mem-agencies h2,.mem-faq h2,.mem-order h2,.section-heading h2,.platform-value h2,.payment-section h2,.income-lab h2,.agency-invite h2,.application-section h2,.executor-faq h2,.executor-workspace h2{font-size:var(--h2);font-weight:400}
 .fw-trust-copy p,.mem-decision-copy>p,.mem-intro-grid>div>p,.mem-situations-head>p:last-child,.mem-section-head>p,.mem-year-head>p:last-child,.mem-process-title>p:last-child,.mem-report-copy>p,.mem-protection-head>p,.mem-agency-head>p,.mem-faq-grid>div>p,.mem-order-copy>p,.section-heading>p:last-child,.platform-value-intro>p,.payment-copy>p,.agency-invite-copy>p,.application-intro>p{margin-top:var(--s5);color:var(--muted);font-size:var(--lead);line-height:1.5}
@@ -321,7 +329,7 @@ h3{font-size:var(--h3)}
 .mem-login-card strong{font-family:var(--label);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
 .mem-mobile-actions{display:none}
 
-.executor-hero{width:min(100% - 48px,1360px);margin-inline:auto;background-image:linear-gradient(var(--line),var(--line)),linear-gradient(var(--line),var(--line));background-size:1px 100%,1px 100%;background-position:var(--L2) 0,var(--L3) 0;background-repeat:no-repeat}
+.executor-hero{width:min(100% - 48px,1360px);margin-inline:auto;background-image:none}
 .executor-hero-copy{grid-column:3;grid-row:1;padding:0 0 0 var(--gutter)}
 .executor-hero-figure{grid-column:1/-1;grid-row:2;align-self:start}
 .promise-strip{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);border-left:1px solid var(--line)}
@@ -442,6 +450,169 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
 .cab-roles strong{font-family:var(--serif);font-size:1.8rem;font-weight:500}
 .cab-roles small{max-width:520px;color:var(--muted)}
 
+
+/* ─────────────────────────────────────────────────────────────
+   Сцени. Структура Apple: кожна секція — самостійний екран із
+   центрованим заголовком, коротким підзаголовком і двома діями.
+   Клітинки з волосяними межами стають плитками зі скругленням,
+   чорні сцени чергуються з білими, щоб сторінка мала ритм.
+   ───────────────────────────────────────────────────────────── */
+
+/* Заголовки секцій: одна центрована колонка замість мітки збоку */
+.mem-situations-head,.mem-section-head,.mem-year-head,.mem-protection-head,
+.mem-agency-head,.section-heading,.income-lab-heading,.faq-heading,
+.fw-stats-head,.mem-process-title,.workspace-heading{
+  display:block;max-width:24ch;margin:0 auto var(--s8);text-align:center;
+}
+.mem-protection-head{max-width:24ch}
+.mem-situations-head h2,.mem-section-head h2,.mem-year-head h2,.mem-protection-head h2,
+.mem-agency-head h2,.section-heading h2,.fw-stats-head h3,.mem-process-title h2,
+.fw-trust-copy h2,.mem-decision h2,.mem-intro h2,.mem-report h2,.mem-faq h2,.mem-order h2{
+  max-width:none;font-size:var(--h2);font-weight:600;letter-spacing:-.009em;line-height:1.08;
+}
+.mem-situations-head>p,.mem-section-head>p,.mem-year-head>p:last-child,
+.mem-protection-head>p,.mem-agency-head>p,.section-heading>p:last-child,
+.mem-process-title>p:last-child{
+  max-width:36ch;margin:var(--s5) auto 0;color:var(--muted);
+  font-size:var(--lead);font-weight:400;line-height:1.3;letter-spacing:-.016em;
+}
+.mem-situations-head .mem-index,.mem-section-head .mem-overline,.mem-year-head .mem-index,
+.mem-protection-head .mem-index,.mem-agency-head .mem-index{
+  display:block;margin-bottom:var(--s3);color:var(--accent);
+  font-size:var(--t-lg);font-weight:600;letter-spacing:-.015em;text-transform:none;
+}
+.mem-protection-head .fw-head-side{padding:0;border-left:0}
+.mem-protection-head .fw-head-side p{margin-top:var(--s4)}
+
+/* Плитки замість клітинок із волосяними межами */
+.fw-stats-grid,.steps-grid,.mem-protection-grid,
+.mem-case-grid,.mem-agency-models,.mem-start-grid,.work-modes,
+.fw-badges,.mem-start-options,.mem-boundaries-grid,.requirements-grid,
+.mem-agency-contract,.mem-paper-checks,.mem-year-visits{
+  gap:var(--s4);border:0;
+}
+.fw-stat,.step-card,.mem-protection-grid article,
+.mem-case-grid article,.mem-agency-models article,.mem-start-card,.work-modes article,
+.fw-award,.mem-boundary-card,.requirements-card,.mem-agency-contract>div,
+.mem-year-visits article,.mem-paper-checks span{
+  min-height:auto;padding:var(--s6);border:0;border-radius:var(--radius);
+  background:var(--tint);
+}
+.fw-stat{justify-content:flex-start}
+.fw-stat strong,.mem-protection-grid article h3,.mem-case-grid article h3,
+.mem-agency-models article h3,.mem-start-card h3,.mem-year-visits article h3{
+  margin-top:var(--s3);font-size:var(--h3);font-weight:600;letter-spacing:-.02em;line-height:1.15;
+}
+.fw-award{display:grid;place-items:center;min-height:96px;padding:var(--s5);font-size:var(--t-md);font-weight:500;letter-spacing:-.01em;text-transform:none}
+.mem-boundary-card+*,.requirements-card+*{border-left:0}
+.mem-agency-contract aside{border:0;border-radius:var(--radius);background:var(--tint)}
+.mem-paper-checks span{padding:var(--s4);font-size:var(--t-sm)}
+
+/* Довгі рядки послуг теж стають плитками */
+.fw-services{gap:var(--s4);border-top:0}
+.fw-service-card{
+  padding:var(--s7);border-bottom:0;border-radius:var(--radius-lg);background:var(--tint);
+  grid-template-columns:minmax(0,1fr) minmax(200px,.4fr);column-gap:var(--s7);
+}
+.fw-service-card::before{display:none}
+.fw-service-card .fw-service-label{grid-column:1;grid-row:1}
+.fw-service-card h3{grid-column:1;grid-row:2;font-size:var(--h3);font-weight:600}
+.fw-service-card>p:not(.fw-service-label){grid-column:1;grid-row:3;color:var(--muted)}
+.fw-service-foot{grid-column:2;grid-row:1/4;padding-left:0;border-left:0;justify-content:center;align-items:flex-start}
+.fw-service-price{font-size:var(--h3);font-weight:600;letter-spacing:-.02em}
+
+/* Великі інтерактивні блоки — одна скруглена панель */
+.mem-planner-shell,.mem-year-shell,.workspace-screen,.income-calculator,
+.mem-report-frame,.proof-photo,.calculation-card,.application-form,.mem-compare-card{
+  overflow:hidden;border:0;border-radius:var(--radius-lg);background:var(--tint);
+}
+.mem-planner-controls,.mem-year-controls{border-right:1px solid var(--line-soft)}
+.mem-year-summary{border-top:1px solid var(--line-soft);background:var(--tint-deep)}
+.mem-decision-prices a,.mem-process-steps li,.mem-faq-list details,.faq-list details,
+.value-ledger article,.mem-report-facts dt,.mem-report-facts dd{border-color:var(--line)}
+
+/* Чорні сцени. Їх рівно дві, інакше ритм перетворюється на смугастість. */
+.mem-executor-callout,.mem-intro{
+  border-bottom:0;background:var(--black);color:var(--on-dark);text-align:center;
+}
+.mem-intro-grid,.mem-executor-grid{
+  display:block;max-width:26ch;margin-inline:auto;text-align:center;
+}
+.mem-intro h2,.mem-executor-callout h2,.mem-executor-grid>h2{
+  max-width:none;color:var(--on-dark);font-size:var(--h2-major);font-weight:600;letter-spacing:-.012em;
+}
+.mem-intro p,.mem-executor-callout p,.mem-executor-grid>div>p{
+  max-width:36ch;margin-inline:auto;color:var(--on-dark-mute);font-size:var(--lead);line-height:1.3;
+}
+.mem-intro blockquote{
+  max-width:30ch;margin:var(--s7) auto 0;padding:0;border:0;
+  color:var(--on-dark);font-family:var(--sans);font-size:var(--h3);font-style:normal;font-weight:400;
+}
+.mem-intro .mem-index,.mem-executor-callout .mem-index{color:var(--accent)}
+.mem-executor-grid>div{display:block;padding-top:var(--s6);border-top:0}
+.mem-executor-actions{justify-content:center;margin-top:var(--s6)}
+.mem-executor-callout .fw-btn,.mem-executor-callout .mem-button,.mem-executor-callout .mem-outline-button{
+  border-color:var(--on-dark);background:transparent;color:var(--on-dark);
+}
+.mem-executor-callout .fw-btn-accent,.mem-executor-callout .mem-button{
+  border-color:var(--on-dark);background:var(--on-dark);color:var(--black);
+}
+.mem-executor-callout .fw-btn:hover,.mem-executor-callout .mem-outline-button:hover{
+  border-color:var(--on-dark);background:transparent;color:var(--on-dark);opacity:.72;
+}
+.mem-executor-callout .text-link,.mem-intro .text-link{color:#E08A6E}
+
+/* Тінтові сцени між білими */
+.fw-stats,.mem-care,.mem-protection,.mem-order{background:var(--tint)}
+.fw-stats .fw-stat,.mem-care .fw-service-card,.mem-protection-grid article,
+.mem-order .mem-start-card{background:var(--paper)}
+
+/* Підвал у Apple світлий і дрібний */
+.mem-footer{background:var(--foot-bg);color:var(--foot-ink)}
+.mem-footer-grid{min-height:auto;padding-block:var(--s8) var(--s5)}
+.mem-footer .brand-name{
+  margin-top:0;color:var(--foot-ink);font-family:var(--sans);
+  font-size:var(--t-lg);font-weight:600;letter-spacing:-.02em;text-transform:none;
+}
+.mem-footer-grid>div:first-child>p{color:var(--foot-mute);font-size:var(--t-sm)}
+.mem-footer-links a{border-bottom:1px solid var(--foot-rule);color:var(--foot-mute);font-size:var(--t-sm)}
+.mem-footer-links a:hover{color:var(--foot-ink)}
+.mem-login-card{border-radius:var(--radius);background:var(--black);color:var(--on-dark)}
+.mem-login-card span{color:var(--on-dark-mute)}
+
+/* Поля */
+input,select,textarea{border:1px solid var(--line);border-radius:12px;background:var(--paper);font-size:var(--t-md)}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:0}
+
+
+/* Дрібні мітки капсом із трекінгом — мова попередніх раундів (EPRIS,
+   потім музей). У Apple їх немає зовсім: підпис це просто дрібний
+   сірий текст. Ті самі селектори, але пізніше в каскаді. */
+.brand-parent,.mem-decision-prices b,.mem-planner-controls legend,
+.mem-planner-result-top,.mem-planner-result-note span,.mem-year-controls::before,
+.mem-year-controls button,.mem-year-months span,.mem-year-visits article span,
+.mem-year-summary>div span,.mem-year-summary dt,.mem-year-summary>a,
+.mem-report-facts dt,.mem-paper-head,.mem-agency-models article span,
+.mem-agency-contract aside>span,.mem-order-copy>a,.mem-start-card strong,
+.mem-login-card strong,.workspace-topbar,.workspace-status,.workspace-index,
+.mem-process-steps>li>span,.mem-protection-number,.fw-stat-num,.proof-photo span,
+.support-reply span,.workspace-support>strong,.value-ledger span,.faq-list summary span{
+  font-family:var(--sans);font-size:var(--t-sm);font-weight:400;
+  letter-spacing:-.01em;text-transform:none;
+}
+.mem-decision-prices b,.mem-order-copy>a,.mem-year-summary>a{color:var(--accent)}
+.mem-order-copy>a{border-bottom:0}
+.mem-year-controls button{border-radius:var(--pill);border-color:var(--line)}
+.mem-year-controls button.is-active{background:var(--ink);color:var(--paper)}
+.mem-year-months span{border:0;font-size:var(--t-xs)}
+.mem-process-steps>li>span,.mem-protection-number{color:var(--accent);font-weight:600}
+
+/* Рядок ціни на телефоні не мусить виштовхувати суму за край */
+@media(max-width:680px){
+  .mem-decision-prices a{grid-template-columns:minmax(0,1fr);gap:var(--s2)}
+  .mem-decision-prices a>strong,.mem-decision-prices a>b{justify-self:start}
+  .mem-start-card strong{flex-wrap:wrap;gap:var(--s2)}
+}
 @media(max-width:980px){
   :root{--section:96px;--section-tight:72px;--section-loose:112px}
   .mem-nav,.nav,.mem-header-actions>.mem-link,.mem-header-actions>.fw-btn{display:none}
@@ -497,7 +668,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
   /* Дію несе липка нижня панель. Та сама дія в шапці — третя кнопка
      про одне й те саме на одному екрані. */
   .header-actions>.btn,.mem-header-actions>.fw-btn{display:none}
-  :root{--t-lg:18px;--t-xl:21px;--t-2xl:26px;--hero:clamp(30px,8.6vw,44px);--s7:32px;--s8:40px;--s9:48px}
+  :root{--t-lg:19px;--t-xl:24px;--t-2xl:32px;--hero:clamp(34px,9.6vw,48px);--h2:clamp(28px,7.4vw,40px);--h2-major:clamp(30px,8vw,44px);--lead:19px;--s7:32px;--s8:40px;--s9:48px}
   .mem-container,.container{width:min(100% - 32px,1360px)}
   :root{--section:80px;--section-tight:56px;--section-loose:96px;--hero:1.5rem;--h2:clamp(2rem,10vw,3rem);--h2-major:clamp(2.4rem,12vw,3.8rem)}
   .mem-container,.container,.executor-hero,.executor-workspace,.executor-section,.income-lab,.executor-faq,.cab-main{width:min(100% - 32px,1360px)}
