@@ -40,14 +40,12 @@ h1,h2,h3{font-weight:400}
 .shell .eyebrow{margin:0 0 14px;font-family:var(--mono);font-size:11px;line-height:1.4;letter-spacing:.02em;color:var(--label);text-transform:lowercase}
 
 /* header: a bar of hairline cells, like the landing and munister.com.ua.
-   word, provenance, sections, the one lime action, the account. */
+   word, sections, the one lime action, the account. No link out to the owner's site. */
 .topbar{position:sticky;z-index:40;top:0;display:flex;align-items:stretch;height:56px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .topbar>*{display:flex;align-items:center}
 .brand{display:inline-flex;align-items:center;gap:9px;font-size:17px;font-weight:500;letter-spacing:-.01em;line-height:1;text-transform:lowercase;white-space:nowrap}
 .topbar>.brand{padding:0 24px 0 28px;border-right:1px solid var(--line)}
 .brand-mark{width:19px;height:19px;border:1.5px solid currentColor;border-radius:3px;flex:none}
-.by{padding:0 20px;border-right:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--label);white-space:nowrap;transition:color .18s var(--ease)}
-.by:hover{color:var(--ink)}
 .nav{align-items:stretch;margin-left:auto;border-left:1px solid var(--line)}
 .nav a{display:flex;align-items:center;padding:0 clamp(12px,1.4vw,20px);border-right:1px solid var(--line);color:var(--soft);font-size:13px;line-height:1.2;text-transform:lowercase;white-space:nowrap;transition:background .18s var(--ease),color .18s var(--ease)}
 .nav a:hover{background:var(--tint);color:var(--ink)}
@@ -336,10 +334,6 @@ input[type=checkbox],input[type=radio]{width:18px;height:18px;min-height:0;margi
 .compact-table span{color:var(--soft);overflow-wrap:anywhere}
 .compact-table span:last-child{font-family:var(--mono);font-size:11px;color:var(--label);align-self:center}
 .section-block>.empty{margin-top:18px}
-
-@media(max-width:1240px){
-  .by{display:none}
-}
 
 @media(max-width:1080px){
   .nav{overflow-x:auto;scrollbar-width:none}

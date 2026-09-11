@@ -471,11 +471,11 @@ function authView(req, mode, error = "", values = {}) {
         ${brandLink("https://poruch.munister.com.ua/")}
         <div>
           <p class="eyebrow">${register ? "(новий кабінет)" : "(захищений кабінет)"}</p>
-          <h1>${register ? "Один сервіс. Дві сторони турботи." : "Поверніться до справ, які вже поруч."}</h1>
-          <p>${register ? "Замовники створюють і контролюють доручення. Виконавці отримують підготовлені замовлення, фіксують результат і бачать свою виплату." : "У кабінеті зберігаються домовленості, повідомлення, фотографії, витрати та повна історія кожного замовлення."}</p>
+          <h1>${register ? "Кабінет замовника або виконавця." : "Вхід до кабінету."}</h1>
+          <p>${register ? "Замовник описує місце і обирає виконавця. Виконавець надсилає ціну, виконує роботу і завантажує фото. Роль обирається один раз." : "Тут ваші замовлення, переписка з виконавцем, фото до і після та витрати за чеками."}</p>
           <figure class="auth-figure"><img src="/assets/${register ? "how-it-works-flow" : "remote-care-ordering"}.webp" width="820" height="820" alt="" loading="lazy"></figure>
         </div>
-        <p>Безпека: захищена сесія, фіксація змін і доступ до матеріалів лише для сторін замовлення.</p>
+        <p>Фото і переписку замовлення бачать лише замовник, обраний виконавець і команда Doglyad у разі спору.</p>
       </section>
       <section class="auth-panel">
         <form class="auth-form" method="post" action="/${mode}">
@@ -804,7 +804,7 @@ app.get("/profile", requireAuth, async (req, res, next) => {
       user,
       current: "profile",
       body: `<main class="page">
-        <header class="page-head"><div><p class="eyebrow">Профіль / безпека</p><h1>Дані, довіра і доступ.</h1><p>Підтримуйте контакти актуальними, керуйте активними входами та налаштовуйте робочий профіль.</p></div></header>
+        <header class="page-head"><div><p class="eyebrow">Профіль / безпека</p><h1>Профіль і безпека.</h1><p>Контакти, пароль і активні входи. Виконавцям тут же: досвід, радіус виїзду і заявка на перевірку.</p></div></header>
         ${req.query.saved ? `<div class="notice">Зміни збережено.</div>` : ""}
         <div class="settings-grid">
           <form class="form-card" method="post" action="/profile">${csrfField(req)}
@@ -898,7 +898,7 @@ app.get("/notifications", requireAuth, async (req, res, next) => {
       title: "Сповіщення",
       user: withSessionUser(req),
       current: "notifications",
-      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Центр подій</p><h1>Нічого важливого не загубиться.</h1><p>Пропозиції, призначення, звіти, рішення і безпекові події зібрані в одному журналі.</p></div>
+      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Центр подій</p><h1>Сповіщення.</h1><p>Нові пропозиції, призначення, звіти, повідомлення і зміни статусу. Непрочитані позначені крапкою, клік відкриває замовлення.</p></div>
         ${notifications.some(item => !item.read_at) ? `<form method="post" action="/notifications/read-all">${csrfField(req)}<button class="button button-secondary" type="submit">Позначити прочитаними</button></form>` : ""}</header>
         <div class="notification-list">${notifications.length ? notifications.map(item => `<a class="notification ${item.read_at ? "" : "notification-unread"}" href="${item.order_id ? `/orders/${item.order_id}` : "/profile"}"><span>${esc(notificationKinds[item.type] || item.type)}</span><div><h3>${esc(item.title)}</h3><p>${esc(item.body)}</p></div><time>${date(item.created_at, true)}</time></a>`).join("") : `<div class="empty">Сповіщень поки немає.</div>`}</div>
       </main>`
@@ -924,7 +924,7 @@ app.get("/verification", requireRole("executor"), async (req, res, next) => {
       title: "Перевірка виконавця",
       user: withSessionUser(req),
       current: "profile",
-      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Стандарт довіри</p><h1>Підтвердьте готовність працювати.</h1><p>Команда Doglyad перевіряє досвід, зону виїзду та здатність формувати доказовий фото-звіт.</p></div></header>
+      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Стандарт довіри</p><h1>Перевірка виконавця.</h1><p>Розкажіть про досвід, райони виїзду й інструменти. Після перевірки замовники бачать у вашому профілі позначку «перевірено».</p></div></header>
         ${current?.status === "pending" ? `<div class="notice">Заявку вже отримано ${date(current.created_at)}. Рішення з'явиться в кабінеті.</div>` : ""}
         <form class="form-card" method="post" action="/verification">${csrfField(req)}
           <label>Досвід догляду за похованнями<textarea name="experience" rows="7" required minlength="50" maxlength="3000" placeholder="Скільки років, які типи робіт, приклади складних випадків"></textarea></label>
@@ -1034,7 +1034,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
             <div class="dash-index"><span>кабінет замовника</span><span>${esc(req.user.city)}</span><span>${date(new Date())}</span></div>
             <div class="dashboard-intro">
               <h1>Добрий день, ${esc(firstName(req.user.name))}.</h1>
-              <p>Тут видно стан кожної справи, наступне рішення і повну історію догляду за похованням.</p>
+              <p>Ваші замовлення, пропозиції виконавців і звіти. Нове замовлення публікується за кілька хвилин.</p>
               <div class="hero-actions"><a class="button button-wine" href="/orders/new">${icon("plus")}Створити замовлення</a><a class="text-action" href="mailto:${esc(SUPPORT_EMAIL)}">Поставити питання команді ${icon("arrow")}</a></div>
             </div>
             <aside class="priority-card">
@@ -1065,17 +1065,17 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
             </section>
             <aside class="dashboard-side">
               <section class="side-panel">
-                <div class="panel-heading"><div><p class="eyebrow">Останні події</p><h2>Не пропустіть важливе</h2></div><a href="/notifications" aria-label="Усі сповіщення">${icon("arrow")}</a></div>
+                <div class="panel-heading"><div><p class="eyebrow">Сповіщення</p><h2>Останні події</h2></div><a href="/notifications" aria-label="Усі сповіщення">${icon("arrow")}</a></div>
                 ${dashboardUpdates(notificationsResult.rows)}
               </section>
               <section class="protection-panel">
                 ${icon("shield")}
-                <div><p class="eyebrow">Захищений процес</p><h2>Домовленості залишаються з вами</h2><p>Бриф, повідомлення, зміни, фото й рішення зберігаються в одному замовленні. У спірній ситуації команда бачить повну хронологію.</p></div>
+                <div><p class="eyebrow">Якщо щось піде не так</p><h2>Усе зберігається в замовленні</h2><p>Бриф, переписка, зміни, фото і рішення. Якщо відкриєте спір, команда Doglyad розгляне саме цю історію.</p></div>
               </section>
             </aside>
           </div>
           <section class="process-section">
-            <div class="section-title"><div><p class="eyebrow">Як це працює</p><h2>Від потреби до підтвердженого результату</h2></div><p>Чотири зрозумілі етапи без домовленостей, що губляться в різних месенджерах.</p></div>
+            <div class="section-title"><div><p class="eyebrow">Як це працює</p><h2>Як проходить замовлення</h2></div><p>Від брифу до прийнятого звіту. Переписка і фото зберігаються в замовленні, а не в месенджерах.</p></div>
             ${processSteps("customer")}
           </section>
         </main>`
@@ -1159,7 +1159,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
           <div class="dash-index"><span>кабінет виконавця</span><span>${esc(req.user.city)}</span><span>${date(new Date())}</span>${req.user.verified_at ? `<span class="verified">${icon("check")} Перевірено</span>` : ""}</div>
           <div class="dashboard-intro">
             <h1>Добрий день, ${esc(firstName(req.user.name))}.</h1>
-            <p>Плануйте роботу, відповідайте клієнтам і здавайте доказовий результат без холодного пошуку замовлень.</p>
+            <p>Замовлення у вашому місті, ваші пропозиції і виплати. Суму після комісії 25% видно до того, як ви відгукнетеся.</p>
             <div class="hero-actions"><a class="button" href="/orders/available">${icon("search")}Знайти замовлення</a><a class="text-action" href="/profile">Профіль виконавця ${icon("arrow")}</a></div>
           </div>
           <aside class="priority-card priority-dark">
@@ -1194,7 +1194,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
               <div><p class="eyebrow">Готовність профілю</p><h2>${req.user.verified_at ? "Ви пройшли перевірку" : verification?.status === "pending" ? "Перевірка триває" : "Підсиліть довіру"}</h2><p>${req.user.verified_at ? "Замовники бачать позначку перевіреного виконавця." : verification?.status === "pending" ? "Рішення з'явиться у сповіщеннях і профілі." : "Додайте досвід, зону виїзду та подайте заявку на перевірку."}</p><a href="${!req.user.verified_at && verification?.status !== "pending" ? "/verification" : "/profile"}">${!req.user.verified_at && verification?.status !== "pending" ? "Пройти перевірку" : "Відкрити профіль"} ${icon("arrow")}</a></div>
             </section>
             <section class="side-panel">
-              <div class="panel-heading"><div><p class="eyebrow">Останні події</p><h2>Робочий журнал</h2></div><a href="/notifications" aria-label="Усі сповіщення">${icon("arrow")}</a></div>
+              <div class="panel-heading"><div><p class="eyebrow">Сповіщення</p><h2>Останні події</h2></div><a href="/notifications" aria-label="Усі сповіщення">${icon("arrow")}</a></div>
               ${dashboardUpdates(notificationsResult.rows)}
             </section>
           </aside>
@@ -1208,7 +1208,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
           })}
         </section>
         <section class="process-section">
-          <div class="section-title"><div><p class="eyebrow">Стандарт Doglyad</p><h2>Як вести замовлення без ризиків</h2></div><p>Клієнта, правила взаємодії та доказову історію надає сервіс. Ваша зона відповідальності: точний результат.</p></div>
+          <div class="section-title"><div><p class="eyebrow">Стандарт Doglyad</p><h2>Як виконати замовлення</h2></div><p>Сервіс знаходить клієнта і фіксує домовленості. Від вас: зробити погоджене і завантажити фото до і після.</p></div>
           ${processSteps("executor")}
         </section>
       </main>`
@@ -1235,7 +1235,7 @@ app.get("/orders/available", requireRole("executor"), async (req, res, next) => 
       user: withSessionUser(req),
       current: "orders",
       body: `<main class="page">
-        <header class="page-head"><div><p class="eyebrow">Біржа замовлень</p><h1>Оберіть справу, яка вам підходить.</h1><p>Надсилання пропозиції не зобов'язує замовника обрати вас. Не починайте роботу до офіційного призначення в кабінеті.</p></div></header>
+        <header class="page-head"><div><p class="eyebrow">Біржа замовлень</p><h1>Доступні замовлення.</h1><p>Надсилання пропозиції не зобов'язує замовника обрати вас. Не починайте роботу до офіційного призначення в кабінеті.</p></div></header>
         ${orderRows(orders, "executor")}
       </main>`
     }));
@@ -1250,7 +1250,7 @@ app.get("/orders/new", requireRole("customer"), (req, res) => {
     user: withSessionUser(req),
     current: "orders",
     body: `<main class="page">
-      <header class="page-head"><div><p class="eyebrow">Нове замовлення</p><h1>Опишіть результат, який потрібно отримати.</h1><p>Точну адресу й чутливі дані можна уточнити після вибору виконавця. На першому кроці достатньо міста, кладовища та орієнтирів.</p></div></header>
+      <header class="page-head"><div><p class="eyebrow">Крок 1 з 4</p><h1>Нове замовлення.</h1><p>Точну адресу й чутливі дані можна уточнити після вибору виконавця. На першому кроці достатньо міста, кладовища та орієнтирів.</p></div></header>
       <form class="form-card" method="post" action="/orders">
         ${csrfField(req)}
         <label>Коротка назва<input name="title" required maxlength="140" placeholder="Наприклад: сезонний догляд і живі квіти"></label>
@@ -1691,7 +1691,7 @@ app.get("/admin", requireAdmin, async (req, res, next) => {
       title: "Операційний центр",
       user: withSessionUser(req),
       current: "admin",
-      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Операції Doglyad</p><h1>Рішення, довіра, контроль.</h1><p>Черга перевірок виконавців, відкриті спори та стан сервісу.</p></div></header>
+      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Операції Doglyad</p><h1>Операції.</h1><p>Черга перевірок виконавців, відкриті спори та стан сервісу.</p></div></header>
         <section class="stats"><div class="stat"><span>Користувачі</span><strong>${stats.users}</strong></div><div class="stat"><span>Замовлення</span><strong>${stats.orders}</strong></div><div class="stat"><span>Завершено</span><strong>${stats.completed}</strong></div><div class="stat"><span>Відкриті спори</span><strong>${stats.disputes}</strong></div></section>
         <section class="section-block"><div class="section-title"><h2>Перевірка виконавців</h2><p>${verificationResult.rowCount} у черзі.</p></div>
           ${verificationResult.rowCount ? verificationResult.rows.map(item => `<article class="ops-card"><div><p class="eyebrow">${esc(item.city)} · ${date(item.created_at)}</p><h3>${esc(item.name)}</h3><p>${esc(item.email)}</p><p class="description"><strong>Досвід:</strong> ${esc(item.experience)}\n<strong>Зона:</strong> ${esc(item.service_area)}\n<strong>Оснащення:</strong> ${esc(item.equipment)}</p></div>

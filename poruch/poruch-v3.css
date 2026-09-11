@@ -12,7 +12,8 @@ body{margin:0;background:var(--paper);color:var(--ink);
 a{color:inherit}
 
 /* header: a bar split into hairline cells, the way munister.com.ua and the
-   EPRIS museum open. word, provenance, sections, actions. */
+   EPRIS museum open. word, sections, actions. No link out to munister.com.ua:
+   the owner does not want the service pointing at the personal site. */
 .hd{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:stretch;height:56px;
   background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line)}
@@ -20,9 +21,6 @@ a{color:inherit}
 .hd-brand{gap:9px;padding:0 24px 0 28px;border-right:1px solid var(--line);text-decoration:none;
   font-size:17px;font-weight:500;letter-spacing:-.01em;text-transform:lowercase;white-space:nowrap}
 .hd-mark{width:19px;height:19px;border:1.5px solid var(--ink);border-radius:3px}
-.hd-by{padding:0 20px;border-right:1px solid var(--line);font-family:var(--mono);font-size:11px;
-  color:var(--label);text-decoration:none;white-space:nowrap;transition:color .18s ease}
-.hd-by:hover{color:var(--ink)}
 .hd-nav{align-items:stretch}
 .hd-nav a{display:flex;align-items:center;padding:0 clamp(14px,1.5vw,22px);border-right:1px solid var(--line);
   color:var(--grey-soft);font-size:13px;text-decoration:none;text-transform:lowercase;white-space:nowrap;
@@ -77,9 +75,16 @@ a{color:inherit}
 .obj-box{width:100%;aspect-ratio:1/1;display:grid;place-items:center;
   background:rgba(24,24,22,.03);border-radius:6px;overflow:hidden}
 .obj-box img{width:82%;height:82%;object-fit:contain;display:block}
+/* the four steps: same picture tiles, now with the words that say what happens */
+.objs.is-steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px;margin:0;padding:0;list-style:none}
+.is-steps .obj{justify-items:start;align-content:start;gap:0;text-align:left}
+.is-steps .obj-box{aspect-ratio:4/3;margin-bottom:14px}
+.is-steps .obj h3{margin:6px 0 8px;font-size:clamp(1.2rem,1.7vw,23px);font-weight:400;line-height:1.1;letter-spacing:-.015em;text-transform:lowercase}
+.is-steps .obj p{margin:0;color:var(--grey-soft);font-size:15px;line-height:1.45}
 
 /* offers */
 .offers{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-block:0 132px}
+.offers.is-three{grid-template-columns:repeat(3,minmax(0,1fr))}
 .offer{border:1px solid var(--line);border-radius:10px;padding:26px;display:grid;gap:16px;align-content:start}
 .offer h3{margin:0;font-size:clamp(1.5rem,2.6vw,34px);line-height:1;letter-spacing:-.02em;font-weight:400;text-transform:lowercase}
 .offer .price{font-size:21px;letter-spacing:-.01em}
@@ -118,7 +123,7 @@ a{color:inherit}
 .close{min-height:72svh;display:grid;place-items:center;text-align:center}
 .close .d1{max-width:13ch;margin-bottom:40px}
 .close .d2{color:var(--grey-soft);text-decoration:none}
-.close .fine{margin-top:22px;color:var(--grey);font-size:15px;text-transform:lowercase}
+.close .fine{max-width:56ch;margin:22px auto 0;color:var(--grey-soft);font-size:15px;line-height:1.45;text-transform:lowercase}
 
 .ft-slab{background:#101010;margin-top:40px}
 .ft{border-top:0;padding-block:34px 40px;display:flex;
@@ -132,7 +137,8 @@ a{color:inherit}
   .feat-head{grid-template-columns:1fr;gap:22px;padding:80px 0 20px;margin-bottom:32px}
   .objs{grid-template-columns:repeat(3,1fr)}
   .year,.case-wrap{grid-template-columns:1fr;gap:24px}
-  .offers{grid-template-columns:1fr}
+  .offers,.offers.is-three{grid-template-columns:1fr}
+  .objs.is-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
   .case-row{grid-template-columns:120px minmax(0,1fr)}
 }
 
@@ -332,9 +338,11 @@ a{color:inherit}
 @media(max-width:560px){
   .wrap{padding-inline:18px}
   .hd-brand{padding:0 18px}
-  .hd-by{display:none}
   .hd-act{padding:0 14px 0 12px;gap:6px}
   .steps,.fields{grid-template-columns:minmax(0,1fr)}
+  .objs.is-steps{grid-template-columns:minmax(0,1fr);gap:22px}
+  .is-steps .obj{grid-template-columns:104px minmax(0,1fr);column-gap:16px}
+  .is-steps .obj-box{grid-row:1/4;aspect-ratio:1;margin:0}
   .steps li{min-height:0}
   .faq summary{grid-template-columns:28px minmax(0,1fr) 18px}
   .faq details p{padding:0 0 20px 42px}
