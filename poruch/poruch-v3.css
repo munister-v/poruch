@@ -34,7 +34,7 @@ h1,h2,h3{font-weight:500}
 .wrap{width:min(100% - 40px,1180px);margin-inline:auto}
 
 /* header: transparent, fixed, word on the left, two small boxes on the right */
-.hd{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:17px 20px 0;pointer-events:none}
+.hd{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:17px 20px 16px;background:linear-gradient(to bottom,rgba(255,255,255,.97) 62%,rgba(255,255,255,0));pointer-events:none}
 .hd>*{pointer-events:auto}
 .hd-brand{display:flex;align-items:center;gap:10px;color:var(--faint);font-size:24px;font-weight:500;letter-spacing:-.04em;line-height:1}
 .hd-mark{width:26px;height:26px;border:3px solid var(--faint);border-radius:5px}
@@ -87,7 +87,7 @@ h1,h2,h3{font-weight:500}
 .panels.is-two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .panel{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:26px 26px 28px;border-radius:24px;background:var(--fill-2)}
 .panel h3{font-size:28px;line-height:1;letter-spacing:-.035em;color:var(--ink)}
-.panel .price{font-size:18px;color:var(--grey)}
+.panel .price{font-size:22px;color:var(--ink);letter-spacing:-.025em}
 .panel p{color:var(--quiet);font-size:16px;line-height:1.35}
 .panel .btn{margin-top:auto}
 .panel ul{margin:4px 0 0;padding:0 0 0 18px;color:var(--soft);font-size:16px;line-height:1.35}
@@ -225,7 +225,7 @@ h1,h2,h3{font-weight:500}
   .hero-obj{width:min(340px,86vw);margin-top:-8px}
   .hero-obj .tag{right:0;top:30%}
   .hero-sub{max-width:16ch;font-size:24px}
-  .stage{min-height:70svh;padding:80px 0}
+  .stage{min-height:52svh;padding:72px 0}
   .say{font-size:40px}
   .block{padding:96px 0}
   .small{max-width:28ch;font-size:17px;line-height:1.18}

@@ -275,6 +275,9 @@ input[type=checkbox],input[type=radio]{width:18px;height:18px;min-height:0;margi
 .role-picker input{position:absolute;opacity:0;pointer-events:none}
 .role-picker label:has(input:checked){background:var(--blue);color:#fff}
 .role-picker label:has(input:focus-visible){outline:2px solid var(--ink);outline-offset:3px}
+/* the organisation name only matters for an organisation */
+.auth-form:has(select[name=accountType] option[value=person]:checked) .org-field{display:none}
+.auth-form:has(select[name=accountType] option[value=person]:checked) .org-grid{grid-template-columns:minmax(0,1fr)}
 
 /* sign-in */
 .auth-page{display:grid;min-height:100dvh;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:20px;padding:20px}

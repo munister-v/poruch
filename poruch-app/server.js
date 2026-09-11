@@ -342,6 +342,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// Only same-site paths survive a redirect. "//host" and "/\\host" are read by browsers as another origin.
+function safeNext(value) {
+  const target = String(value || "");
+  return target.startsWith("/") && !target.startsWith("//") && !target.startsWith("/\\") ? target : "";
+}
+
 function requireAuth(req, res, next) {
   if (!req.user) return res.redirect("/login?next=" + encodeURIComponent(req.originalUrl));
   next();
@@ -349,7 +355,7 @@ function requireAuth(req, res, next) {
 
 function requireRole(role) {
   return (req, res, next) => {
-    if (!req.user) return res.redirect("/login");
+    if (!req.user) return res.redirect(req.method === "GET" ? "/login?next=" + encodeURIComponent(req.originalUrl) : "/login");
     if (req.user.role !== role) return res.status(403).send("Ця дія недоступна для вашої ролі.");
     next();
   };
@@ -437,7 +443,7 @@ function layout({ title, user, body, description = "", current = "" }) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/app.css?v=20260911-sublime1">
+  <link rel="stylesheet" href="/assets/app.css?v=20260911-sublime2">
 </head>
 <body>
   <a class="skip-link" href="#main-content">До основного вмісту</a>
@@ -464,6 +470,8 @@ function withSessionUser(req) {
 
 function authView(req, mode, error = "", values = {}) {
   const register = mode === "register";
+  const next = safeNext(req.body?.next || req.query.next);
+  const keep = next ? `?next=${encodeURIComponent(next)}` : "";
   return layout({
     title: register ? "Створити кабінет" : "Увійти",
     body: `<main class="auth-page">
@@ -478,6 +486,7 @@ function authView(req, mode, error = "", values = {}) {
       </section>
       <section class="auth-panel">
         <form class="auth-form" method="post" action="/${mode}">
+          ${next ? `<input type="hidden" name="next" value="${esc(next)}">` : ""}
           <p class="eyebrow">${register ? "Реєстрація" : "Авторизація"}</p>
           <h2>${register ? "Створити кабінет" : "З поверненням"}</h2>
           <p>${register ? "Оберіть роль. Її не можна змінити самостійно після реєстрації." : "Введіть email і пароль, використані під час реєстрації."}</p>
@@ -488,12 +497,12 @@ function authView(req, mode, error = "", values = {}) {
               <label><input type="radio" name="role" value="customer" ${values.role !== "executor" ? "checked" : ""}><span>Я замовник</span></label>
               <label><input type="radio" name="role" value="executor" ${values.role === "executor" ? "checked" : ""}><span>Я виконавець</span></label>
             </div>
-            <div class="field-grid">
+            <div class="field-grid org-grid">
               <label>Тип кабінету<select name="accountType">
                 <option value="person" ${values.accountType !== "organization" ? "selected" : ""}>Приватна особа</option>
                 <option value="organization" ${values.accountType === "organization" ? "selected" : ""}>Організація / агентство</option>
               </select></label>
-              <label>Назва організації<input name="organizationName" maxlength="160" value="${esc(values.organizationName)}" placeholder="Якщо застосовно"></label>
+              <label class="org-field">Назва організації<input name="organizationName" maxlength="160" value="${esc(values.organizationName)}"></label>
             </div>
             <label>Ім'я та прізвище<input name="name" autocomplete="name" required minlength="2" maxlength="100" value="${esc(values.name)}"></label>
             <div class="field-grid">
@@ -506,7 +515,7 @@ function authView(req, mode, error = "", values = {}) {
           ${register ? `<label class="consent-line"><input type="checkbox" name="consent" required><span>Погоджуюся з <a href="https://poruch.munister.com.ua/executor-terms.html" target="_blank" rel="noopener">умовами сервісу</a> та <a href="https://poruch.munister.com.ua/privacy.html" target="_blank" rel="noopener">обробкою персональних даних</a>.</span></label>` : ""}
           <button class="button button-wine" type="submit">${register ? "Створити кабінет" : "Увійти"}</button>
           ${register ? "" : `<p class="auth-switch"><a href="/forgot-password">Не пам'ятаю пароль</a></p>`}
-          <p class="auth-switch">${register ? `Вже маєте кабінет? <a href="/login">Увійти</a>` : `Ще не зареєстровані? <a href="/register">Створити кабінет</a>`}</p>
+          <p class="auth-switch">${register ? `Вже маєте кабінет? <a href="/login${keep}">Увійти</a>` : `Ще не зареєстровані? <a href="/register${keep}">Створити кабінет</a>`}</p>
         </form>
       </section>
     </main>`
@@ -607,7 +616,7 @@ app.get(["/healthz", "/readyz"], async (_req, res) => {
 });
 
 app.get("/register", (req, res) => {
-  if (req.user) return res.redirect("/dashboard");
+  if (req.user) return res.redirect(safeNext(req.query.next) || "/dashboard");
   res.send(authView(req, "register", "", {
     role: req.query.role === "executor" ? "executor" : "customer"
   }));
@@ -641,14 +650,17 @@ app.post("/register", limitAuth, async (req, res, next) => {
     );
     await createSession(req, res, result.rows[0].id);
     await notify(result.rows[0].id, null, "welcome", "Кабінет створено", "Ласкаво просимо до Doglyad. Заповніть профіль і почніть роботу.");
-    res.redirect("/dashboard?welcome=1");
+    // A customer came to order something: open the order form, not an empty dashboard.
+    const requested = safeNext(req.body.next);
+    const fitsRole = !requested.startsWith("/orders/new") || values.role === "customer";
+    res.redirect(requested && fitsRole ? requested : values.role === "customer" ? "/orders/new?welcome=1" : "/dashboard?welcome=1");
   } catch (error) {
     next(error);
   }
 });
 
 app.get("/login", (req, res) => {
-  if (req.user) return res.redirect("/dashboard");
+  if (req.user) return res.redirect(safeNext(req.query.next) || "/dashboard");
   res.send(authView(req, "login"));
 });
 
@@ -676,8 +688,7 @@ app.post("/login", limitAuth, async (req, res, next) => {
     }
     await pool.query("UPDATE users SET failed_login_count = 0, locked_until = NULL, last_login_at = NOW() WHERE id = $1", [rows[0].id]);
     await createSession(req, res, rows[0].id);
-    const requested = String(req.query.next || "");
-    res.redirect(requested.startsWith("/") && !requested.startsWith("//") ? requested : "/dashboard");
+    res.redirect(safeNext(req.body.next || req.query.next) || "/dashboard");
   } catch (error) {
     next(error);
   }
@@ -1243,60 +1254,80 @@ app.get("/orders/available", requireRole("executor"), async (req, res, next) => 
   }
 });
 
-app.get("/orders/new", requireRole("customer"), (req, res) => {
-  res.send(layout({
+const careTypes = ["Базовий догляд", "Квіти та лампадка", "Регулярна турбота", "Пошук поховання", "Ремонт або реставрація", "Інше доручення"];
+
+function kyivToday() {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Kyiv" }).format(new Date());
+}
+
+// One form for the first view and for a refused submit, so nothing typed is lost.
+function orderFormView(req, values = {}, error = "") {
+  const care = values.careType || "";
+  return layout({
     title: "Нове замовлення",
     user: withSessionUser(req),
     current: "orders",
     body: `<main class="page">
+      ${req.query.welcome ? `<div class="notice" role="status">Кабінет створено. Опишіть перше замовлення, це займе кілька хвилин.</div>` : ""}
       <header class="page-head"><div><p class="eyebrow">Крок 1 з 4</p><h1>Нове замовлення.</h1><p>Точну адресу й чутливі дані можна уточнити після вибору виконавця. На першому кроці достатньо міста, кладовища та орієнтирів.</p></div></header>
       <form class="form-card" method="post" action="/orders">
         ${csrfField(req)}
-        <label>Коротка назва<input name="title" required maxlength="140" placeholder="Наприклад: сезонний догляд і живі квіти"></label>
+        ${error ? `<div class="error" role="alert">${esc(error)}</div>` : ""}
         <div class="field-grid">
           <label>Тип догляду<select name="careType" required>
             <option value="">Оберіть</option>
-            <option>Базовий догляд</option><option>Квіти та лампадка</option>
-            <option>Регулярна турбота</option><option>Пошук поховання</option>
-            <option>Ремонт або реставрація</option><option>Інше доручення</option>
+            ${careTypes.map(type => `<option ${type === care ? "selected" : ""}>${type}</option>`).join("")}
           </select></label>
-          <label>Місто<input name="city" required maxlength="100" value="${esc(req.user.city)}"></label>
+          <label>Місто, де кладовище<input name="city" required maxlength="100" value="${esc(values.city)}" placeholder="наприклад, Вінниця"></label>
         </div>
-        <label>Кладовище або орієнтир<input name="locationHint" required maxlength="240" placeholder="Без точної адреси, якщо не хочете відкривати її всім виконавцям"></label>
-        <label>Що потрібно зробити<textarea name="description" rows="7" required maxlength="3000" placeholder="Стан місця, перелік робіт, побажання до квітів, важлива дата"></textarea></label>
+        <label>Кладовище або орієнтир<input name="locationHint" required maxlength="240" value="${esc(values.locationHint)}" placeholder="Назва кладовища, сектор чи ряд. Точну адресу можна дати пізніше"></label>
+        <label>Що потрібно зробити<textarea name="description" rows="6" required minlength="20" maxlength="3000" placeholder="Стан місця, перелік робіт, побажання до квітів, важлива дата">${esc(values.description)}</textarea></label>
         <div class="field-grid">
-          <label>Бюджет роботи, ₴<input name="workBudget" type="number" min="100" max="1000000" required></label>
-          <label>Ліміт матеріалів, ₴<input name="materialsBudget" type="number" min="0" max="1000000" value="0" required></label>
+          <label>Бюджет роботи, ₴<input name="workBudget" type="number" inputmode="numeric" min="100" max="1000000" required value="${esc(values.workBudget)}" placeholder="наприклад, 1400"></label>
+          <label>Ліміт на квіти й матеріали, ₴<input name="materialsBudget" type="number" inputmode="numeric" min="0" max="1000000" required value="${esc(values.materialsBudget ?? "0")}"></label>
         </div>
-        <label>Бажана дата завершення<input name="deadline" type="date"></label>
-        <p class="helper">Комісія Doglyad утримується з винагороди виконавця. Матеріали рахуються окремо й оплачуються лише після погодження.</p>
+        <div class="field-grid">
+          <label>Бажана дата завершення<input name="deadline" type="date" min="${kyivToday()}" value="${esc(values.deadline)}"></label>
+          <label>Коротка назва, необов'язково<input name="title" maxlength="140" value="${esc(values.title)}" placeholder="Інакше назвемо за типом і містом"></label>
+        </div>
+        <p class="helper">Комісія Doglyad утримується з винагороди виконавця, не з вас. Матеріали оплачуються окремо за чеком і лише в межах ліміту.</p>
         <div class="form-actions"><button class="button button-wine" type="submit">Опублікувати замовлення</button><a class="button button-secondary" href="/dashboard">Скасувати</a></div>
       </form>
     </main>`
-  }));
+  });
+}
+
+app.get("/orders/new", requireRole("customer"), (req, res) => {
+  const care = String(req.query.care || "");
+  res.send(orderFormView(req, { careType: careTypes.includes(care) ? care : "" }));
 });
 
 app.post("/orders", requireRole("customer"), verifyCsrf, async (req, res, next) => {
   try {
-    const title = String(req.body.title || "").trim();
-    const careType = String(req.body.careType || "").trim();
-    const city = String(req.body.city || "").trim();
-    const locationHint = String(req.body.locationHint || "").trim();
-    const description = String(req.body.description || "").trim();
-    const workBudget = Number(req.body.workBudget);
-    const materialsBudget = Number(req.body.materialsBudget || 0);
-    const deadline = req.body.deadline || null;
-    if (!title) return res.status(400).send("Вкажіть коротку назву замовлення.");
-    if (!careType) return res.status(400).send("Оберіть тип догляду.");
-    if (!city) return res.status(400).send("Вкажіть місто.");
-    if (!locationHint) return res.status(400).send("Вкажіть кладовище або орієнтир.");
-    if (description.length < 20) return res.status(400).send("Опис замовлення має містити щонайменше 20 символів.");
-    if (!workBudget || workBudget < 100) return res.status(400).send("Бюджет роботи має бути щонайменше 100 ₴.");
-    if (materialsBudget < 0) return res.status(400).send("Ліміт матеріалів не може бути від'ємним.");
+    const values = {
+      title: String(req.body.title || "").trim(),
+      careType: String(req.body.careType || "").trim(),
+      city: String(req.body.city || "").trim(),
+      locationHint: String(req.body.locationHint || "").trim(),
+      description: String(req.body.description || "").trim(),
+      workBudget: String(req.body.workBudget || "").trim(),
+      materialsBudget: String(req.body.materialsBudget || "0").trim(),
+      deadline: String(req.body.deadline || "").trim()
+    };
+    const workBudget = Number(values.workBudget);
+    const materialsBudget = Number(values.materialsBudget || 0);
+    const refuse = message => res.status(400).send(orderFormView(req, values, message));
+    if (!values.careType) return refuse("Оберіть тип догляду.");
+    if (!values.city) return refuse("Вкажіть місто.");
+    if (!values.locationHint) return refuse("Вкажіть кладовище або орієнтир.");
+    if (values.description.length < 20) return refuse("Опишіть, що зробити, хоча б двома реченнями: щонайменше 20 символів.");
+    if (!workBudget || workBudget < 100) return refuse("Бюджет роботи має бути щонайменше 100 ₴.");
+    if (!(materialsBudget >= 0)) return refuse("Ліміт на квіти й матеріали не може бути від'ємним.");
+    const title = (values.title || `${values.careType}, ${values.city}`).slice(0, 140);
     const { rows } = await pool.query(
       `INSERT INTO orders(customer_id, title, care_type, city, location_hint, description, deadline, work_budget, materials_budget)
        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id`,
-      [req.user.id, title, careType, city, locationHint, description, deadline, Math.round(workBudget), Math.round(materialsBudget)]
+      [req.user.id, title, values.careType, values.city, values.locationHint, values.description, values.deadline || null, Math.round(workBudget), Math.round(materialsBudget)]
     );
     await event(rows[0].id, req.user.id, "created", "Замовлення опубліковано");
     await notify(req.user.id, rows[0].id, "order", "Замовлення опубліковано", "Бриф зафіксовано, виконавці вже можуть надсилати пропозиції.");
