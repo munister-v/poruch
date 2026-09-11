@@ -97,14 +97,15 @@ h1,h2,h3{font-weight:500}
 .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:30px}
 
 /* an example object: a grey sheet holding a photo and a few lines */
-.sheet{width:min(560px,100%);margin:56px auto 0;padding:14px 14px 22px;border-radius:24px;background:var(--fill);text-align:left}
-.sheet img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px}
-.sheet .cap{display:block;margin:16px 8px 8px}
-.sheet dl{display:grid;gap:6px;margin:0 8px}
-.sheet dl div{display:grid;grid-template-columns:130px minmax(0,1fr);gap:12px;font-size:16px;line-height:1.3}
-.sheet dt{color:var(--quiet)}
-.sheet dd{margin:0;color:var(--ink)}
-.sheet .quote{margin:16px 8px 0;padding:14px 16px;border-radius:14px;background:var(--paper);font-size:16px;line-height:1.35}
+.sheet{width:min(560px,100%);margin:56px auto 0;padding:16px;border-radius:28px;background:var(--fill);text-align:left}
+.sheet img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px}
+.sheet .cap{display:block;margin:18px 10px 12px}
+.sheet dl{display:grid;gap:0;margin:0;padding:2px 18px;border-radius:18px;background:var(--paper)}
+.sheet dl div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid rgba(24,24,22,.07)}
+.sheet dl div:last-child{border-bottom:0}
+.sheet dt{color:var(--quiet);font-size:14px;line-height:1.4}
+.sheet dd{margin:0;color:var(--ink);font-size:17px;font-weight:500;letter-spacing:-.01em;line-height:1.35}
+.sheet .quote{margin:12px 10px 0;padding:16px 18px;border-radius:18px;background:var(--paper);font-size:16px;line-height:1.35}
 .sheet .quote b{display:block;margin-bottom:4px;font-weight:500}
 
 /* short grey lines, then one bigger grey line */
@@ -232,7 +233,10 @@ h1,h2,h3{font-weight:500}
   .object img{width:60%}
   .panels,.panels.is-two,.facts,.calc{grid-template-columns:minmax(0,1fr)}
   .fields{grid-template-columns:minmax(0,1fr)}
-  .sheet dl div{grid-template-columns:minmax(0,1fr);gap:0}
+  .sheet dl{padding:2px 14px}
+  .sheet dl div{grid-template-columns:minmax(0,1fr);gap:2px;padding:12px 0}
+  .sheet dt{font-size:13px}
+  .sheet dd{font-size:16px}
   .form{padding:20px;border-radius:24px}
   .big-go{padding:120px 0 100px}
   .big-go a{padding:20px 35px 25px 40px;font-size:46px}
