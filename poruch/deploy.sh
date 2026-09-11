@@ -9,6 +9,8 @@ rsync -avz --delete \
   root@173.242.49.73:/opt/poruch-static/ \
   --exclude="*.md" \
   --exclude="deploy.sh" \
-  --exclude=".git"
+  --exclude=".git" \
+  --exclude="*.bak*" \
+  --exclude="_v2.html"
 
 echo "✓ poruch.munister.com.ua updated"

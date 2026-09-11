@@ -11,73 +11,38 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <title>Умови для виконавців — Doglyad</title>
+  <title>Умови для виконавців – Догляд</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Onest:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="poruch.css?v=20260911-revert1">
-  <link rel="stylesheet" href="poruch-v3-pages.css?v=20260911-e">
+  <link rel="stylesheet" href="poruch-v3.css?v=20260911-4">
 </head>
-<body class="legal-document">
-  <a class="skip-link" href="#main">Перейти до змісту</a>
-  <header class="header">
-    <div class="container header-inner">
-      <a class="brand brand-lockup" href="./" aria-label="Догляд — на головну">
-        <svg class="brand-flower" viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
-          <g>
-            <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2"/>
-            <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(45 16 16)"/>
-            <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(90 16 16)"/>
-            <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(135 16 16)"/>
-            <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(180 16 16)"/>
-            <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(225 16 16)"/>
-            <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(270 16 16)"/>
-            <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(315 16 16)"/>
-          </g>
-          <circle cx="16" cy="16" r="3" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="brand-name">Догляд</span>
-      </a>
-      <nav class="nav" aria-label="Навігація">
-        <a href="executor.html">Стати виконавцем</a>
-        <a href="privacy.html">Приватність</a>
-      </nav>
-      <div class="header-actions">
-        <a class="btn btn-primary btn-small" href="executor.html#apply">Подати заявку</a>
-      </div>
-    </div>
-  </header>
-
-  <div class="mem-submast">
-    <div class="container mem-submast-inner">
-      <div class="mem-submast-word">
-        <span class="mem-submast-name">ДОГЛЯД</span>
-        <span class="mem-submast-tag">Документи сервісу</span>
-      </div>
-      <p class="mem-submast-motto">
-        <span class="mem-submast-rule" aria-hidden="true"></span>
-        Прозорість · Довіра · Захист
-        <span class="mem-submast-rule" aria-hidden="true"></span>
-      </p>
-      <span class="mem-submast-right">Будьте поруч</span>
-    </div>
+<body>
+  <a class="skip" href="#main">Перейти до змісту</a>
+<header class="hd">
+  <a class="hd-brand" href="./"><span class="hd-mark"></span>догляд</a>
+  <div class="hd-act">
+    <a class="hd-a" href="executor.html">виконавцям</a>
+    <a class="hd-a is-cta" href="cabinet.html">замовити</a>
   </div>
+</header>
 
-  <main class="legal-page" id="main">
-    <section class="legal-hero">
-      <p class="eyebrow">Документи Doglyad</p>
-      <h1>Умови співпраці з виконавцями</h1>
-      <p>Редакція від 10 червня 2026 року</p>
+
+  <main class="wrap" id="main">
+    <section class="doc-hero">
+      <span class="mono kicker">(документи doglyad)</span>
+      <h1 class="d1">Умови співпраці з виконавцями</h1>
+      <p class="lead">Редакція від 10 червня 2026 року</p>
     </section>
 
-    <div class="pilot-notice" role="note">
+    <div class="doc-note" role="note">
       <strong>Пілотна редакція.</strong>
       <span>Це проєкт правил сервісу для тестового запуску. До початку приймання оплат тут мають бути зазначені повні реквізити Оператора, платіжна модель і фінальна редакція, перевірена українським юристом.</span>
     </div>
 
-    <div class="legal-layout">
-      <aside class="legal-toc">
-        <p>На цій сторінці</p>
+    <div class="doc">
+      <nav class="doc-toc" aria-label="Зміст документа">
+        <span class="mono">на цій сторінці</span>
         <a href="#general">1. Загальні положення</a>
         <a href="#registration">2. Реєстрація і перевірка</a>
         <a href="#tasks">3. Робота із завданнями</a>
@@ -90,9 +55,9 @@
         <a href="#termination">10. Припинення співпраці</a>
         <a href="#agencies">11. Агентства і команди</a>
         <a href="#operator">12. Оператор і контакти</a>
-      </aside>
+      </nav>
 
-      <article class="legal-content">
+      <article class="doc-body">
         <section id="general">
           <h2>1. Загальні положення</h2>
           <p>Догляд є сервісом, основною спеціалізацією якого є догляд за місцями поховання та інші делікатні доручення для людей, які не можуть бути присутні особисто. Сервіс також може пропонувати побутові, організаційні та інші дозволені локальні завдання. Ці Умови регулюють використання сервісу виконавцем.</p>
@@ -192,40 +157,15 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-main">
-        <div>
-          <a class="brand brand-lockup" href="./">
-            <svg class="brand-flower" viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
-              <g>
-                <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2"/>
-                <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(45 16 16)"/>
-                <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(90 16 16)"/>
-                <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(135 16 16)"/>
-                <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(180 16 16)"/>
-                <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(225 16 16)"/>
-                <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(270 16 16)"/>
-                <ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(315 16 16)"/>
-              </g>
-              <circle cx="16" cy="16" r="3" fill="currentColor" stroke="none"/>
-            </svg>
-            <span class="brand-name">Догляд</span>
-          </a>
-          <p>Люди допомагають людям: прозоро, безпечно й поруч.</p>
-        </div>
-        <div class="footer-links">
-          <a href="executor.html">Стати виконавцем</a>
-          <a href="./#agencies">Для агентств</a>
-          <a href="privacy.html">Приватність</a>
-          <a href="mailto:munister@outlook.com">Контакти</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Догляд</span>
-        <span>Пілотний запуск в Україні</span>
-      </div>
-    </div>
-  </footer>
+<div class="ft-slab"><footer class="ft wrap">
+  <span class="mono">догляд · 2026 · пілотний запуск в Україні</span>
+  <nav>
+    <a href="./">головна</a>
+    <a href="executor.html">виконавцям</a>
+    <a href="executor-terms.html">умови для виконавців</a>
+    <a href="privacy.html">приватність</a>
+    <a href="mailto:munister@outlook.com">munister@outlook.com</a>
+  </nav>
+</footer></div>
 </body>
 </html>

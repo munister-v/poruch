@@ -101,6 +101,20 @@ const statusLabels = {
   disputed: "Спір"
 };
 
+const notificationKinds = {
+  order: "замовлення",
+  proposal: "пропозиція",
+  assigned: "призначення",
+  message: "повідомлення",
+  status: "статус",
+  report: "звіт",
+  review: "відгук",
+  dispute: "спір",
+  security: "безпека",
+  verification: "перевірка",
+  welcome: "вітання"
+};
+
 function esc(value = "") {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -241,7 +255,7 @@ async function notify(userId, orderId, type, title, body, emailSubject = "") {
   if (rows[0]?.notification_email) {
     await sendMail({
       to: rows[0].email,
-      subject: emailSubject || `${title} — Doglyad`,
+      subject: emailSubject || `${title} · Doglyad`,
       text: `${body}\n\nВідкрити кабінет: ${APP_ORIGIN}${orderId ? `/orders/${orderId}` : "/dashboard"}`
     });
   }
@@ -276,6 +290,43 @@ app.use(async (req, _res, next) => {
     next(error);
   }
 });
+
+// Guards answer with one plain sentence. Show it inside the cabinet frame, not as a bare text page.
+app.use((req, res, next) => {
+  const send = res.send.bind(res);
+  res.send = body => {
+    if (res.statusCode >= 400 && typeof body === "string" && !body.trimStart().startsWith("<") && !/json/.test(res.get("Content-Type") || "")) {
+      res.type("html");
+      return send(refusalPage(req, res.statusCode, body));
+    }
+    return send(body);
+  };
+  next();
+});
+
+const refusalTitles = {
+  400: "Потрібно виправити дані",
+  401: "Не вдалося підтвердити",
+  403: "Доступ закрито",
+  404: "Не знайдено",
+  409: "Дія зараз недоступна",
+  429: "Забагато спроб"
+};
+
+function refusalPage(req, status, message) {
+  let back = req.user ? "/dashboard" : "/login";
+  try {
+    const referer = new URL(req.get("referer") || "");
+    if ([new URL(APP_ORIGIN).origin, `${req.protocol}://${req.get("host")}`].includes(referer.origin)) back = referer.pathname + referer.search;
+  } catch {}
+  return layout({
+    title: refusalTitles[status] || "Дію не виконано",
+    user: withSessionUser(req),
+    body: `<main class="simple-page"><section class="form-card"><p class="eyebrow">(${status})</p><h1>${esc(refusalTitles[status] || "Дію не виконано")}.</h1>
+      <p>${esc(message)}</p>
+      <div class="form-actions"><a class="button" href="${esc(back)}">Повернутися</a>${req.user && back !== "/dashboard" ? `<a class="button button-secondary" href="/dashboard">До кабінету</a>` : ""}</div></section></main>`
+  });
+}
 
 app.use((req, res, next) => {
   if (req.method !== "POST") return next();
@@ -355,15 +406,18 @@ function navLink(href, label, iconName, active = false) {
   return `<a href="${href}" ${active ? `aria-current="page"` : ""}>${icon(iconName)}<span>${label}</span></a>`;
 }
 
+const brandLink = href => `<a class="brand" href="${href}" aria-label="Догляд"><span class="brand-mark" aria-hidden="true"></span><span>догляд</span></a>`;
+
 function layout({ title, user, body, description = "", current = "" }) {
+  const here = name => current === name ? `aria-current="page"` : "";
   const navigation = user ? `
     <nav class="nav" aria-label="Основна навігація">
-      <a href="/dashboard" ${current === "dashboard" ? `aria-current="page"` : ""}>Кабінет</a>
-      ${user.role === "customer" ? `<a href="/orders/new" ${current === "orders" ? `aria-current="page"` : ""}>Нове замовлення</a>` : `<a href="/orders/available" ${current === "orders" ? `aria-current="page"` : ""}>Доступні замовлення</a>`}
-      <a href="/notifications" ${current === "notifications" ? `aria-current="page"` : ""}>Сповіщення</a>
-      <a href="/profile" ${current === "profile" ? `aria-current="page"` : ""}>Профіль</a>
-      ${isAdmin(user) ? `<a href="/admin">Операції</a>` : ""}
+      <a href="/dashboard" ${here("dashboard")}>Кабінет</a>
+      <a href="/notifications" ${here("notifications")}>Сповіщення</a>
+      <a href="/profile" ${here("profile")}>Профіль</a>
+      ${isAdmin(user) ? `<a href="/admin" ${here("admin")}>Операції</a>` : ""}
       <a href="https://poruch.munister.com.ua/">Про сервіс</a>
+      ${user.role === "customer" ? `<a class="nav-cta" href="/orders/new" ${here("orders")}>Нове замовлення</a>` : `<a class="nav-cta" href="/orders/available" ${here("orders")}>Доступні замовлення</a>`}
     </nav>
     <div class="user-menu">
       <div><strong>${esc(user.name)}</strong><span>${roleName(user.role)}</span></div>
@@ -373,24 +427,23 @@ function layout({ title, user, body, description = "", current = "" }) {
 <html lang="uk">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="${esc(description || title)}">
   <meta name="theme-color" content="#ffffff">
-  <title>${esc(title)} — Догляд</title>
+  <title>${esc(title)} – Догляд</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/app.css?v=20260911-museum11">
-  <link rel="stylesheet" href="/assets/v3.css?v=20260911-v3b">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&amp;family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/app.css?v=20260911-white1">
 </head>
 <body>
   <a class="skip-link" href="#main-content">До основного вмісту</a>
   <div class="shell">
     ${user ? `<header class="topbar">
-      <a class="brand" href="/dashboard"><span class="brand-mark"><svg class="brand-flower" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><g><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(45 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(90 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(135 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(180 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(225 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(270 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(315 16 16)"/></g><circle cx="16" cy="16" r="3" fill="currentColor" stroke="none"/></svg></span><span class="brand-copy"><small>MUNISTER / SERVICE 01</small><strong>Догляд</strong></span></a>
+      ${brandLink("/dashboard")}
       ${navigation}
     </header>` : ""}
     <div id="main-content">${body}</div>
@@ -415,11 +468,12 @@ function authView(req, mode, error = "", values = {}) {
     title: register ? "Створити кабінет" : "Увійти",
     body: `<main class="auth-page">
       <section class="auth-story">
-        <a class="brand" href="https://poruch.munister.com.ua/"><span class="brand-mark"><svg class="brand-flower" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><g><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(45 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(90 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(135 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(180 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(225 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(270 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(315 16 16)"/></g><circle cx="16" cy="16" r="3" fill="currentColor" stroke="none"/></svg></span><span class="brand-copy"><small>MUNISTER / SERVICE 01</small><strong>Догляд</strong></span></a>
+        ${brandLink("https://poruch.munister.com.ua/")}
         <div>
-          <p class="eyebrow">CARE / UKRAINE / CABINET</p>
+          <p class="eyebrow">${register ? "(новий кабінет)" : "(захищений кабінет)"}</p>
           <h1>${register ? "Один сервіс. Дві сторони турботи." : "Поверніться до справ, які вже поруч."}</h1>
           <p>${register ? "Замовники створюють і контролюють доручення. Виконавці отримують підготовлені замовлення, фіксують результат і бачать свою виплату." : "У кабінеті зберігаються домовленості, повідомлення, фотографії, витрати та повна історія кожного замовлення."}</p>
+          <figure class="auth-figure"><img src="/assets/${register ? "how-it-works-flow" : "remote-care-ordering"}.webp" width="820" height="820" alt="" loading="lazy"></figure>
         </div>
         <p>Безпека: захищена сесія, фіксація змін і доступ до матеріалів лише для сторін замовлення.</p>
       </section>
@@ -846,7 +900,7 @@ app.get("/notifications", requireAuth, async (req, res, next) => {
       current: "notifications",
       body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Центр подій</p><h1>Нічого важливого не загубиться.</h1><p>Пропозиції, призначення, звіти, рішення і безпекові події зібрані в одному журналі.</p></div>
         ${notifications.some(item => !item.read_at) ? `<form method="post" action="/notifications/read-all">${csrfField(req)}<button class="button button-secondary" type="submit">Позначити прочитаними</button></form>` : ""}</header>
-        <div class="notification-list">${notifications.length ? notifications.map(item => `<a class="notification ${item.read_at ? "" : "notification-unread"}" href="${item.order_id ? `/orders/${item.order_id}` : "/profile"}"><span>${esc(item.type)}</span><div><h3>${esc(item.title)}</h3><p>${esc(item.body)}</p></div><time>${date(item.created_at, true)}</time></a>`).join("") : `<div class="empty">Сповіщень поки немає.</div>`}</div>
+        <div class="notification-list">${notifications.length ? notifications.map(item => `<a class="notification ${item.read_at ? "" : "notification-unread"}" href="${item.order_id ? `/orders/${item.order_id}` : "/profile"}"><span>${esc(notificationKinds[item.type] || item.type)}</span><div><h3>${esc(item.title)}</h3><p>${esc(item.body)}</p></div><time>${date(item.created_at, true)}</time></a>`).join("") : `<div class="empty">Сповіщень поки немає.</div>`}</div>
       </main>`
     }));
   } catch (error) {
@@ -1154,7 +1208,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
           })}
         </section>
         <section class="process-section">
-          <div class="section-title"><div><p class="eyebrow">Стандарт Doglyad</p><h2>Як вести замовлення без ризиків</h2></div><p>Клієнта, правила взаємодії та доказову історію надає сервіс. Ваша зона відповідальності — точний результат.</p></div>
+          <div class="section-title"><div><p class="eyebrow">Стандарт Doglyad</p><h2>Як вести замовлення без ризиків</h2></div><p>Клієнта, правила взаємодії та доказову історію надає сервіс. Ваша зона відповідальності: точний результат.</p></div>
           ${processSteps("executor")}
         </section>
       </main>`
@@ -1303,11 +1357,11 @@ app.get("/orders/:id", requireAuth, async (req, res, next) => {
     res.send(layout({
       title: order.title,
       user: withSessionUser(req),
-      current: "orders",
+      current: "dashboard",
       body: `<main class="page">
         ${req.query.created ? `<div class="notice">Замовлення опубліковано. Тепер виконавці можуть надіслати пропозиції.</div>` : ""}
         ${req.query.updated ? `<div class="notice">Статус замовлення оновлено.</div>` : ""}
-        <header class="page-head">
+        <header class="page-head record">
           <div><p class="eyebrow">Замовлення № ${String(order.id).padStart(4, "0")}</p><h1>${esc(order.title)}</h1><p>${esc(order.city)} · створено ${date(order.created_at)}</p></div>
           ${statusTag(order.status)}
         </header>
@@ -1405,7 +1459,7 @@ function customerActions(req, order, proposals) {
     <form method="post" action="/orders/${order.id}/actions">${csrfField(req)}<label>Що потрібно виправити<textarea name="reason" minlength="10" maxlength="1200" rows="4" required></textarea></label><button class="button button-secondary" name="action" value="changes" type="submit">Повернути на доопрацювання</button></form>
   </section>`;
   if (order.status === "completed") return `<section class="side-card"><p class="eyebrow">Замовлення завершено</p><h3>Результат прийнято</h3><p>Звіт і переписка залишаються доступними в кабінеті.</p>
-    <form method="post" action="/orders/${order.id}/review">${csrfField(req)}<label>Оцінка<select name="rating" required><option value="">Оберіть</option><option value="5">5 — відмінно</option><option value="4">4 — добре</option><option value="3">3 — задовільно</option><option value="2">2 — є проблеми</option><option value="1">1 — незадовільно</option></select></label><label>Коментар<textarea name="comment" maxlength="1200" rows="4"></textarea></label><button class="button" type="submit">Зберегти відгук</button></form>
+    <form method="post" action="/orders/${order.id}/review">${csrfField(req)}<label>Оцінка<select name="rating" required><option value="">Оберіть</option><option value="5">5 · відмінно</option><option value="4">4 · добре</option><option value="3">3 · задовільно</option><option value="2">2 · є проблеми</option><option value="1">1 · незадовільно</option></select></label><label>Коментар<textarea name="comment" maxlength="1200" rows="4"></textarea></label><button class="button" type="submit">Зберегти відгук</button></form>
   </section>`;
   return `<section class="side-card"><p class="eyebrow">Виконавець</p><h3>${esc(order.executor_name || "Не призначено")}</h3><p>Статус: ${esc(statusLabels[order.status])}.</p></section>`;
 }
@@ -1556,6 +1610,7 @@ app.get("/orders/:id/dispute", requireAuth, async (req, res, next) => {
     res.send(layout({
       title: "Відкрити спір",
       user: withSessionUser(req),
+      current: "dashboard",
       body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Захист сторін / № ${String(order.id).padStart(4, "0")}</p><h1>Зафіксуйте проблему.</h1><p>Після відкриття спору робочий процес призупиняється. Команда Doglyad перевірить бриф, переписку, фото та історію статусів.</p></div></header>
         <form class="form-card" method="post" action="/orders/${order.id}/dispute">${csrfField(req)}
           <label>Що сталося<textarea name="reason" rows="9" required minlength="50" maxlength="4000" placeholder="Опишіть факти, попередні домовленості й бажаний результат"></textarea></label>
@@ -1635,7 +1690,8 @@ app.get("/admin", requireAdmin, async (req, res, next) => {
     res.send(layout({
       title: "Операційний центр",
       user: withSessionUser(req),
-      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Doglyad / operations</p><h1>Рішення, довіра, контроль.</h1><p>Черга перевірок виконавців, відкриті спори та стан сервісу.</p></div></header>
+      current: "admin",
+      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Операції Doglyad</p><h1>Рішення, довіра, контроль.</h1><p>Черга перевірок виконавців, відкриті спори та стан сервісу.</p></div></header>
         <section class="stats"><div class="stat"><span>Користувачі</span><strong>${stats.users}</strong></div><div class="stat"><span>Замовлення</span><strong>${stats.orders}</strong></div><div class="stat"><span>Завершено</span><strong>${stats.completed}</strong></div><div class="stat"><span>Відкриті спори</span><strong>${stats.disputes}</strong></div></section>
         <section class="section-block"><div class="section-title"><h2>Перевірка виконавців</h2><p>${verificationResult.rowCount} у черзі.</p></div>
           ${verificationResult.rowCount ? verificationResult.rows.map(item => `<article class="ops-card"><div><p class="eyebrow">${esc(item.city)} · ${date(item.created_at)}</p><h3>${esc(item.name)}</h3><p>${esc(item.email)}</p><p class="description"><strong>Досвід:</strong> ${esc(item.experience)}\n<strong>Зона:</strong> ${esc(item.service_area)}\n<strong>Оснащення:</strong> ${esc(item.equipment)}</p></div>
@@ -1645,7 +1701,7 @@ app.get("/admin", requireAdmin, async (req, res, next) => {
           ${disputesResult.rowCount ? disputesResult.rows.map(item => `<article class="ops-card"><div><p class="eyebrow">Замовлення №${item.order_id}</p><h3>${esc(item.title)}</h3><p>${esc(item.opened_by_name)} · ${date(item.created_at, true)}</p><p class="description">${esc(item.reason)}</p><a class="text-link" href="/orders/${item.order_id}">Відкрити матеріали</a></div>
           <form method="post" action="/admin/disputes/${item.id}">${csrfField(req)}<label>Рішення<textarea name="resolution" required minlength="20" maxlength="3000"></textarea></label><label>Фінальний статус<select name="orderStatus"><option value="in_progress">Повернути в роботу</option><option value="changes_requested">Потрібні зміни</option><option value="completed">Завершити</option><option value="cancelled">Скасувати</option></select></label><button class="button button-wine" type="submit">Зафіксувати рішення</button></form></article>`).join("") : `<div class="empty">Відкритих спорів немає.</div>`}
         </section>
-        <section class="section-block"><div class="section-title"><h2>Останні користувачі</h2></div><div class="compact-table">${usersResult.rows.map(item => `<div><strong>${esc(item.name)}</strong><span>${esc(item.email)}</span><span>${roleName(item.role)}</span><span>${item.verified_at ? "Перевірено" : esc(item.status)}</span></div>`).join("")}</div></section>
+        <section class="section-block"><div class="section-title"><h2>Останні користувачі</h2></div><div class="compact-table">${usersResult.rows.map(item => `<div><strong>${esc(item.name)}</strong><span>${esc(item.email)}</span><span>${roleName(item.role)}</span><span>${item.verified_at ? "перевірено" : item.status === "active" ? "активний" : esc(item.status)}</span></div>`).join("")}</div></section>
       </main>`
     }));
   } catch (error) {
@@ -1726,7 +1782,7 @@ app.get("/files/:id", requireAuth, async (req, res, next) => {
 
 app.use((_req, res) => res.status(404).send(layout({
   title: "Сторінку не знайдено",
-  body: `<main class="page"><p class="eyebrow">404</p><h1>Цієї сторінки немає.</h1><a class="button" href="/">До кабінету</a></main>`
+  body: `<main class="simple-page"><section class="form-card"><p class="eyebrow">(404)</p><h1>Цієї сторінки немає.</h1><p>Можливо, посилання застаріло або справу вже закрито.</p><div class="form-actions"><a class="button" href="/">До кабінету</a></div></section></main>`
 })));
 
 app.use((error, req, res, _next) => {
@@ -1741,7 +1797,7 @@ app.use((error, req, res, _next) => {
   res.status(500).send(layout({
     title: "Помилка",
     user: withSessionUser(req),
-    body: `<main class="page"><p class="eyebrow">Помилка сервісу</p><h1>Не вдалося виконати дію.</h1><p>Спробуйте ще раз. Якщо проблема повториться, напишіть на munister@outlook.com.</p><a class="button" href="/dashboard">До кабінету</a></main>`
+    body: `<main class="simple-page"><section class="form-card"><p class="eyebrow">(500)</p><h1>Не вдалося виконати дію.</h1><p>Спробуйте ще раз. Якщо проблема повториться, напишіть на <a class="text-link" href="mailto:${esc(SUPPORT_EMAIL)}">${esc(SUPPORT_EMAIL)}</a>.</p><div class="form-actions"><a class="button" href="/dashboard">До кабінету</a></div></section></main>`
   }));
 });
 
