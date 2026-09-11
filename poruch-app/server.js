@@ -217,7 +217,7 @@ async function sendMail({ to, subject, text }) {
   if (!mailer || !to) return false;
   try {
     await mailer.sendMail({
-      from: process.env.SMTP_FROM || `Poruch <${SUPPORT_EMAIL}>`,
+      from: process.env.SMTP_FROM || `Doglyad <${SUPPORT_EMAIL}>`,
       to,
       subject,
       text
@@ -241,7 +241,7 @@ async function notify(userId, orderId, type, title, body, emailSubject = "") {
   if (rows[0]?.notification_email) {
     await sendMail({
       to: rows[0].email,
-      subject: emailSubject || `${title} — Poruch`,
+      subject: emailSubject || `${title} — Doglyad`,
       text: `${body}\n\nВідкрити кабінет: ${APP_ORIGIN}${orderId ? `/orders/${orderId}` : "/dashboard"}`
     });
   }
@@ -376,7 +376,7 @@ function layout({ title, user, body, description = "", current = "" }) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${esc(description || title)}">
   <meta name="theme-color" content="#ffffff">
-  <title>${esc(title)} — Поруч</title>
+  <title>${esc(title)} — Догляд</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/favicon-192.png">
@@ -390,7 +390,7 @@ function layout({ title, user, body, description = "", current = "" }) {
   <a class="skip-link" href="#main-content">До основного вмісту</a>
   <div class="shell">
     ${user ? `<header class="topbar">
-      <a class="brand" href="/dashboard"><span class="brand-mark"><svg class="brand-flower" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><g><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(45 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(90 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(135 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(180 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(225 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(270 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(315 16 16)"/></g><circle cx="16" cy="16" r="3" fill="currentColor" stroke="none"/></svg></span><span class="brand-copy"><small>MUNISTER / SERVICE 01</small><strong>Поруч</strong></span></a>
+      <a class="brand" href="/dashboard"><span class="brand-mark"><svg class="brand-flower" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><g><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(45 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(90 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(135 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(180 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(225 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(270 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(315 16 16)"/></g><circle cx="16" cy="16" r="3" fill="currentColor" stroke="none"/></svg></span><span class="brand-copy"><small>MUNISTER / SERVICE 01</small><strong>Догляд</strong></span></a>
       ${navigation}
     </header>` : ""}
     <div id="main-content">${body}</div>
@@ -415,7 +415,7 @@ function authView(req, mode, error = "", values = {}) {
     title: register ? "Створити кабінет" : "Увійти",
     body: `<main class="auth-page">
       <section class="auth-story">
-        <a class="brand" href="https://poruch.munister.com.ua/"><span class="brand-mark"><svg class="brand-flower" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><g><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(45 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(90 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(135 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(180 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(225 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(270 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(315 16 16)"/></g><circle cx="16" cy="16" r="3" fill="currentColor" stroke="none"/></svg></span><span class="brand-copy"><small>MUNISTER / SERVICE 01</small><strong>Поруч</strong></span></a>
+        <a class="brand" href="https://poruch.munister.com.ua/"><span class="brand-mark"><svg class="brand-flower" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><g><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(45 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(90 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(135 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(180 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(225 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(270 16 16)"/><ellipse cx="16" cy="7.5" rx="3.1" ry="5.2" transform="rotate(315 16 16)"/></g><circle cx="16" cy="16" r="3" fill="currentColor" stroke="none"/></svg></span><span class="brand-copy"><small>MUNISTER / SERVICE 01</small><strong>Догляд</strong></span></a>
         <div>
           <p class="eyebrow">CARE / UKRAINE / CABINET</p>
           <h1>${register ? "Один сервіс. Дві сторони турботи." : "Поверніться до справ, які вже поруч."}</h1>
@@ -587,7 +587,7 @@ app.post("/register", limitAuth, async (req, res, next) => {
       [values.name, values.email, await hashPassword(password), values.role, values.phone, values.city, values.accountType, values.organizationName]
     );
     await createSession(req, res, result.rows[0].id);
-    await notify(result.rows[0].id, null, "welcome", "Кабінет створено", "Ласкаво просимо до Poruch. Заповніть профіль і почніть роботу.");
+    await notify(result.rows[0].id, null, "welcome", "Кабінет створено", "Ласкаво просимо до Doglyad. Заповніть профіль і почніть роботу.");
     res.redirect("/dashboard?welcome=1");
   } catch (error) {
     next(error);
@@ -655,7 +655,7 @@ app.post("/forgot-password", limitAuth, async (req, res, next) => {
       );
       await sendMail({
         to: rows[0].email,
-        subject: "Відновлення доступу до Poruch",
+        subject: "Відновлення доступу до Doglyad",
         text: `Відкрийте одноразове посилання протягом 30 хвилин:\n${APP_ORIGIN}/reset-password?token=${token}\n\nЯкщо ви не надсилали запит, нічого не робіть.`
       });
     }
@@ -870,7 +870,7 @@ app.get("/verification", requireRole("executor"), async (req, res, next) => {
       title: "Перевірка виконавця",
       user: withSessionUser(req),
       current: "profile",
-      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Стандарт довіри</p><h1>Підтвердьте готовність працювати.</h1><p>Команда Poruch перевіряє досвід, зону виїзду та здатність формувати доказовий фото-звіт.</p></div></header>
+      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Стандарт довіри</p><h1>Підтвердьте готовність працювати.</h1><p>Команда Doglyad перевіряє досвід, зону виїзду та здатність формувати доказовий фото-звіт.</p></div></header>
         ${current?.status === "pending" ? `<div class="notice">Заявку вже отримано ${date(current.created_at)}. Рішення з'явиться в кабінеті.</div>` : ""}
         <form class="form-card" method="post" action="/verification">${csrfField(req)}
           <label>Досвід догляду за похованнями<textarea name="experience" rows="7" required minlength="50" maxlength="3000" placeholder="Скільки років, які типи робіт, приклади складних випадків"></textarea></label>
@@ -897,7 +897,7 @@ app.post("/verification", requireRole("executor"), verifyCsrf, async (req, res, 
       "INSERT INTO verification_requests(user_id, experience, service_area, equipment) VALUES ($1,$2,$3,$4)",
       [req.user.id, experience, serviceArea, equipment]
     );
-    await sendMail({ to: SUPPORT_EMAIL, subject: "Нова заявка виконавця Poruch", text: `${req.user.name} (${req.user.email}) подав заявку на перевірку.\n${APP_ORIGIN}/admin` });
+    await sendMail({ to: SUPPORT_EMAIL, subject: "Нова заявка виконавця Doglyad", text: `${req.user.name} (${req.user.email}) подав заявку на перевірку.\n${APP_ORIGIN}/admin` });
     res.redirect("/profile?saved=1");
   } catch (error) {
     next(error);
@@ -1154,7 +1154,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
           })}
         </section>
         <section class="process-section">
-          <div class="section-title"><div><p class="eyebrow">Стандарт Poruch</p><h2>Як вести замовлення без ризиків</h2></div><p>Клієнта, правила взаємодії та доказову історію надає сервіс. Ваша зона відповідальності — точний результат.</p></div>
+          <div class="section-title"><div><p class="eyebrow">Стандарт Doglyad</p><h2>Як вести замовлення без ризиків</h2></div><p>Клієнта, правила взаємодії та доказову історію надає сервіс. Ваша зона відповідальності — точний результат.</p></div>
           ${processSteps("executor")}
         </section>
       </main>`
@@ -1216,7 +1216,7 @@ app.get("/orders/new", requireRole("customer"), (req, res) => {
           <label>Ліміт матеріалів, ₴<input name="materialsBudget" type="number" min="0" max="1000000" value="0" required></label>
         </div>
         <label>Бажана дата завершення<input name="deadline" type="date"></label>
-        <p class="helper">Комісія Poruch утримується з винагороди виконавця. Матеріали рахуються окремо й оплачуються лише після погодження.</p>
+        <p class="helper">Комісія Doglyad утримується з винагороди виконавця. Матеріали рахуються окремо й оплачуються лише після погодження.</p>
         <div class="form-actions"><button class="button button-wine" type="submit">Опублікувати замовлення</button><a class="button button-secondary" href="/dashboard">Скасувати</a></div>
       </form>
     </main>`
@@ -1355,7 +1355,7 @@ app.get("/orders/:id", requireAuth, async (req, res, next) => {
 
             ${dispute ? `<section class="section-block"><div class="section-title"><h2>Розгляд спору</h2></div>
               <article class="dispute-card"><div>${statusTag(order.status)}<h3>${esc(dispute.opened_by_name)}</h3><p class="description">${esc(dispute.reason)}</p></div>
-              ${dispute.resolution ? `<p><strong>Рішення Poruch:</strong> ${esc(dispute.resolution)}</p>` : `<p>Операційна команда вивчає бриф, переписку та звіти обох сторін.</p>`}</article>
+              ${dispute.resolution ? `<p><strong>Рішення Doglyad:</strong> ${esc(dispute.resolution)}</p>` : `<p>Операційна команда вивчає бриф, переписку та звіти обох сторін.</p>`}</article>
             </section>` : ""}
 
             ${review ? `<section class="section-block"><div class="section-title"><h2>Відгук замовника</h2></div>
@@ -1556,7 +1556,7 @@ app.get("/orders/:id/dispute", requireAuth, async (req, res, next) => {
     res.send(layout({
       title: "Відкрити спір",
       user: withSessionUser(req),
-      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Захист сторін / № ${String(order.id).padStart(4, "0")}</p><h1>Зафіксуйте проблему.</h1><p>Після відкриття спору робочий процес призупиняється. Команда Poruch перевірить бриф, переписку, фото та історію статусів.</p></div></header>
+      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Захист сторін / № ${String(order.id).padStart(4, "0")}</p><h1>Зафіксуйте проблему.</h1><p>Після відкриття спору робочий процес призупиняється. Команда Doglyad перевірить бриф, переписку, фото та історію статусів.</p></div></header>
         <form class="form-card" method="post" action="/orders/${order.id}/dispute">${csrfField(req)}
           <label>Що сталося<textarea name="reason" rows="9" required minlength="50" maxlength="4000" placeholder="Опишіть факти, попередні домовленості й бажаний результат"></textarea></label>
           <label class="consent-line"><input type="checkbox" name="confirm" required><span>Підтверджую, що спробував(-ла) вирішити питання в переписці та надав(-ла) достовірну інформацію.</span></label>
@@ -1582,7 +1582,7 @@ app.post("/orders/:id/dispute", requireAuth, verifyCsrf, async (req, res, next) 
     await client.query("INSERT INTO order_events(order_id, actor_id, event_type, details) VALUES ($1,$2,'disputed',$3)", [order.id, req.user.id, reason]);
     await client.query("COMMIT");
     const recipient = order.customer_id === req.user.id ? order.executor_id : order.customer_id;
-    await notify(recipient, order.id, "dispute", "Відкрито спір", "Виконання призупинено до рішення операційної команди Poruch.");
+    await notify(recipient, order.id, "dispute", "Відкрито спір", "Виконання призупинено до рішення операційної команди Doglyad.");
     await sendMail({ to: SUPPORT_EMAIL, subject: `Спір у замовленні №${order.id}`, text: `${req.user.name} відкрив спір:\n${reason}\n\n${APP_ORIGIN}/admin` });
     res.redirect(`/orders/${order.id}?updated=1`);
   } catch (error) {
@@ -1635,7 +1635,7 @@ app.get("/admin", requireAdmin, async (req, res, next) => {
     res.send(layout({
       title: "Операційний центр",
       user: withSessionUser(req),
-      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Poruch / operations</p><h1>Рішення, довіра, контроль.</h1><p>Черга перевірок виконавців, відкриті спори та стан сервісу.</p></div></header>
+      body: `<main class="page"><header class="page-head"><div><p class="eyebrow">Doglyad / operations</p><h1>Рішення, довіра, контроль.</h1><p>Черга перевірок виконавців, відкриті спори та стан сервісу.</p></div></header>
         <section class="stats"><div class="stat"><span>Користувачі</span><strong>${stats.users}</strong></div><div class="stat"><span>Замовлення</span><strong>${stats.orders}</strong></div><div class="stat"><span>Завершено</span><strong>${stats.completed}</strong></div><div class="stat"><span>Відкриті спори</span><strong>${stats.disputes}</strong></div></section>
         <section class="section-block"><div class="section-title"><h2>Перевірка виконавців</h2><p>${verificationResult.rowCount} у черзі.</p></div>
           ${verificationResult.rowCount ? verificationResult.rows.map(item => `<article class="ops-card"><div><p class="eyebrow">${esc(item.city)} · ${date(item.created_at)}</p><h3>${esc(item.name)}</h3><p>${esc(item.email)}</p><p class="description"><strong>Досвід:</strong> ${esc(item.experience)}\n<strong>Зона:</strong> ${esc(item.service_area)}\n<strong>Оснащення:</strong> ${esc(item.equipment)}</p></div>
@@ -1746,7 +1746,7 @@ app.use((error, req, res, _next) => {
 });
 
 const server = app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Poruch app listening on ${PORT}; origin ${APP_ORIGIN}`);
+  console.log(`Doglyad app listening on ${PORT}; origin ${APP_ORIGIN}`);
 });
 
 const cleanupTimer = setInterval(() => {
