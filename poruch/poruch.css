@@ -319,9 +319,9 @@ h3{font-size:var(--h3)}
 .mem-login-card strong{font-family:var(--label);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
 .mem-mobile-actions{display:none}
 
-.executor-hero{width:min(100% - 48px,1360px);margin-inline:auto}
-.executor-hero-copy{grid-column:2;grid-row:1;padding:36px 24px 0 0}
-.executor-hero-figure{grid-column:1;grid-row:1;align-self:start}
+.executor-hero{width:min(100% - 48px,1360px);margin-inline:auto;background-image:linear-gradient(var(--line),var(--line)),linear-gradient(var(--line),var(--line));background-size:1px 100%,1px 100%;background-position:var(--L2) 0,var(--L3) 0;background-repeat:no-repeat}
+.executor-hero-copy{grid-column:3;grid-row:1;padding:0 0 0 var(--gutter)}
+.executor-hero-figure{grid-column:1/-1;grid-row:2;align-self:start}
 .promise-strip{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);border-left:1px solid var(--line)}
 .promise-strip article{padding:26px;border-right:1px solid var(--line)}
 .promise-strip strong,.promise-strip span{display:block}
@@ -455,13 +455,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
   .mem-mobile-menu[open] nav{position:absolute;top:64px;right:0;left:0;display:grid;min-width:240px;border:1px solid var(--ink);background:var(--paper)}
   .mem-mobile-menu nav a{min-height:48px;padding:12px 18px;border-bottom:1px solid var(--line);font-family:var(--label);font-size:.65rem;text-transform:uppercase}
   .fw-hero-inner,.executor-hero,.cab-main{grid-template-columns:1fr;min-height:auto;row-gap:var(--s6)}
-  .fw-hero-inner{background-image:none}
+  .fw-hero-inner,.executor-hero{background-image:none}
   .fw-hero-inner::before{grid-column:1;grid-row:1;padding:0 0 var(--s2)}
   .fw-hero-copy{grid-column:1;grid-row:2;padding:0}
   .fw-hero-art{grid-column:1;grid-row:3;width:auto;margin-inline:0}
   .fw-hero-art img{height:clamp(200px,48vw,320px)}
-  .executor-hero-copy{grid-column:1;grid-row:2;padding:36px 16px 0}
-  .executor-hero-figure{grid-column:1;grid-row:1}
+  .executor-hero-copy{grid-column:1;grid-row:1;padding:0}
+  .executor-hero-figure{grid-column:1;grid-row:2}
   .fw-hero-art,.executor-hero-figure,.cab-visual{max-width:640px}
   .fw-trust-inner,.mem-decision-grid,.mem-report-grid,.mem-order-grid,.mem-order-grid.mem-start-grid,.mem-executor-grid,.platform-value,.payment-section,.application-section,.agency-invite{grid-template-columns:1fr}
   .fw-stats-grid,.steps-grid,.mem-protection-grid{grid-template-columns:repeat(2,1fr)}
