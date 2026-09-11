@@ -444,7 +444,6 @@ function layout({ title, user, body, description = "", current = "" }) {
   <div class="shell">
     ${user ? `<header class="topbar">
       ${brandLink("/dashboard")}
-      <a class="by" href="https://munister.com.ua/">munister / service 01</a>
       ${navigation}
     </header>` : ""}
     <div id="main-content">${body}</div>
