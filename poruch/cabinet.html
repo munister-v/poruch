@@ -12,59 +12,70 @@
   <title>Кабінет – Догляд</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="poruch-v3.css?v=20260911-9">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="poruch-v3.css?v=20260911-10">
 </head>
 <body>
 <a class="skip" href="#main">Перейти до змісту</a>
 
 <header class="hd">
-  <a class="hd-brand" href="./"><span class="hd-mark"></span>догляд</a>
-  <div class="hd-act">
-    <a class="hd-a" href="executor.html">виконавцям</a>
-    <a class="hd-a is-cta" href="https://app.munister.com.ua/login">увійти</a>
-  </div>
+  <a class="hd-brand" href="./" aria-label="Догляд, на головну"><span class="hd-mark"></span>догляд</a>
+  <nav class="hd-act" aria-label="Кабінет">
+    <a class="btn" href="https://app.munister.com.ua/login">увійти</a>
+    <a class="btn is-go" href="https://app.munister.com.ua/register">створити акаунт</a>
+  </nav>
 </header>
 
 <main id="main">
-  <section class="hero is-utility">
-    <div class="hero-top wrap">
-      <span class="mono kicker">(захищений кабінет)</span>
-      <h1 class="d1">замовлення і фотозвіти<br>в одному кабінеті.</h1>
-      <p class="lead">замовник обирає виконавця і приймає роботу за фото. пароль вводиться лише на app.munister.com.ua.</p>
-      <div class="acts is-center">
-        <a class="pill" href="https://app.munister.com.ua/login">увійти до кабінету</a>
-        <a class="pill is-soft" href="https://app.munister.com.ua/register">створити акаунт</a>
-      </div>
-      <div class="hero-obj"><img src="assets/il/remote-care-ordering.webp" width="820" height="820" alt="Людина переглядає фотозвіт у кабінеті на ноутбуці й телефоні"></div>
-    </div>
-  </section>
 
-  <section class="offers wrap" aria-label="Варіанти реєстрації">
-    <article class="offer">
-      <span class="mono">(замовник)</span>
-      <h3>потрібен догляд</h3>
-      <div class="note">Опишіть місце і що зробити, вкажіть бюджет і ліміт на матеріали. Виконавці надішлють ціну, ви оберете одного і приймете роботу після фото.</div>
-      <a class="go" href="https://app.munister.com.ua/register">зареєструватися</a>
+<section class="hero wrap">
+  <h1 class="d1">замовлення і фото в одному кабінеті.</h1>
+  <div class="hero-obj">
+    <img src="assets/il/remote-care-ordering.webp" width="820" height="820" alt="Людина переглядає фотозвіт на ноутбуці й телефоні">
+    <span class="tag">app.munister.com.ua</span>
+  </div>
+  <p class="hero-sub">замовник обирає виконавця і приймає роботу за фото.</p>
+  <div class="hero-acts">
+    <a class="btn is-go is-lg" href="https://app.munister.com.ua/login">увійти до кабінету</a>
+    <a class="btn is-lg" href="https://app.munister.com.ua/register">створити акаунт</a>
+  </div>
+  <p class="small is-wide">пароль вводиться лише на app.munister.com.ua.</p>
+</section>
+
+<section class="block wrap">
+  <h2 class="h2">дві ролі, один кабінет</h2>
+  <div class="panels is-two">
+    <article class="panel">
+      <h3>замовник</h3>
+      <p>опишіть місце і що зробити, вкажіть бюджет і ліміт на матеріали. виконавці надішлють ціну, ви оберете одного і приймете роботу після фото.</p>
+      <a class="btn" href="https://app.munister.com.ua/register">зареєструватися</a>
     </article>
-    <article class="offer">
-      <span class="mono">(виконавець)</span>
-      <h3>хочу допомагати</h3>
-      <div class="note">Заповніть профіль і пройдіть перевірку. Далі відгукуйтеся на замовлення у своєму місті: суму виплати після комісії 25% видно одразу.</div>
-      <a class="go" href="https://app.munister.com.ua/register?role=executor">стати виконавцем</a>
+    <article class="panel">
+      <h3>виконавець</h3>
+      <p>заповніть профіль і пройдіть перевірку. далі відгукуйтеся на замовлення у своєму місті: суму після комісії 25% видно одразу.</p>
+      <a class="btn" href="https://app.munister.com.ua/register?role=executor">стати виконавцем</a>
     </article>
-  </section>
+  </div>
+</section>
+
 </main>
 
-<div class="ft-slab"><footer class="ft wrap">
-  <span class="mono">догляд · 2026</span>
-  <nav>
+<footer class="ft">
+  <div class="ft-top">
+    <a class="hd-brand" href="./"><span class="hd-mark"></span>догляд</a>
+    <div class="hd-act">
+      <a class="btn" href="https://app.munister.com.ua/login">увійти</a>
+      <a class="btn is-go" href="https://app.munister.com.ua/register">створити акаунт</a>
+    </div>
+  </div>
+  <nav class="ft-cols" aria-label="Посилання">
     <a href="./">головна</a>
+    <a href="executor-terms.html">умови</a>
+    <a href="mailto:munister@outlook.com">пошта</a>
     <a href="executor.html">виконавцям</a>
     <a href="privacy.html">приватність</a>
-    <a href="executor-terms.html">умови</a>
-    <a href="mailto:munister@outlook.com">munister@outlook.com</a>
   </nav>
-</footer></div>
+  <small>© 2026 догляд</small>
+</footer>
 </body>
 </html>

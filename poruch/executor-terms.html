@@ -14,50 +14,39 @@
   <title>Умови для виконавців – Догляд</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Onest:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="poruch-v3.css?v=20260911-9">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="poruch-v3.css?v=20260911-10">
 </head>
 <body>
-  <a class="skip" href="#main">Перейти до змісту</a>
+<a class="skip" href="#main">Перейти до змісту</a>
+
 <header class="hd">
-  <a class="hd-brand" href="./"><span class="hd-mark"></span>догляд</a>
-  <div class="hd-act">
-    <a class="hd-a" href="executor.html">виконавцям</a>
-    <a class="hd-a is-cta" href="cabinet.html">замовити</a>
-  </div>
+  <a class="hd-brand" href="./" aria-label="Догляд, на головну"><span class="hd-mark"></span>догляд</a>
+  <nav class="hd-act" aria-label="Дії">
+    <a class="btn" href="https://app.munister.com.ua/login">увійти</a>
+    <a class="btn is-go" href="cabinet.html">замовити</a>
+  </nav>
 </header>
 
-
-  <main class="wrap" id="main">
-    <section class="doc-hero">
-      <span class="mono kicker">(документи doglyad)</span>
-      <h1 class="d1">Умови співпраці з виконавцями</h1>
-      <p class="lead">Редакція від 10 червня 2026 року</p>
-    </section>
-
-    <div class="doc-note" role="note">
-      <strong>Пілотна редакція.</strong>
-      <span>Це проєкт правил сервісу для тестового запуску. До початку приймання оплат тут мають бути зазначені повні реквізити Оператора, платіжна модель і фінальна редакція, перевірена українським юристом.</span>
-    </div>
-
-    <div class="doc">
-      <nav class="doc-toc" aria-label="Зміст документа">
-        <span class="mono">на цій сторінці</span>
-        <a href="#general">1. Загальні положення</a>
-        <a href="#registration">2. Реєстрація і перевірка</a>
-        <a href="#tasks">3. Робота із завданнями</a>
-        <a href="#money">4. Комісія та виплати</a>
-        <a href="#quality">5. Якість і спори</a>
-        <a href="#restrictions">6. Обмеження</a>
-        <a href="#status">7. Статус виконавця</a>
-        <a href="#data">8. Дані й конфіденційність</a>
-        <a href="#liability">9. Відповідальність</a>
-        <a href="#termination">10. Припинення співпраці</a>
-        <a href="#agencies">11. Агентства і команди</a>
-        <a href="#operator">12. Оператор і контакти</a>
-      </nav>
-
-      <article class="doc-body">
+<main class="doc" id="main">
+  <h1>Умови співпраці з виконавцями</h1>
+  <p class="when">Редакція від 10 червня 2026 року</p>
+  <div class="note" role="note"><strong>Пілотна редакція.</strong> <span>Це проєкт правил сервісу для тестового запуску. До початку приймання оплат тут мають бути зазначені повні реквізити Оператора, платіжна модель і фінальна редакція, перевірена українським юристом.</span></div>
+  <nav class="toc" aria-label="Зміст документа">
+      <a href="#general">1. Загальні положення</a>
+      <a href="#registration">2. Реєстрація і перевірка</a>
+      <a href="#tasks">3. Робота із завданнями</a>
+      <a href="#money">4. Комісія та виплати</a>
+      <a href="#quality">5. Якість і спори</a>
+      <a href="#restrictions">6. Обмеження</a>
+      <a href="#status">7. Статус виконавця</a>
+      <a href="#data">8. Дані й конфіденційність</a>
+      <a href="#liability">9. Відповідальність</a>
+      <a href="#termination">10. Припинення співпраці</a>
+      <a href="#agencies">11. Агентства і команди</a>
+      <a href="#operator">12. Оператор і контакти</a>
+  </nav>
+  <article class="prose">
         <section id="general">
           <h2>1. Загальні положення</h2>
           <p>Догляд є сервісом, основною спеціалізацією якого є догляд за місцями поховання та інші делікатні доручення для людей, які не можуть бути присутні особисто. Сервіс також може пропонувати побутові, організаційні та інші дозволені локальні завдання. Ці Умови регулюють використання сервісу виконавцем.</p>
@@ -154,18 +143,24 @@
           <p class="legal-sources">Правова основа: <a href="https://zakon.rada.gov.ua/laws/show/435-15" target="_blank" rel="noopener">Цивільний кодекс України</a>, <a href="https://zakon.rada.gov.ua/laws/show/675-19" target="_blank" rel="noopener">Закон «Про електронну комерцію»</a>, <a href="https://zakon.rada.gov.ua/laws/show/2297-17" target="_blank" rel="noopener">Закон «Про захист персональних даних»</a>.</p>
         </section>
       </article>
-    </div>
-  </main>
+</main>
 
-<div class="ft-slab"><footer class="ft wrap">
-  <span class="mono">догляд · 2026 · пілотний запуск в Україні</span>
-  <nav>
+<footer class="ft">
+  <div class="ft-top">
+    <a class="hd-brand" href="./"><span class="hd-mark"></span>догляд</a>
+    <div class="hd-act">
+      <a class="btn" href="https://app.munister.com.ua/login">увійти</a>
+      <a class="btn is-go" href="cabinet.html">замовити</a>
+    </div>
+  </div>
+  <nav class="ft-cols" aria-label="Посилання">
     <a href="./">головна</a>
+    <a href="executor-terms.html">умови</a>
+    <a href="mailto:munister@outlook.com">пошта</a>
     <a href="executor.html">виконавцям</a>
-    <a href="executor-terms.html">умови для виконавців</a>
     <a href="privacy.html">приватність</a>
-    <a href="mailto:munister@outlook.com">munister@outlook.com</a>
   </nav>
-</footer></div>
+  <small>© 2026 догляд</small>
+</footer>
 </body>
 </html>

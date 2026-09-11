@@ -322,7 +322,7 @@ function refusalPage(req, status, message) {
   return layout({
     title: refusalTitles[status] || "Дію не виконано",
     user: withSessionUser(req),
-    body: `<main class="simple-page"><section class="form-card"><p class="eyebrow">(${status})</p><h1>${esc(refusalTitles[status] || "Дію не виконано")}.</h1>
+    body: `<main class="simple-page"><section class="form-card"><p class="eyebrow">помилка ${status}</p><h1>${esc(refusalTitles[status] || "Дію не виконано")}.</h1>
       <p>${esc(message)}</p>
       <div class="form-actions"><a class="button" href="${esc(back)}">Повернутися</a>${req.user && back !== "/dashboard" ? `<a class="button button-secondary" href="/dashboard">До кабінету</a>` : ""}</div></section></main>`
   });
@@ -436,8 +436,8 @@ function layout({ title, user, body, description = "", current = "" }) {
   <link rel="apple-touch-icon" href="/assets/favicon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&amp;family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/app.css?v=20260911-white4">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/app.css?v=20260911-sublime1">
 </head>
 <body>
   <a class="skip-link" href="#main-content">До основного вмісту</a>
@@ -470,7 +470,7 @@ function authView(req, mode, error = "", values = {}) {
       <section class="auth-story">
         ${brandLink("https://poruch.munister.com.ua/")}
         <div>
-          <p class="eyebrow">${register ? "(новий кабінет)" : "(захищений кабінет)"}</p>
+          <p class="eyebrow">${register ? "новий кабінет" : "захищений кабінет"}</p>
           <h1>${register ? "Кабінет замовника або виконавця." : "Вхід до кабінету."}</h1>
           <p>${register ? "Замовник описує місце і обирає виконавця. Виконавець надсилає ціну, виконує роботу і завантажує фото. Роль обирається один раз." : "Тут ваші замовлення, переписка з виконавцем, фото до і після та витрати за чеками."}</p>
           <figure class="auth-figure"><img src="/assets/${register ? "how-it-works-flow" : "remote-care-ordering"}.webp" width="820" height="820" alt="" loading="lazy"></figure>
@@ -529,7 +529,7 @@ function emptyState({ iconName = "orders", title, text, href = "", label = "" })
 function orderRows(orders, userRole, emptyOptions) {
   if (!orders.length) return emptyState(emptyOptions || {
     title: "Замовлень поки немає",
-    text: "Коли з'явиться перша справа, її статус і наступний крок будуть тут."
+    text: "Коли з'явиться перше замовлення, його статус і наступний крок будуть тут."
   });
   return `<div class="order-list">${orders.map(order => `
     <a class="order-row" href="/orders/${order.id}">
@@ -547,10 +547,10 @@ function processSteps(role) {
         ["01", "Створіть бриф", "Опишіть місце, потрібний догляд, строк і бюджет."],
         ["02", "Оберіть людину", "Порівняйте пропозиції, профіль, рейтинг і повідомлення."],
         ["03", "Слідкуйте за роботою", "Домовленості й уточнення залишаються в картці замовлення."],
-        ["04", "Прийміть звіт", "Перевірте фотографії, результат і лише тоді завершіть справу."]
+        ["04", "Прийміть звіт", "Перевірте фотографії, результат і лише тоді закрийте замовлення."]
       ]
     : [
-        ["01", "Оберіть справу", "Перевірте місто, обсяг, строк і суму виплати."],
+        ["01", "Оберіть замовлення", "Перевірте місто, обсяг, строк і суму виплати."],
         ["02", "Надішліть пропозицію", "Коротко опишіть підхід, доступну дату й свою ціну."],
         ["03", "Зафіксуйте роботу", "Усі зміни погоджуйте в чаті до додаткових витрат."],
         ["04", "Здайте результат", "Додайте змістовний коментар і фотографії до та після."]
@@ -1022,7 +1022,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
                   title: priority.title,
                   text: "Перевіряйте повідомлення, погоджуйте зміни та витрати лише в картці замовлення.",
                   href: `/orders/${priority.id}`,
-                  label: "Перейти до справи",
+                  label: "Відкрити замовлення",
                   iconName: "orders"
                 };
       return res.send(layout({
@@ -1054,7 +1054,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
           </section>
           <div class="dashboard-grid">
             <section class="dashboard-main">
-              <div class="section-title"><div><p class="eyebrow">Ваші справи</p><h2>Останні замовлення</h2></div><a class="text-action" href="/orders/new">Нове замовлення ${icon("arrow")}</a></div>
+              <div class="section-title"><div><p class="eyebrow">Ваші замовлення</p><h2>Останні замовлення</h2></div><a class="text-action" href="/orders/new">Нове замовлення ${icon("arrow")}</a></div>
               ${orderRows(orders.slice(0, 6), "customer", {
                 iconName: "plus",
                 title: "Почніть із короткого брифу",
@@ -1127,7 +1127,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
           ? {
               eyebrow: "Результат передано",
               title: priority.title,
-              text: "Фото-звіт очікує рішення замовника. Слідкуйте за повідомленнями в картці справи.",
+              text: "Фото-звіт очікує рішення замовника. Слідкуйте за повідомленнями в замовленні.",
               href: `/orders/${priority.id}`,
               label: "Відкрити замовлення",
               iconName: "camera"
@@ -1142,7 +1142,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
             }
       : {
           eyebrow: "Наступний крок",
-          title: available.length ? "Оберіть відповідне замовлення" : "Підготуйте профіль до нових справ",
+          title: available.length ? "Оберіть відповідне замовлення" : "Підготуйте профіль до нових замовлень",
           text: available.length
             ? `Зараз доступно ${available.length} нових замовлень. Відгукуйтеся лише на ті, де впевнені у строках і результаті.`
             : "Заповнений і перевірений профіль підвищує довіру замовника та шанс отримати роботу.",
@@ -1172,17 +1172,17 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
         </header>
         ${req.query.welcome ? `<div class="notice" role="status">Кабінет створено. Доповніть профіль і подайте заявку на перевірку, щоб замовникам було легше обрати вас.</div>` : ""}
         <section class="dashboard-stats" aria-label="Робочі показники">
-          <div><span>Активні</span><strong>${active.length}</strong><small>справ у роботі</small></div>
+          <div><span>Активні</span><strong>${active.length}</strong><small>замовлень у роботі</small></div>
           <div><span>Пропозиції</span><strong>${pendingProposals}</strong><small>очікують рішення</small></div>
           <div><span>До виплати</span><strong>${money(pendingPayout)}</strong><small>після комісії 25%</small></div>
-          <div><span>Зароблено</span><strong>${money(earned)}</strong><small>за завершені справи</small></div>
+          <div><span>Зароблено</span><strong>${money(earned)}</strong><small>за завершені замовлення</small></div>
         </section>
         <div class="dashboard-grid">
           <section class="dashboard-main">
-            <div class="section-title"><div><p class="eyebrow">Робочий стіл</p><h2>Активні справи</h2></div><a class="text-action" href="/orders/available">Знайти ще ${icon("arrow")}</a></div>
+            <div class="section-title"><div><p class="eyebrow">Робочий стіл</p><h2>Активні замовлення</h2></div><a class="text-action" href="/orders/available">Знайти ще ${icon("arrow")}</a></div>
             ${orderRows(active, "executor", {
               iconName: "search",
-              title: "Активних справ поки немає",
+              title: "Активних замовлень поки немає",
               text: "Оберіть замовлення за містом, строком і обсягом. До призначення не починайте роботу й не купуйте матеріали.",
               href: "/orders/available",
               label: "Переглянути доступні"
@@ -1204,7 +1204,7 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
           ${orderRows(available.slice(0, 4), "executor", {
             iconName: "bell",
             title: "Нових замовлень зараз немає",
-            text: "Ми покажемо їх тут, щойно з'являться справи у вашій зоні роботи."
+            text: "Ми покажемо їх тут, щойно з'являться замовлення у вашій зоні роботи."
           })}
         </section>
         <section class="process-section">
@@ -1782,7 +1782,7 @@ app.get("/files/:id", requireAuth, async (req, res, next) => {
 
 app.use((_req, res) => res.status(404).send(layout({
   title: "Сторінку не знайдено",
-  body: `<main class="simple-page"><section class="form-card"><p class="eyebrow">(404)</p><h1>Цієї сторінки немає.</h1><p>Можливо, посилання застаріло або справу вже закрито.</p><div class="form-actions"><a class="button" href="/">До кабінету</a></div></section></main>`
+  body: `<main class="simple-page"><section class="form-card"><p class="eyebrow">помилка 404</p><h1>Цієї сторінки немає.</h1><p>Можливо, посилання застаріло або замовлення вже закрито.</p><div class="form-actions"><a class="button" href="/">До кабінету</a></div></section></main>`
 })));
 
 app.use((error, req, res, _next) => {
@@ -1797,7 +1797,7 @@ app.use((error, req, res, _next) => {
   res.status(500).send(layout({
     title: "Помилка",
     user: withSessionUser(req),
-    body: `<main class="simple-page"><section class="form-card"><p class="eyebrow">(500)</p><h1>Не вдалося виконати дію.</h1><p>Спробуйте ще раз. Якщо проблема повториться, напишіть на <a class="text-link" href="mailto:${esc(SUPPORT_EMAIL)}">${esc(SUPPORT_EMAIL)}</a>.</p><div class="form-actions"><a class="button" href="/dashboard">До кабінету</a></div></section></main>`
+    body: `<main class="simple-page"><section class="form-card"><p class="eyebrow">помилка 500</p><h1>Не вдалося виконати дію.</h1><p>Спробуйте ще раз. Якщо проблема повториться, напишіть на <a class="text-link" href="mailto:${esc(SUPPORT_EMAIL)}">${esc(SUPPORT_EMAIL)}</a>.</p><div class="form-actions"><a class="button" href="/dashboard">До кабінету</a></div></section></main>`
   }));
 });
 

@@ -14,46 +14,35 @@
   <title>Приватність – Догляд</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Onest:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="poruch-v3.css?v=20260911-9">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="poruch-v3.css?v=20260911-10">
 </head>
 <body>
-  <a class="skip" href="#main">Перейти до змісту</a>
+<a class="skip" href="#main">Перейти до змісту</a>
+
 <header class="hd">
-  <a class="hd-brand" href="./"><span class="hd-mark"></span>догляд</a>
-  <div class="hd-act">
-    <a class="hd-a" href="executor.html">виконавцям</a>
-    <a class="hd-a is-cta" href="cabinet.html">замовити</a>
-  </div>
+  <a class="hd-brand" href="./" aria-label="Догляд, на головну"><span class="hd-mark"></span>догляд</a>
+  <nav class="hd-act" aria-label="Дії">
+    <a class="btn" href="https://app.munister.com.ua/login">увійти</a>
+    <a class="btn is-go" href="cabinet.html">замовити</a>
+  </nav>
 </header>
 
-
-  <main class="wrap" id="main">
-    <section class="doc-hero">
-      <span class="mono kicker">(документи doglyad)</span>
-      <h1 class="d1">Повідомлення про приватність</h1>
-      <p class="lead">Редакція від 10 червня 2026 року</p>
-    </section>
-
-    <div class="doc-note" role="note">
-      <strong>Пілотна редакція.</strong>
-      <span>Наразі заявка готується у вашому поштовому застосунку і надсилається на email команди. Перед запуском особистих кабінетів документ буде доповнений реквізитами володільця даних і переліком технічних постачальників.</span>
-    </div>
-
-    <div class="doc">
-      <nav class="doc-toc" aria-label="Зміст документа">
-        <span class="mono">на цій сторінці</span>
-        <a href="#who">1. Хто і навіщо обробляє дані</a>
-        <a href="#data">2. Які дані ми можемо отримувати</a>
-        <a href="#basis">3. Правові підстави</a>
-        <a href="#sharing">4. Кому можуть передаватися дані</a>
-        <a href="#retention">5. Строк зберігання</a>
-        <a href="#rights">6. Ваші права</a>
-        <a href="#security">7. Безпека, cookies і зміни</a>
-        <a href="#law">8. Правова основа</a>
-      </nav>
-
-    <article class="doc-body">
+<main class="doc" id="main">
+  <h1>Повідомлення про приватність</h1>
+  <p class="when">Редакція від 10 червня 2026 року</p>
+  <div class="note" role="note"><strong>Пілотна редакція.</strong> <span>Наразі заявка готується у вашому поштовому застосунку і надсилається на email команди. Перед запуском особистих кабінетів документ буде доповнений реквізитами володільця даних і переліком технічних постачальників.</span></div>
+  <nav class="toc" aria-label="Зміст документа">
+      <a href="#who">1. Хто і навіщо обробляє дані</a>
+      <a href="#data">2. Які дані ми можемо отримувати</a>
+      <a href="#basis">3. Правові підстави</a>
+      <a href="#sharing">4. Кому можуть передаватися дані</a>
+      <a href="#retention">5. Строк зберігання</a>
+      <a href="#rights">6. Ваші права</a>
+      <a href="#security">7. Безпека, cookies і зміни</a>
+      <a href="#law">8. Правова основа</a>
+  </nav>
+  <article class="prose">
       <section id="who">
         <h2>1. Хто і навіщо обробляє дані</h2>
         <p>Команда пілотного сервісу Doglyad використовує надані дані, щоб розглянути заявку виконавця, зв'язатися з ним, провести перевірку, організувати завдання, підтримати сторони та запобігати зловживанням.</p>
@@ -109,18 +98,24 @@
         <p>Обробка даних здійснюється відповідно до <a href="https://zakon.rada.gov.ua/laws/show/2297-17" target="_blank" rel="noopener">Закону України «Про захист персональних даних»</a> та інших застосовних норм.</p>
       </section>
     </article>
-    </div>
-  </main>
+</main>
 
-<div class="ft-slab"><footer class="ft wrap">
-  <span class="mono">догляд · 2026 · пілотний запуск в Україні</span>
-  <nav>
+<footer class="ft">
+  <div class="ft-top">
+    <a class="hd-brand" href="./"><span class="hd-mark"></span>догляд</a>
+    <div class="hd-act">
+      <a class="btn" href="https://app.munister.com.ua/login">увійти</a>
+      <a class="btn is-go" href="cabinet.html">замовити</a>
+    </div>
+  </div>
+  <nav class="ft-cols" aria-label="Посилання">
     <a href="./">головна</a>
+    <a href="executor-terms.html">умови</a>
+    <a href="mailto:munister@outlook.com">пошта</a>
     <a href="executor.html">виконавцям</a>
-    <a href="executor-terms.html">умови для виконавців</a>
     <a href="privacy.html">приватність</a>
-    <a href="mailto:munister@outlook.com">munister@outlook.com</a>
   </nav>
-</footer></div>
+  <small>© 2026 догляд</small>
+</footer>
 </body>
 </html>

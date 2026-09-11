@@ -25,145 +25,142 @@
 <title>Догляд – турбота про місця пам'яті</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="poruch-v3.css?v=20260911-9">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="poruch-v3.css?v=20260911-10">
 </head>
 <body>
+<a class="skip" href="#main">Перейти до змісту</a>
 
 <header class="hd">
-  <a class="hd-brand" href="#top"><span class="hd-mark"></span>догляд</a>
-  <div class="hd-act">
-    <a class="hd-a" href="executor.html">виконавцям</a>
-    <a class="hd-a is-cta" href="cabinet.html">замовити</a>
-  </div>
+  <a class="hd-brand" href="#top" aria-label="Догляд"><span class="hd-mark"></span>догляд</a>
+  <nav class="hd-act" aria-label="Кабінет">
+    <a class="btn" href="https://app.munister.com.ua/login">увійти</a>
+    <a class="btn is-go" href="cabinet.html">замовити</a>
+  </nav>
 </header>
 
-<!-- 1 -->
-<section class="hero" id="top">
-  <div class="hero-top wrap">
-    <h1 class="d1">доглянемо могилу,<br>поки ви далеко.</h1>
-    <div class="hero-obj"><img src="assets/il/quiet-remembrance-flowers.webp" width="820" height="820" alt="Виконавиця ставить квіти біля пам'ятника"></div>
-    <div class="hero-chip">приклад: справа №1042</div>
+<main id="main">
+
+<section class="hero wrap" id="top">
+  <h1 class="d1">ви далеко.<br>а місце доглянуте.</h1>
+  <div class="hero-obj">
+    <img src="assets/il/quiet-remembrance-flowers.webp" width="820" height="820" alt="Виконавиця ставить квіти біля пам'ятника">
+    <span class="tag">фото_після.jpg</span>
   </div>
-  <div class="hero-sub wrap">
-    <p class="lead">прибирання, квіти, лампадка<br>і фото до та після.<br>від 700 ₴ за виїзд.</p>
-  </div>
+  <p class="hero-sub">прибирання, квіти й лампадка на могилі рідних. від 700 ₴, з фото до і після.</p>
 </section>
 
-<!-- 2 -->
-<section class="say wrap">
-  <p class="d2">на кладовище їде виконавець із того ж міста і знімає все на фото.</p>
+<section class="stage wrap">
+  <p class="say">на кладовище їде людина з того самого міста і знімає все до і після.</p>
 </section>
 
-<!-- 3 -->
-<section class="feat wrap" id="process">
-  <div class="feat-head">
-    <h2 class="d2">чотири кроки<br>від замовлення<br>до звіту</h2>
-    <div>
-      <p class="lead">усе відбувається в кабінеті на app.munister.com.ua. кожне замовлення має номер, а бриф, переписка і фото зберігаються в ньому.</p>
-      <a class="try" href="cabinet.html">створити замовлення →</a>
-    </div>
-  </div>
-  <ol class="objs is-steps">
-    <li class="obj"><div class="obj-box"><img src="assets/il/regular-care-calendar.webp" alt=""></div><span class="mono">01</span><h3>опишіть місце</h3><p>Місто, кладовище, ділянка, що зробити і до якої дати. Точну адресу передаєте в переписці вже обраному виконавцю.</p></li>
-    <li class="obj"><div class="obj-box"><img src="assets/il/local-caregiver-network.webp" alt=""></div><span class="mono">02</span><h3>оберіть виконавця</h3><p>Виконавці пропонують ціну і пишуть, як зроблять. Ви бачите їхній рейтинг, відгуки і позначку перевірки.</p></li>
-    <li class="obj"><div class="obj-box"><img src="assets/il/how-it-works-flow.webp" alt=""></div><span class="mono">03</span><h3>виконавець їде</h3><p>Прибирає, ставить квіти чи лампадку, купує матеріали в межах ліміту і зберігає чек.</p></li>
-    <li class="obj"><div class="obj-box"><img src="assets/il/photo-report-mobile.webp" alt=""></div><span class="mono">04</span><h3>прийміть звіт</h3><p>До 8 фото до і після та коментар. Ви приймаєте роботу або пишете, що виправити.</p></li>
+<section class="block wrap" id="process">
+  <h2 class="h2">чотири кроки від замовлення до звіту</h2>
+  <p class="small">усе в кабінеті: опис місця, вибір виконавця, переписка і фото.</p>
+  <a class="btn" href="cabinet.html">замовити</a>
+  <ol class="objects">
+    <li class="object"><img src="assets/il/regular-care-calendar.webp" alt="" loading="lazy"><span class="cap">(опис місця)</span><p>місто, кладовище, що зробити і до якої дати.</p></li>
+    <li class="object"><img src="assets/il/local-caregiver-network.webp" alt="" loading="lazy"><span class="cap">(вибір виконавця)</span><p>виконавці пропонують ціну. ви бачите рейтинг і відгуки.</p></li>
+    <li class="object"><img src="assets/il/how-it-works-flow.webp" alt="" loading="lazy"><span class="cap">(виїзд)</span><p>прибирання, квіти чи лампадка. матеріали за чеком.</p></li>
+    <li class="object"><img src="assets/il/photo-report-mobile.webp" alt="" loading="lazy"><span class="cap">(звіт)</span><p>до 8 фото до і після. ви приймаєте роботу або просите виправити.</p></li>
   </ol>
 </section>
 
-<!-- 4 -->
-<section class="say wrap">
-  <p class="d2">роботу приймаєте ви, коли побачите фото. без звіту замовлення не закривається.</p>
+<section class="stage wrap">
+  <p class="say">роботу приймаєте ви, коли побачите фото.</p>
 </section>
 
-<!-- 5 -->
-<section class="offers is-three wrap" id="care">
-  <article class="offer">
-    <h3>базовий догляд</h3>
-    <div class="price">від 700 ₴</div>
-    <div class="note">Прибрати листя і сміття, очистити доступні поверхні, до 8 фото до і після.</div>
-    <a class="go" href="cabinet.html">замовити</a>
-  </article>
-  <article class="offer">
-    <h3>квіти до дати</h3>
-    <div class="price">від 500 ₴ за роботу</div>
-    <div class="note">Квіти чи лампадку виконавець купує в межах вашого ліміту і додає чек. Суму погоджуєте до виїзду.</div>
-    <a class="go" href="cabinet.html">запланувати</a>
-  </article>
-  <article class="offer">
-    <h3>пошук поховання</h3>
-    <div class="price">ціна після оцінки</div>
-    <div class="note">За ім'ям, роками життя і можливим кладовищем. Виконавець шукає місце і надсилає фото стану. Догляд погоджується окремо.</div>
-    <a class="go" href="cabinet.html">описати запит</a>
-  </article>
-</section>
-
-<!-- 6 -->
-<section class="year wrap" id="planner">
-  <div>
-    <h2 class="d2">пам'ятні<br>дати<br>на рік</h2>
-    <p class="lead sub-note">назвіть дати, важливі для вашої родини. під кожну створюється окреме замовлення з окремим звітом і оплатою.</p>
-  </div>
-  <div class="year-list">
-    <div class="year-row"><b>провідна неділя</b><span class="mono">(прибирання)</span></div>
-    <div class="year-row"><b>роковини</b><span class="mono">(прибирання + квіти)</span></div>
-    <div class="year-row"><b>зелені свята</b><span class="mono">(прибирання)</span></div>
-    <div class="year-row"><b>день народження</b><span class="mono">(прибирання + лампадка)</span></div>
-    <div class="year-row"><b>різдво</b><span class="mono">(прибирання)</span></div>
+<section class="block wrap" id="care">
+  <h2 class="h2">що можна замовити</h2>
+  <p class="small">ціну погоджуєте з виконавцем до виїзду.</p>
+  <div class="panels">
+    <article class="panel">
+      <h3>базовий догляд</h3>
+      <span class="price">від 700 ₴</span>
+      <p>прибрати листя і сміття, очистити доступні поверхні, до 8 фото до і після.</p>
+      <a class="btn" href="cabinet.html">замовити</a>
+    </article>
+    <article class="panel">
+      <h3>квіти до дати</h3>
+      <span class="price">від 500 ₴ за роботу</span>
+      <p>квіти чи лампадку виконавець купує в межах вашого ліміту і додає чек.</p>
+      <a class="btn" href="cabinet.html">запланувати</a>
+    </article>
+    <article class="panel">
+      <h3>пошук поховання</h3>
+      <span class="price">ціна після оцінки</span>
+      <p>за ім'ям, роками життя і можливим кладовищем. виконавець знаходить місце і надсилає фото стану.</p>
+      <a class="btn" href="cabinet.html">описати запит</a>
+    </article>
   </div>
 </section>
 
-<!-- 7 -->
-<section class="case-wrap wrap" id="report">
-  <div>
-    <h2 class="d2">так<br>виглядає<br>звіт</h2>
-    <p class="lead sub-note">приклад закритого замовлення. такий самий звіт лишається у вашому кабінеті.</p>
+<section class="block wrap" id="dates">
+  <h2 class="h2">пам'ятні дати на рік</h2>
+  <p class="small">під кожну дату окреме замовлення, окремий звіт і оплата.</p>
+  <div class="chips">
+    <span class="chip">провідна неділя</span>
+    <span class="chip">роковини</span>
+    <span class="chip">зелені свята</span>
+    <span class="chip">день народження</span>
+    <span class="chip">різдво</span>
   </div>
-  <article class="case">
-    <div class="case-head">
-      <h3>Справа №1042</h3>
-      <span class="mono">Вінниця · травень · закрита</span>
+</section>
+
+<section class="block wrap" id="report">
+  <h2 class="h2">так виглядає звіт</h2>
+  <p class="small">приклад. такий самий звіт лишається у вашому кабінеті.</p>
+  <figure class="sheet">
+    <img src="assets/memorial-care-hero.webp" width="960" height="1200" alt="Руки в рукавичках поправляють квіти біля пам'ятника" loading="lazy">
+    <figcaption class="cap">(вінниця, травень)</figcaption>
+    <dl>
+      <div><dt>замовлено</dt><dd>базовий догляд і квіти</dd></div>
+      <div><dt>вартість</dt><dd>740 ₴: робота 500 ₴, квіти 240 ₴</dd></div>
+      <div><dt>строк</dt><dd>2 дні від підтвердження</dd></div>
+      <div><dt>у звіті</dt><dd>8 фото до і після, коментар, чек на квіти</dd></div>
+    </dl>
+  </figure>
+</section>
+
+<section class="lines wrap" aria-label="Кому це потрібно">
+  <p>ви живете за кордоном або в іншому місті.</p>
+  <p>наближаються роковини чи провідна неділя.</p>
+  <p>ви давно не бачили, в якому стані місце.</p>
+  <p>треба знайти поховання за ім'ям і роками життя.</p>
+  <h2 class="h2">ви бачите результат,<br>а не вірите на слово.</h2>
+</section>
+
+<section class="big-go wrap">
+  <a href="cabinet.html">замовити догляд</a>
+  <p class="small">реєстрація безкоштовна. комісію сервісу сплачує виконавець.</p>
+</section>
+
+<section class="block wrap" id="executors">
+  <h2 class="h2">хочете доглядати за могилами у своєму місті?</h2>
+  <p class="small">замовлення з адресою і ціною, вам 75% винагороди.</p>
+  <a class="btn" href="executor.html">для виконавців</a>
+</section>
+
+</main>
+
+<p class="ft-note">догляд працює в пілотному режимі. питання: munister@outlook.com</p>
+<footer class="ft">
+  <div class="ft-top">
+    <a class="hd-brand" href="#top"><span class="hd-mark"></span>догляд</a>
+    <div class="hd-act">
+      <a class="btn" href="https://app.munister.com.ua/login">увійти</a>
+      <a class="btn is-go" href="cabinet.html">замовити</a>
     </div>
-    <div class="case-img"><img src="assets/il/photo-report-mobile.webp" alt="Фотозвіт справи №1042 на телефоні"></div>
-    <div class="case-rows">
-      <div class="case-row"><span>замовлено</span><span>Базовий догляд + квіти до дати</span></div>
-      <div class="case-row"><span>виконавець</span><span>Оксана, Вінницька область</span></div>
-      <div class="case-row"><span>вартість</span><span>740 ₴ (робота 500 ₴ + квіти 240 ₴)</span></div>
-      <div class="case-row"><span>строк</span><span>виконано за 2 дні від підтвердження</span></div>
-      <div class="case-row"><span>у звіті</span><span>8 фото до і після, коментар виконавця, чек на квіти</span></div>
-    </div>
-  </article>
-</section>
-
-<!-- 8 -->
-<section class="mani wrap" aria-label="Кому це потрібно">
-  <span class="mono">(кому це потрібно)</span>
-  <p class="is-dim">ви живете за кордоном або в іншому місті і не можете приїхати.</p>
-  <p class="is-dim">наближаються роковини, провідна неділя чи день народження.</p>
-  <p class="is-dim">ви давно не бачили, в якому стані місце.</p>
-  <p class="is-dim">треба знайти поховання за ім'ям і роками життя.</p>
-  <p>ви хочете бачити результат, а не вірити на слово.</p>
-</section>
-
-<!-- 9 -->
-<section class="close wrap" id="start">
-  <div>
-    <h2 class="d1">почніть з опису місця.</h2>
-    <a class="d2" href="cabinet.html">замовити догляд</a>
-    <p class="fine">потрібні місто, кладовище й орієнтир. комісію сервісу сплачує виконавець зі своєї винагороди, ви платите погоджену суму і матеріали за чеком.</p>
   </div>
-</section>
-
-<div class="ft-slab"><footer class="ft wrap">
-  <span class="mono">догляд · 2026</span>
-  <nav>
+  <nav class="ft-cols" aria-label="Посилання">
     <a href="executor.html">виконавцям</a>
-    <a href="executor-terms.html">умови для виконавців</a>
+    <a href="executor-terms.html">умови</a>
+    <a href="mailto:munister@outlook.com">пошта</a>
+    <a href="cabinet.html">кабінет</a>
     <a href="privacy.html">приватність</a>
-    <a href="mailto:munister@outlook.com">munister@outlook.com</a>
   </nav>
-</footer></div>
+  <small>© 2026 догляд</small>
+</footer>
 
 </body>
 </html>

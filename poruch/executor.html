@@ -24,8 +24,8 @@
   <title>Доглядати місця пам'яті – Догляд</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="poruch-v3.css?v=20260911-9">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="poruch-v3.css?v=20260911-10">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -50,274 +50,177 @@
 <a class="skip" href="#main">Перейти до змісту</a>
 
 <header class="hd">
-  <a class="hd-brand" href="./"><span class="hd-mark"></span>догляд</a>
-  <div class="hd-act">
-    <a class="hd-a" href="./">замовникам</a>
-    <a class="hd-a is-cta" href="#apply">подати заявку</a>
-  </div>
+  <a class="hd-brand" href="./" aria-label="Догляд, на головну"><span class="hd-mark"></span>догляд</a>
+  <nav class="hd-act" aria-label="Дії">
+    <a class="btn" href="https://app.munister.com.ua/login">увійти</a>
+    <a class="btn is-go" href="#apply">подати заявку</a>
+  </nav>
 </header>
 
 <main id="main">
 
-<!-- 1 -->
-<section class="hero" id="top">
-  <div class="hero-top wrap">
-    <span class="mono kicker">(виконавцям · набір відкрито)</span>
-    <h1 class="d1">доглядайте за могилами<br>у своєму місті.</h1>
-    <div class="hero-obj"><img src="assets/il/local-caregiver-network.webp" width="820" height="820" alt="Виконавець із садовим інвентарем на тлі карти України з позначками міст"></div>
-    <div class="hero-chip">справа №0184 · 900 ₴</div>
+<section class="hero wrap" id="top">
+  <h1 class="d1">доглядайте за могилами у своєму місті.</h1>
+  <div class="hero-obj">
+    <img src="assets/il/local-caregiver-network.webp" width="820" height="820" alt="Виконавець із садовим інвентарем на тлі карти України">
+    <span class="tag">вінниця · 900 ₴</span>
   </div>
-  <div class="hero-sub wrap">
-    <p class="lead">замовлення приходять з адресою, обсягом і ціною. вам лишається 75% винагороди, виплата до 3 днів після приймання.</p>
-    <div class="acts is-center">
-      <a class="pill" href="#apply">стати виконавцем</a>
-      <a class="pill is-soft" href="#how">як усе працює</a>
-    </div>
+  <p class="hero-sub">замовлення приходять з адресою і ціною. вам 75% винагороди.</p>
+  <div class="hero-acts">
+    <a class="btn is-go is-lg" href="#apply">стати виконавцем</a>
+    <a class="btn is-lg" href="#how">як почати</a>
   </div>
 </section>
 
-<!-- 2 -->
-<section class="wrap" aria-label="Умови співпраці">
-  <div class="figures">
-    <div><span class="mono">реєстрація</span><b>0 ₴</b><span>реєстрація і перегляд завдань безкоштовні</span></div>
-    <div><span class="mono">комісія</span><b>25%</b><span>за клієнта, координацію і захист угоди</span></div>
-    <div><span class="mono">виплата</span><b>до 3 днів</b><span>після того, як результат прийнято</span></div>
-    <div><span class="mono">вік</span><b>18+</b><span>мінімальний вік виконавця</span></div>
+<section class="wrap">
+  <div class="facts" aria-label="Умови співпраці">
+    <div><b>0 ₴</b><span>реєстрація і перегляд замовлень</span></div>
+    <div><b>25%</b><span>комісія з винагороди, видно до виїзду</span></div>
+    <div><b>до 3 днів</b><span>виплата після того, як роботу прийняли</span></div>
+    <div><b>18+</b><span>мінімальний вік виконавця</span></div>
   </div>
 </section>
 
-<!-- 3 -->
-<section class="say wrap">
-  <p class="d2">до виїзду ви знаєте адресу, обсяг і суму, яку отримаєте.</p>
+<section class="stage wrap">
+  <p class="say">до виїзду ви знаєте адресу, обсяг і суму, яку отримаєте.</p>
 </section>
 
-<!-- 4 -->
-<section class="case-wrap wrap" id="workspace">
-  <div>
-    <h2 class="d2">так<br>виглядає<br>робота</h2>
-    <p class="lead sub-note">у картці замовлення: адреса, строк, перелік робіт, ліміт на матеріали і ваша виплата. після роботи ви завантажуєте фото, замовник приймає звіт.</p>
-  </div>
-  <article class="case" aria-label="Приклад робочого завдання виконавця">
-    <div class="case-head">
-      <h3>Справа №0184</h3>
-      <span class="mono">Вінниця · в роботі</span>
-    </div>
-    <div class="case-img is-photo"><img src="assets/memorial-care-hero.webp" width="960" height="1200" loading="lazy" alt="Руки в рукавичках поправляють квіти біля пам'ятника"></div>
-    <div class="case-rows">
-      <div class="case-row"><span>завдання</span><span>Післязимовий догляд: зібрати листя, очистити доступні поверхні, встановити погоджені квіти</span></div>
-      <div class="case-row"><span>виконати до</span><span>18 травня</span></div>
-      <div class="case-row"><span>ваша виплата</span><span>900 ₴</span></div>
-      <div class="case-row"><span>докази</span><span>8 фото: ракурси до і після, час і геолокація, чек на погоджені покупки</span></div>
-    </div>
-    <div class="case-note">
-      <p class="q">«Стан відрізняється від опису. Чи продовжувати?»</p>
-      <p><span class="mono">координатор</span>Зупиніться після фото. Ми погодимо новий обсяг із замовником до додаткової роботи.</p>
-    </div>
-  </article>
+<section class="block wrap" id="workspace">
+  <h2 class="h2">так виглядає замовлення</h2>
+  <p class="small">усе, що погоджено, записано в кабінеті ще до виїзду.</p>
+  <figure class="sheet">
+    <img src="assets/memorial-care-hero.webp" width="960" height="1200" alt="Руки в рукавичках поправляють квіти біля пам'ятника" loading="lazy">
+    <figcaption class="cap">(вінниця, травень)</figcaption>
+    <dl>
+      <div><dt>завдання</dt><dd>післязимовий догляд: листя, поверхні, погоджені квіти</dd></div>
+      <div><dt>виконати до</dt><dd>18 травня</dd></div>
+      <div><dt>ваша виплата</dt><dd>900 ₴</dd></div>
+      <div><dt>у звіті</dt><dd>фото до і після, чек на покупки</dd></div>
+    </dl>
+    <p class="quote"><b>«стан гірший за опис. продовжувати?»</b>координатор: зупиніться після фото, ми погодимо новий обсяг із замовником.</p>
+  </figure>
 </section>
 
-<!-- 5 -->
-<section class="split wrap" id="platform-value">
-  <div class="split-aside">
-    <h2 class="d2">що входить<br>у 25%</h2>
-    <p class="lead sub-note">з винагороди 1 000 ₴ ви отримуєте 750 ₴. за 250 ₴ сервіс робить ось що.</p>
-  </div>
-  <div class="ledger" role="group" aria-label="Послуги платформи для виконавця">
-    <article><span class="mono">(клієнт)</span><div><h3>Готовий клієнт замість холодного пошуку</h3><p>Ми приймаємо звернення, перевіряємо контакт, уточнюємо реальну потребу, місто, дату й орієнтовний бюджет. Виконавець отримує підготовлений запит, а не витрачає час на рекламу та первинні переговори.</p></div></article>
-    <article><span class="mono">(бриф)</span><div><h3>Зафіксований обсяг роботи</h3><p>У картці завдання записані адреса, строк, перелік робіт, матеріали, стандарт звіту, винагорода і ваша чиста виплата. Додаткові роботи з'являються лише після окремого погодження.</p></div></article>
-    <article><span class="mono">(права)</span><div><h3>Захищені домовленості</h3><p>Замовник не може односторонньо зменшити погоджену ціну після належно виконаного обсягу. Doglyad зберігає історію уточнень і перевіряє, що саме було погоджено сторонами.</p></div></article>
-    <article><span class="mono">(підтримка)</span><div><h3>Координатор у складних ситуаціях</h3><p>Якщо місце не знайдено, стан відрізняється від опису або клієнт просить більше, ви зупиняєтеся й передаєте питання координатору. Не потрібно самостійно вести конфліктні переговори на місці.</p></div></article>
-    <article><span class="mono">(докази)</span><div><h3>Стандарт доказів, який працює в обидва боки</h3><p>Фото до і після з однакових ракурсів, час, геолокація, чеки й короткий коментар підтверджують результат та захищають виконавця від необґрунтованих претензій.</p></div></article>
-    <article><span class="mono">(спір)</span><div><h3>Двосторонній розгляд спору</h3><p>Ми запитуємо матеріали в обох сторін, не скасовуємо виплату автоматично за однією скаргою та пропонуємо виправлення, часткову оплату або інше рішення відповідно до доказів.</p></div></article>
-    <article><span class="mono">(виплата)</span><div><h3>Зрозумілий маршрут виплати</h3><p>До прийняття видно винагороду, комісію та компенсацію витрат. На пілоті розрахунок координується вручну; після підключення платіжного партнера кошти резервуватимуться до початку роботи за правилами конкретного замовлення.</p></div></article>
+<section class="block wrap" id="platform-value">
+  <h2 class="h2">що входить у 25%</h2>
+  <p class="small is-wide">з 1 000 ₴ винагороди ви отримуєте 750 ₴. ось за що сервіс бере 250 ₴.</p>
+  <div class="panels">
+    <article class="panel"><h3>готовий клієнт</h3><p>ми приймаємо звернення, уточнюємо місто, дату і бюджет. вам не треба шукати замовників.</p></article>
+    <article class="panel"><h3>зафіксований обсяг</h3><p>адреса, строк, перелік робіт, матеріали і ваша виплата записані до виїзду. додаткова робота лише після погодження.</p></article>
+    <article class="panel"><h3>захист ціни</h3><p>замовник не може зменшити погоджену ціну після виконаної роботи. спір розглядаємо за фото, чеками і перепискою обох сторін.</p></article>
+    <article class="panel"><h3>координатор</h3><p>якщо місце не знайдено або стан гірший за опис, ви зупиняєтесь і пишете координатору. сперечатися на місці не треба.</p></article>
+    <article class="panel"><h3>фото як доказ</h3><p>фото до і після з однакових ракурсів, час і чеки підтверджують роботу і захищають вас від безпідставних претензій.</p></article>
+    <article class="panel"><h3>виплата</h3><p>до 3 днів після приймання роботи. на пілоті розрахунок координуємо вручну.</p></article>
   </div>
 </section>
 
-<!-- 6 -->
-<section class="sec wrap" id="how">
-  <div class="sec-head">
-    <h2 class="d2">від заявки<br>до першого<br>замовлення</h2>
-    <p class="lead">перед першим виїздом ми перевіряємо особу і пояснюємо правила: що можна робити без погодження, як знімати фото і коли зупинитися.</p>
-  </div>
-  <ol class="steps">
-    <li><span class="mono">01</span><div><h3>познайомимося</h3><p>Розкажіть про своє місто, досвід і готовність працювати на кладовищах уважно та без поспіху.</p></div></li>
-    <li><span class="mono">02</span><div><h3>пройдіть інструктаж</h3><p>Перевіримо особу й розберемо стандарт: матеріали, ракурси фото, межі дозволених робіт і зв'язок із координатором.</p></div></li>
-    <li><span class="mono">03</span><div><h3>оцініть місце</h3><p>Знайдіть поховання, зробіть початкові фото й не починайте додаткову роботу без погодженого плану.</p></div></li>
-    <li><span class="mono">04</span><div><h3>подбайте і прозвітуйте</h3><p>Виконайте погоджений догляд, повторіть фото з тих самих ракурсів і додайте чеки та коментар.</p></div></li>
+<section class="block wrap" id="how">
+  <h2 class="h2">як почати</h2>
+  <p class="small">від заявки до першого замовлення.</p>
+  <ol class="objects">
+    <li class="object"><img src="assets/il/remote-care-ordering.webp" alt="" loading="lazy"><span class="cap">(заявка)</span><p>заповніть форму внизу сторінки.</p></li>
+    <li class="object"><img src="assets/il/support-24-7.webp" alt="" loading="lazy"><span class="cap">(розмова)</span><p>коротко поговоримо і перевіримо особу.</p></li>
+    <li class="object"><img src="assets/il/photo-report-mobile.webp" alt="" loading="lazy"><span class="cap">(правила)</span><p>що можна робити без погодження і як знімати фото.</p></li>
+    <li class="object"><img src="assets/il/how-it-works-flow.webp" alt="" loading="lazy"><span class="cap">(перше замовлення)</span><p>відгукуєтесь у кабінеті на замовлення у своєму місті.</p></li>
   </ol>
 </section>
 
-<!-- 7 -->
-<section class="wrap" id="requirements">
-  <div class="sec-head">
-    <h2 class="d2">кого ми беремо і що не публікуємо</h2>
-  </div>
-  <div class="offers">
-    <article class="offer">
-      <span class="mono">(що важливо)</span>
+<section class="block wrap" id="requirements">
+  <h2 class="h2">вимоги і межі</h2>
+  <div class="panels is-two">
+    <article class="panel">
       <h3>вимоги до виконавця</h3>
-      <ul class="marks">
-        <li>Вам виповнилося 18 років</li>
-        <li>Маєте документ для підтвердження особи</li>
-        <li>Готові працювати на кладовищах спокійно й делікатно</li>
-        <li>Не змінюєте пам'ятник, рослини чи декор без дозволу</li>
-        <li>Умієте зробити чіткі фото з однакових ракурсів</li>
+      <ul>
+        <li>вам виповнилося 18 років</li>
+        <li>маєте документ для підтвердження особи</li>
+        <li>працюєте на кладовищі спокійно і делікатно</li>
+        <li>не змінюєте пам'ятник, рослини чи декор без дозволу</li>
+        <li>робите чіткі фото з однакових ракурсів</li>
       </ul>
     </article>
-    <article class="offer is-tint">
-      <span class="mono">(чого ми не публікуємо)</span>
+    <article class="panel">
       <h3>таких замовлень не буде</h3>
-      <ul class="marks is-no">
-        <li>Незаконні або небезпечні доручення</li>
-        <li>Демонтаж, фарбування або ремонт без окремої кваліфікації</li>
-        <li>Публікацію фото поховання чи даних родини у соцмережах</li>
-        <li>Використання агресивної хімії без перевірки матеріалу</li>
-        <li>Будь-які зміни, яких прямо не погодив замовник</li>
+      <ul>
+        <li>незаконні або небезпечні доручення</li>
+        <li>демонтаж, фарбування чи ремонт без окремої кваліфікації</li>
+        <li>публікація фото поховання чи даних родини в соцмережах</li>
+        <li>агресивна хімія без перевірки матеріалу</li>
+        <li>зміни, яких прямо не погодив замовник</li>
       </ul>
     </article>
   </div>
 </section>
 
-<!-- 8 -->
-<section class="split wrap" id="payment">
-  <div class="split-aside">
-    <h2 class="d2">скільки<br>ви<br>отримаєте</h2>
-    <p class="lead sub-note">окремо показуємо оплату за роботу, погоджені покупки, відстань і вимоги до звіту.</p>
-  </div>
-  <div>
-    <article class="case" aria-label="Приклад розрахунку виплати">
-      <div class="case-head"><h3>1 000 ₴ → 750 ₴</h3><span class="mono">приклад розрахунку</span></div>
-      <div class="case-rows">
-        <div class="case-row"><span>винагорода</span><span>1 000 ₴ за завдання</span></div>
-        <div class="case-row"><span>комісія doglyad</span><span>− 250 ₴ (25%)</span></div>
-        <div class="case-row"><span>ваша виплата</span><span>750 ₴</span></div>
-        <div class="case-row"><span>матеріали</span><span>не входять у розрахунок і компенсуються заздалегідь погодженим способом</span></div>
-      </div>
-    </article>
-    <p class="fine-print">Базова комісія Догляд становить 25% винагороди виконавця. Вона покриває залучення клієнта, підготовку завдання, координацію, стандарт доказів, підтримку та розгляд спорів.</p>
-    <ul class="marks">
-      <li>Чисту суму виплати видно до прийняття роботи</li>
-      <li>Погоджені витрати компенсуються окремо за чеком</li>
-      <li>У разі спору виплата призупиняється лише на час двостороннього розгляду</li>
-      <li>Ви самостійно відповідаєте за податки та свій правовий статус</li>
-    </ul>
-    <p class="fine-print"><a href="executor-terms.html">Прочитати повні умови співпраці →</a></p>
-  </div>
-</section>
-
-<!-- 9 -->
-<section class="sec wrap" id="income">
-  <div class="sec-head">
-    <h2 class="d2">порахуйте<br>свій сценарій<br>до заявки</h2>
-    <p class="lead">змініть винагороду за одне завдання і кількість виконань на місяць. розрахунок показує суму після комісії 25%, без матеріалів, податків і дороги.</p>
-  </div>
+<section class="block wrap" id="income">
+  <h2 class="h2">порахуйте виплату</h2>
+  <p class="small is-wide">змініть винагороду і кількість замовлень на місяць. без матеріалів, податків і дороги.</p>
   <div class="calc" data-income-calculator>
-    <div class="calc-controls">
-      <div class="calc-field">
-        <label for="task-reward">Винагорода за одне завдання</label>
-        <output for="task-reward" data-reward-output>1 200 ₴</output>
-      </div>
+    <div>
+      <div class="calc-field"><label for="task-reward">винагорода за одне замовлення</label><output for="task-reward" data-reward-output>1 200 ₴</output></div>
       <input id="task-reward" type="range" min="700" max="3000" step="100" value="1200" data-reward-input>
-      <div class="calc-field">
-        <label for="tasks-month">Завдань на місяць</label>
-        <output for="tasks-month" data-tasks-output>4</output>
-      </div>
+      <div class="calc-field"><label for="tasks-month">замовлень на місяць</label><output for="tasks-month" data-tasks-output>4</output></div>
       <input id="tasks-month" type="range" min="1" max="12" step="1" value="4" data-tasks-input>
-      <p class="fine-print">Це математичний приклад, а не гарантія кількості замовлень або доходу. Доступність залежить від міста, сезону, попиту та вашого рейтингу.</p>
+      <p class="note">це приклад розрахунку, а не гарантія кількості замовлень. вона залежить від міста, сезону і вашого рейтингу.</p>
     </div>
-    <div class="calc-result" aria-live="polite">
-      <span class="mono">орієнтовна виплата за місяць</span>
+    <div class="calc-out" aria-live="polite">
+      <span class="cap">(орієнтовно за місяць)</span>
       <strong data-income-total>3 600 ₴</strong>
-      <div class="case-rows">
-        <div class="case-row"><span>винагорода клієнта</span><span data-income-gross>4 800 ₴</span></div>
-        <div class="case-row"><span>комісія doglyad, 25%</span><span data-income-fee>− 1 200 ₴</span></div>
-        <div class="case-row"><span>за одне виконання</span><span data-income-one>900 ₴</span></div>
-      </div>
-      <a class="pill" href="#apply">подати заявку з цим сценарієм</a>
-    </div>
-  </div>
-  <div class="modes" role="group" aria-label="Формати співпраці">
-    <article><span class="mono">01 · епізодично</span><h3>кілька виїздів</h3><p>Берете окремі завдання, коли маєте час і маршрут вам підходить. Відмова від нового запиту не є штрафом.</p></article>
-    <article><span class="mono">02 · регулярно</span><h3>стабільний район</h3><p>Позначаєте звичні райони та доступні дні. Координатор може пропонувати повторні й сезонні замовлення неподалік.</p></article>
-    <article><span class="mono">03 · командою</span><h3>партнерська модель</h3><p>Для агенцій і локальних команд із менеджером, перевіреними виконавцями та узгодженим покриттям міст.</p></article>
-  </div>
-</section>
-
-<!-- 10 -->
-<section class="wrap" id="agencies">
-  <div class="partner">
-    <div>
-      <span class="mono kicker">(для команд і агентств)</span>
-      <h2 class="d2">маєте людей у кількох містах? підключимо вас як операційного партнера.</h2>
-      <p class="lead">працюємо з сервісними агентствами, ритуальними службами, локальними командами догляду, флористами й координаторами.</p>
-    </div>
-    <div>
-      <div class="case-rows">
-        <div class="case-row"><span>doglyad бере на себе</span><span>Потік клієнтських запитів, первинний бриф, єдиний стандарт замовлення, контроль звітів, комунікацію із замовником і розгляд спірних ситуацій.</span></div>
-        <div class="case-row"><span>партнер забезпечує</span><span>Відповідального менеджера, перевірених працівників, заявлене покриття, дотримання строків, конфіденційність і повний фото- та фінансовий звіт.</span></div>
-      </div>
-      <a class="pill" href="mailto:munister@outlook.com?subject=%D0%A1%D0%BF%D1%96%D0%B2%D0%BF%D1%80%D0%B0%D1%86%D1%8F%20%D0%B7%20%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%BE%D0%BC%20%C2%B7%20Doglyad">обговорити партнерство</a>
+      <dl>
+        <div><dt>винагорода клієнтів</dt><dd data-income-gross>4 800 ₴</dd></div>
+        <div><dt>комісія 25%</dt><dd data-income-fee>− 1 200 ₴</dd></div>
+        <div><dt>за одне замовлення</dt><dd data-income-one>900 ₴</dd></div>
+      </dl>
+      <a class="btn is-go is-lg" href="#apply">подати заявку</a>
     </div>
   </div>
 </section>
 
-<!-- 11 -->
-<section class="split wrap" id="faq">
-  <div class="split-aside">
-    <h2 class="d2">коротко про те, що зазвичай хвилює</h2>
-    <p class="lead sub-note">повні юридичні правила в <a href="executor-terms.html">умовах співпраці</a>. тут практичні відповіді про щоденну роботу.</p>
+<section class="block wrap" id="modes">
+  <h2 class="h2">формати роботи</h2>
+  <div class="panels">
+    <article class="panel"><h3>кілька виїздів</h3><p>берете окремі замовлення, коли маєте час. відмова від нового запиту не штрафується.</p></article>
+    <article class="panel"><h3>свій район</h3><p>позначаєте звичні райони і вільні дні. координатор пропонує повторні і сезонні замовлення неподалік.</p></article>
+    <article class="panel"><h3>командою</h3><p>для агенцій і місцевих команд із менеджером, перевіреними людьми і покриттям кількох міст.</p></article>
   </div>
+</section>
+
+<section class="block wrap" id="agencies">
+  <h2 class="h2">маєте команду в кількох містах?</h2>
+  <p class="small is-wide">ми даємо потік замовлень, бриф, стандарт звіту і розгляд спорів. ви даєте людей, покриття і строки.</p>
+  <a class="btn" href="mailto:munister@outlook.com?subject=%D0%A1%D0%BF%D1%96%D0%B2%D0%BF%D1%80%D0%B0%D1%86%D1%8F%20%D0%B7%20%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%D1%81%D1%82%D0%B2%D0%BE%D0%BC%20%C2%B7%20Doglyad">обговорити партнерство</a>
+</section>
+
+<section class="block wrap" id="faq">
+  <h2 class="h2">питання</h2>
+  <p class="small is-wide">повні правила в <a href="executor-terms.html">умовах співпраці</a>.</p>
   <div class="faq">
-    <details>
-      <summary><span class="mono">01</span>Чи можу я відмовитися від запропонованого замовлення?</summary>
-      <p>Так. До прийняття завдання ви бачите місто, строк, обсяг і суму. Ви можете відмовитися, якщо не підходить маршрут, дата, тип роботи або винагорода. Після прийняття важливо виконати погоджене або одразу повідомити координатора про обставини.</p>
-    </details>
-    <details>
-      <summary><span class="mono">02</span>Коли і як виплачуються кошти?</summary>
-      <p>Після виконання ви завантажуєте звіт. Коли результат прийнято, виплата запускається погодженим для конкретного замовлення способом, орієнтовно до трьох робочих днів. У картці заздалегідь видно винагороду, комісію й чисту суму.</p>
-    </details>
-    <details>
-      <summary><span class="mono">03</span>Хто оплачує квіти, лампадки та матеріали?</summary>
-      <p>Погоджені покупки не віднімаються з вашої винагороди. Сума, перелік і спосіб компенсації фіксуються до придбання; для звіту потрібно зберегти чек. Непогоджені витрати можуть не компенсуватися.</p>
-    </details>
-    <details>
-      <summary><span class="mono">04</span>Що робити, якщо стан місця гірший за опис?</summary>
-      <p>Не починайте додатковий обсяг самостійно. Зробіть фото, опишіть ситуацію координатору й дочекайтеся нового погодження із замовником. Це захищає ваш час і право на доплату.</p>
-    </details>
-    <details>
-      <summary><span class="mono">05</span>Чи потрібен ФОП і які документи перевіряються?</summary>
-      <p>У заявці можна вказати свій поточний статус. Допустимий формат оформлення залежить від моделі співпраці й чинних правил. До першого завдання команда уточнить правовий статус і спосіб виплати. Паспортні дані через відкриту форму не збираються.</p>
-    </details>
-    <details>
-      <summary><span class="mono">06</span>Як Doglyad вирішує суперечки із замовником?</summary>
-      <p>Координатор звіряє погоджений бриф, повідомлення, фото до і після, геолокацію та чеки. Рішення не приймається лише зі слів однієї сторони: можливе уточнення, виправлення, часткова оплата або повна виплата відповідно до доказів.</p>
-    </details>
+    <details><summary>чи можна відмовитися від замовлення?</summary><p>Так. До прийняття ви бачите місто, строк, обсяг і суму. Можна відмовитися, якщо не підходить маршрут, дата, тип роботи або винагорода. Після прийняття треба виконати погоджене або одразу повідомити координатора.</p></details>
+    <details><summary>коли і як виплачуються гроші?</summary><p>Після роботи ви завантажуєте звіт. Коли замовник його прийняв, виплата йде погодженим способом, орієнтовно до трьох робочих днів. Винагороду, комісію і чисту суму видно в замовленні заздалегідь.</p></details>
+    <details><summary>хто платить за квіти, лампадки і матеріали?</summary><p>Погоджені покупки не віднімаються з вашої винагороди. Сума, перелік і спосіб компенсації фіксуються до покупки, чек треба зберегти. Непогоджені витрати можуть не компенсуватися.</p></details>
+    <details><summary>що робити, якщо стан місця гірший за опис?</summary><p>Не починайте додаткову роботу самостійно. Зробіть фото, опишіть ситуацію координатору і дочекайтеся нового погодження із замовником. Так ви зберігаєте право на доплату.</p></details>
+    <details><summary>чи потрібен фоп і які документи перевіряють?</summary><p>У заявці вкажіть свій поточний статус. До першого замовлення уточнимо правовий статус і спосіб виплати. Паспортні дані через цю форму не збираємо.</p></details>
+    <details><summary>як вирішуються суперечки із замовником?</summary><p>Координатор звіряє бриф, переписку, фото до і після та чеки. Рішення не ухвалюється зі слів однієї сторони: можливе виправлення, часткова або повна оплата відповідно до доказів.</p></details>
   </div>
 </section>
 
-<!-- 12 -->
-<section class="split wrap" id="apply">
-  <div class="split-aside">
-    <h2 class="d2">заявка на роботу</h2>
-    <p class="lead sub-note">форма складає лист на munister@outlook.com у вашій пошті. відповідаємо з наступним кроком: коротка розмова і перевірка особи. паспорт і фото документів тут не потрібні.</p>
-    <div class="contact-card">Не відкрився поштовий застосунок?<br><a href="mailto:munister@outlook.com">munister@outlook.com</a></div>
-  </div>
-
-  <form class="apply-card" id="executor-form" novalidate>
+<section class="block wrap" id="apply">
+  <h2 class="h2">заявка на роботу</h2>
+  <p class="small is-wide">форма складе лист на munister@outlook.com у вашій пошті. паспорт і фото документів не потрібні.</p>
+  <form class="form" id="executor-form" novalidate>
     <div class="fields">
-      <label>Ім'я та прізвище<input type="text" name="fullName" autocomplete="name" required></label>
-      <label>Місто<input type="text" name="city" autocomplete="address-level2" required></label>
-      <label>Телефон<input type="tel" name="phone" autocomplete="tel" placeholder="+380" required></label>
-      <label>Email<input type="email" name="email" autocomplete="email" required></label>
-      <label>Статус роботи
+      <label>ім'я та прізвище<input type="text" name="fullName" autocomplete="name" required></label>
+      <label>місто<input type="text" name="city" autocomplete="address-level2" required></label>
+      <label>телефон<input type="tel" name="phone" autocomplete="tel" placeholder="+380" required></label>
+      <label>email<input type="email" name="email" autocomplete="email" required></label>
+      <label>статус роботи
         <select name="workStatus" required>
-          <option value="">Оберіть варіант</option>
+          <option value="">оберіть варіант</option>
           <option>ФОП</option>
           <option>Самозайнята особа</option>
           <option>Фізична особа, готовий(-а) уточнити оформлення</option>
         </select>
       </label>
-      <label>Як пересуваєтеся
+      <label>як пересуваєтеся
         <select name="transport">
           <option>Пішки / громадський транспорт</option>
           <option>Велосипед / самокат</option>
@@ -326,45 +229,49 @@
         </select>
       </label>
     </div>
-
     <fieldset>
-      <legend>Які завдання вам підходять?</legend>
-      <div class="chips">
-        <label><input type="checkbox" name="categories[]" value="Прибирання місць пам'яті">Прибирання місць пам'яті</label>
-        <label><input type="checkbox" name="categories[]" value="Квіти та лампадки">Квіти та лампадки</label>
-        <label><input type="checkbox" name="categories[]" value="Пошук поховання">Пошук поховання</label>
-        <label><input type="checkbox" name="categories[]" value="Сезонний догляд">Сезонний догляд</label>
-        <label><input type="checkbox" name="categories[]" value="Інші локальні доручення">Інші локальні доручення</label>
-        <label><input type="checkbox" name="categories[]" value="Маю досвід ремонтних робіт">Маю досвід ремонтних робіт</label>
+      <legend>які замовлення вам підходять</legend>
+      <div class="picks">
+        <label><input type="checkbox" name="categories[]" value="Прибирання місць пам'яті">прибирання</label>
+        <label><input type="checkbox" name="categories[]" value="Квіти та лампадки">квіти і лампадки</label>
+        <label><input type="checkbox" name="categories[]" value="Пошук поховання">пошук поховання</label>
+        <label><input type="checkbox" name="categories[]" value="Сезонний догляд">сезонний догляд</label>
+        <label><input type="checkbox" name="categories[]" value="Інші локальні доручення">інші доручення</label>
+        <label><input type="checkbox" name="categories[]" value="Маю досвід ремонтних робіт">маю досвід ремонту</label>
       </div>
       <p class="field-error" id="category-error" aria-live="polite"></p>
     </fieldset>
-
-    <label>Коротко про досвід і доступність<textarea name="experience" rows="5" placeholder="Що вмієте, у які дні та години зазвичай доступні?" required></textarea></label>
-
+    <label>коротко про досвід і вільний час<textarea name="experience" rows="5" placeholder="що вмієте, у які дні та години зазвичай вільні" required></textarea></label>
     <div class="checks">
-      <label><input type="checkbox" name="adult" required><span>Підтверджую, що мені виповнилося 18 років.</span></label>
-      <label><input type="checkbox" name="terms" required><span>Прочитав(-ла) та приймаю <a href="executor-terms.html" target="_blank" rel="noopener">умови співпраці з виконавцями</a>.</span></label>
-      <label><input type="checkbox" name="privacy" required><span>Даю згоду на обробку даних для розгляду заявки згідно з <a href="privacy.html" target="_blank" rel="noopener">повідомленням про приватність</a>.</span></label>
+      <label><input type="checkbox" name="adult" required><span>Мені виповнилося 18 років.</span></label>
+      <label><input type="checkbox" name="terms" required><span>Я прочитав(-ла) і приймаю <a href="executor-terms.html" target="_blank" rel="noopener">умови співпраці</a>.</span></label>
+      <label><input type="checkbox" name="privacy" required><span>Даю згоду на обробку даних згідно з <a href="privacy.html" target="_blank" rel="noopener">повідомленням про приватність</a>.</span></label>
     </div>
-
-    <button class="pill" type="submit">підготувати заявку</button>
+    <button class="btn is-go is-lg" type="submit">підготувати заявку</button>
     <p class="form-status" id="form-status" aria-live="polite"></p>
   </form>
 </section>
 
 </main>
 
-<div class="ft-slab"><footer class="ft wrap">
-  <span class="mono">догляд · 2026 · пілотний запуск в Україні</span>
-  <nav>
+<p class="ft-note">догляд працює в пілотному режимі. питання: munister@outlook.com</p>
+<footer class="ft">
+  <div class="ft-top">
+    <a class="hd-brand" href="./"><span class="hd-mark"></span>догляд</a>
+    <div class="hd-act">
+      <a class="btn" href="https://app.munister.com.ua/login">увійти</a>
+      <a class="btn is-go" href="#apply">подати заявку</a>
+    </div>
+  </div>
+  <nav class="ft-cols" aria-label="Посилання">
     <a href="./">замовникам</a>
+    <a href="executor-terms.html">умови</a>
+    <a href="mailto:munister@outlook.com">пошта</a>
     <a href="cabinet.html">кабінет</a>
-    <a href="executor-terms.html">умови для виконавців</a>
     <a href="privacy.html">приватність</a>
-    <a href="mailto:munister@outlook.com">munister@outlook.com</a>
   </nav>
-</footer></div>
+  <small>© 2026 догляд</small>
+</footer>
 
 <script src="executor.js?v=20260911-1"></script>
 </body>
