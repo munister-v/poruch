@@ -17,8 +17,8 @@
   --foot-mute:#D9C7BA;
   --foot-dim:#BFAFA4;
   --foot-rule:rgba(209,181,149,.45);
-  --sans:'KTF Prima','Helvetica Neue',Helvetica,Arial,sans-serif;
-  --serif:'Literata','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:'Onest','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --serif:'EB Garamond','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
   --body:var(--sans);
   --label:var(--sans);
   --ui:var(--sans);
@@ -136,7 +136,7 @@ h3{font-size:var(--h3)}
 .fw-stat,.step-card,.mem-protection-grid article{min-height:270px;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:transparent}
 .fw-stat-num{font-family:var(--label);font-size:.72rem;letter-spacing:.12em;color:var(--ink)}
 .fw-stat strong,.fw-stat span{display:block}
-.fw-stat strong{margin-top:72px;font-family:var(--serif);font-size:1.45rem;font-weight:500;line-height:1.15}
+.fw-stat strong{margin-top:0;font-family:var(--serif);font-size:1.45rem;font-weight:500;line-height:1.15}
 .fw-stat span{margin-top:12px;color:var(--muted);font-size:.86rem;line-height:1.6}
 
 .mem-decision{background:var(--paper)}
@@ -249,7 +249,12 @@ h3{font-size:var(--h3)}
 .mem-protection-head>div:first-child h2{max-width:760px;margin-top:16px}
 .mem-protection-head .fw-head-side{padding:0 0 8px 30px;border-left:1px solid var(--line)}
 .mem-protection-head .fw-head-side p{color:var(--muted);font-size:var(--lead)}
-.mem-protection-grid article h3,.step-card h3{margin-top:70px}
+.mem-protection-grid article h3{margin-top:0}
+.step-card h3{margin-top:70px}
+.fw-stat-num,.mem-protection-number{display:none}
+/* Номер тримав композицію «мітка вгорі, текст унизу». Номер пішов,
+   а композиція лишається: вміст притиснуто до низу клітинки. */
+.fw-stat,.mem-protection-grid article{display:flex;flex-direction:column;justify-content:flex-end}
 .mem-protection-number,.step-card>span{font-family:var(--sans);font-size:var(--t-sm);letter-spacing:0;font-variant-numeric:tabular-nums;color:var(--accent)}
 .mem-boundaries-grid,.requirements-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:44px;border:1px solid var(--line)}
 .mem-boundary-card,.requirements-card{padding:36px;background:var(--surface)}
