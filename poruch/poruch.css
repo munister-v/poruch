@@ -5,7 +5,7 @@
   --surface:#FFFFFF;
   --ink:#121212;
   --muted:rgba(18,18,18,.72);
-  --secondary:#999999;
+  --secondary:#736F68;
   --tint:#F2F1EF;
   --accent:#9E3B2C;
   --accent-soft:#F6EDEA;
@@ -74,8 +74,10 @@ h3{font-size:var(--h3)}
 .brand-copy{display:grid;line-height:1.1}
 .brand-parent{font-family:var(--label);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase}
 .mem-nav,.nav{display:flex;align-self:stretch;align-items:stretch;justify-content:flex-end;gap:0;margin-left:auto}
-.mem-nav a,.nav a,.mem-link,.header-actions a,.text-link{display:inline-flex;min-height:63px;align-items:center;justify-content:center;padding-inline:18px;border-left:1px solid var(--line);font-family:var(--sans);font-size:var(--t-sm);letter-spacing:0;text-transform:none}
-.mem-nav a:hover,.nav a:hover,.mem-link:hover,.text-link:hover{background:var(--ink);color:var(--paper)}
+.mem-nav a,.nav a,.mem-link,.header-actions>a:not(.btn):not(.fw-btn){display:inline-flex;min-height:63px;align-items:center;justify-content:center;padding-inline:18px;border-left:1px solid var(--line);font-family:var(--sans);font-size:var(--t-sm);letter-spacing:0;text-transform:none}
+.text-link{display:inline-flex;min-height:44px;align-items:center;gap:8px;padding:var(--s3) 18px;border:1px solid var(--control);border-radius:40px;font-family:var(--sans);font-size:var(--t-sm);letter-spacing:0;text-transform:none;transition:border-color .18s var(--ease)}
+.text-link:hover{border-color:var(--ink);background:transparent;color:var(--ink)}
+.mem-nav a:hover,.nav a:hover,.mem-link:hover{background:var(--ink);color:var(--paper)}
 .mem-header-actions,.header-actions{display:flex;align-items:stretch;gap:0}
 .mem-mobile-menu{display:none}
 .mem-mobile-menu summary{position:relative;width:46px;height:46px;border:1px solid var(--line);list-style:none}
@@ -488,6 +490,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
 }
 
 @media(max-width:680px){
+  /* На телефоні «ПОРУЧ» стояв двічі поспіль: у шапці й у підмачті.
+     Підмачта — десктопний елемент (вордмарк + мотто + права мітка),
+     на вузькому екрані від неї лишався самий дубль назви. */
+  .mem-submast{display:none}
+  /* Дію несе липка нижня панель. Та сама дія в шапці — третя кнопка
+     про одне й те саме на одному екрані. */
+  .header-actions>.btn,.mem-header-actions>.fw-btn{display:none}
   :root{--t-lg:18px;--t-xl:21px;--t-2xl:26px;--hero:clamp(30px,8.6vw,44px);--s7:32px;--s8:40px;--s9:48px}
   .mem-container,.container{width:min(100% - 32px,1360px)}
   :root{--section:80px;--section-tight:56px;--section-loose:96px;--hero:1.5rem;--h2:clamp(2rem,10vw,3rem);--h2-major:clamp(2.4rem,12vw,3.8rem)}
@@ -568,13 +577,13 @@ input:focus,select:focus,textarea:focus{border-color:var(--ink);outline:2px soli
   .workspace-grid h3,.workspace-support blockquote{margin-top:42px}
   .proof-photo{height:230px}
   .executor-mobile-actions{position:fixed;z-index:120;right:8px;bottom:max(8px,env(safe-area-inset-bottom));left:8px;display:grid;grid-template-columns:1.15fr .85fr;border:1px solid var(--ink);background:var(--paper);box-shadow:0 10px 32px rgba(17,17,17,.2)}
-  .executor-mobile-actions a{display:flex;min-height:54px;align-items:center;justify-content:center;padding:12px;font-family:var(--label);font-size:.58rem;letter-spacing:.08em;text-align:center;text-transform:uppercase}
+  .executor-mobile-actions a{display:flex;min-height:54px;align-items:center;justify-content:center;padding:12px;font-family:var(--sans);font-size:var(--t-sm);letter-spacing:0;text-align:center;text-transform:none}
   .executor-mobile-actions a:first-child{background:var(--ink);color:var(--paper)}
   .executor-memorial{padding-bottom:76px}
   .mem-start-options{grid-template-columns:1fr}
   .mem-login-card{align-items:flex-start;flex-direction:column;gap:4px}
   .mem-mobile-actions{position:fixed;z-index:120;right:8px;bottom:max(8px,env(safe-area-inset-bottom));left:8px;display:grid;grid-template-columns:1.15fr .85fr;border:1px solid var(--ink);background:var(--paper);box-shadow:0 10px 32px rgba(17,17,17,.2)}
-  .mem-mobile-actions a{display:flex;min-height:54px;align-items:center;justify-content:center;padding:12px;font-family:var(--label);font-size:.58rem;letter-spacing:.08em;text-align:center;text-transform:uppercase}
+  .mem-mobile-actions a{display:flex;min-height:54px;align-items:center;justify-content:center;padding:12px;font-family:var(--sans);font-size:var(--t-sm);letter-spacing:0;text-align:center;text-transform:none}
   .mem-mobile-actions a:first-child{background:var(--ink);color:var(--paper)}
   .memorial-home{padding-bottom:76px}
   .mem-faq-list summary{grid-template-columns:minmax(0,1fr) 32px;gap:14px;font-size:1.12rem}
