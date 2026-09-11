@@ -437,7 +437,7 @@ function layout({ title, user, body, description = "", current = "" }) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&amp;family=Onest:wght@400;500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/app.css?v=20260911-white3">
+  <link rel="stylesheet" href="/assets/app.css?v=20260911-white4">
 </head>
 <body>
   <a class="skip-link" href="#main-content">До основного вмісту</a>
@@ -1031,8 +1031,8 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
         current: "dashboard",
         body: `<main class="page dashboard-page">
           <header class="dashboard-hero">
-            <div class="dash-index"><span>кабінет замовника</span><span>${esc(req.user.city)}</span><span>${date(new Date())}</span></div>
             <div class="dashboard-intro">
+              <p class="eyebrow">Кабінет замовника / ${esc(req.user.city)}</p>
               <h1>Добрий день, ${esc(firstName(req.user.name))}.</h1>
               <p>Ваші замовлення, пропозиції виконавців і звіти. Нове замовлення публікується за кілька хвилин.</p>
               <div class="hero-actions"><a class="button button-wine" href="/orders/new">${icon("plus")}Створити замовлення</a><a class="text-action" href="mailto:${esc(SUPPORT_EMAIL)}">Поставити питання команді ${icon("arrow")}</a></div>
@@ -1156,8 +1156,8 @@ app.get("/dashboard", requireAuth, async (req, res, next) => {
       current: "dashboard",
       body: `<main class="page dashboard-page">
         <header class="dashboard-hero executor-hero">
-          <div class="dash-index"><span>кабінет виконавця</span><span>${esc(req.user.city)}</span><span>${date(new Date())}</span>${req.user.verified_at ? `<span class="verified">${icon("check")} Перевірено</span>` : ""}</div>
           <div class="dashboard-intro">
+            <div class="executor-labels"><p class="eyebrow">Кабінет виконавця / ${esc(req.user.city)}</p>${req.user.verified_at ? `<span class="verified">${icon("check")} Перевірено</span>` : ""}</div>
             <h1>Добрий день, ${esc(firstName(req.user.name))}.</h1>
             <p>Замовлення у вашому місті, ваші пропозиції і виплати. Суму після комісії 25% видно до того, як ви відгукнетеся.</p>
             <div class="hero-actions"><a class="button" href="/orders/available">${icon("search")}Знайти замовлення</a><a class="text-action" href="/profile">Профіль виконавця ${icon("arrow")}</a></div>
