@@ -97,9 +97,12 @@ a{color:inherit}
 .close .d2{color:var(--grey-soft);text-decoration:none}
 .close .fine{margin-top:22px;color:var(--grey);font-size:15px;text-transform:lowercase}
 
-.ft{border-top:1px solid var(--line);padding-block:26px 40px;display:flex;
-  justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-.ft a{color:var(--grey-soft);text-decoration:none;font-size:13px}
+.ft-slab{background:#101010;margin-top:40px}
+.ft{border-top:0;padding-block:34px 40px;display:flex;
+  justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;color:#f5f0eb}
+.ft .mono{color:rgba(245,240,235,.52)}
+.ft a{color:rgba(245,240,235,.72);text-decoration:none;font-size:13px}
+.ft a:hover{color:#fff}
 .ft nav{display:flex;gap:18px;flex-wrap:wrap}
 
 @media(max-width:900px){

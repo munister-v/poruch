@@ -1,0 +1,54 @@
+/* v3 — white skin for the inner pages. Loaded after poruch.css.
+   Tokens first, so the whole old stylesheet follows without a markup rewrite. */
+:root{
+  --paper:#ffffff;
+  --surface:#ffffff;
+  --ink:#181816;
+  --muted:rgba(24,24,22,.62);
+  --accent:#181816;
+  --accent-soft:rgba(24,24,22,.05);
+  --line:rgba(24,24,22,.12);
+  --line-soft:rgba(24,24,22,.07);
+  --serif:'Onest',system-ui,sans-serif;
+  --body:'Onest',system-ui,sans-serif;
+  --ui:'Onest',system-ui,sans-serif;
+  --label:'IBM Plex Mono',ui-monospace,monospace;
+}
+body{background:#fff}
+
+/* display type: the landing's proportions */
+h1,h2{letter-spacing:-.025em;line-height:.92;font-weight:400}
+h3{letter-spacing:-.015em;font-weight:400}
+body:not(.legal-document) h1{text-transform:lowercase;line-height:.9}
+.eyebrow{font-family:var(--label);font-size:11px;letter-spacing:.02em;color:#908f8e;text-transform:lowercase}
+
+/* legal pages stay sentence case and stay readable */
+body.legal-document h1,body.legal-document h2,body.legal-document h3{line-height:1.1}
+body.legal-document{font-size:16px}
+
+/* controls become pills */
+.button,.btn,.mem-button,.mem-outline-button{
+  border-radius:999px;letter-spacing:-.01em;font-family:var(--ui);
+}
+.button-primary,.btn-primary,.mem-button,.mem-outline-solid{
+  background:var(--ink);color:#fff;border-color:var(--ink);
+}
+.button-secondary,.mem-outline-button{
+  background:rgba(24,24,22,.05);color:var(--ink);border-color:transparent;
+}
+
+/* surfaces: hairline boxes, no warm fills, no decorative corners */
+.cab-visual,.cab-roles a,.card,.mem-card,.panel,.fw-service-card,.detail-card{
+  background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:none;
+}
+.corner{display:none}
+.cab-roles a span{font-family:var(--label);font-size:11px;color:#908f8e}
+.cab-security{color:#6a6967}
+figcaption{color:#6a6967}
+
+/* brand reads like the landing wordmark */
+.brand-name{font-family:var(--ui);letter-spacing:-.01em;text-transform:lowercase;font-weight:500}
+
+/* the footer stays the dark anchor the old stylesheet designed it to be;
+   only the wordmark follows the new lowercase brand. */
+body .footer .brand-name,body .mem-footer .brand-name{color:var(--paper-dark,#f5f0eb)}
