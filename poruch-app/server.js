@@ -470,7 +470,6 @@ function authView(req, mode, error = "", values = {}) {
       <section class="auth-story">
         ${brandLink("https://poruch.munister.com.ua/")}
         <div>
-          <p class="eyebrow">${register ? "новий кабінет" : "захищений кабінет"}</p>
           <h1>${register ? "Кабінет замовника або виконавця." : "Вхід до кабінету."}</h1>
           <p>${register ? "Замовник описує місце і обирає виконавця. Виконавець надсилає ціну, виконує роботу і завантажує фото. Роль обирається один раз." : "Тут ваші замовлення, переписка з виконавцем, фото до і після та витрати за чеками."}</p>
           <figure class="auth-figure"><img src="/assets/${register ? "how-it-works-flow" : "remote-care-ordering"}.webp" width="820" height="820" alt="" loading="lazy"></figure>
